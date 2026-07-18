@@ -1950,3 +1950,201 @@ body.subpage .premium-entry-v37{
 .premium-entry-v36__shade{
   display:none!important;
 }
+
+
+/* =======================================================================
+   V38 — FINAL CLIENT ENTRY
+   Soft material reveal. No black bars, no strip animation, no flash.
+   ======================================================================= */
+
+body.subpage .premium-entry-v38{
+  display:none!important;
+}
+
+.premium-entry-v38{
+  position:fixed;
+  inset:0;
+  z-index:23000;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  isolation:isolate;
+  background:#ded9cf;
+  color:#090909;
+  contain:layout paint style;
+}
+
+.premium-entry-v38__image{
+  position:absolute;
+  inset:-2%;
+  z-index:-4;
+  background-image:var(--entry-bg);
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:scale(1.035);
+  filter:grayscale(.08) brightness(.6) contrast(1.05);
+  transition:
+    opacity 1.1s ease,
+    transform 1.45s cubic-bezier(.17,.84,.22,1),
+    filter 1.2s ease;
+  will-change:opacity, transform;
+}
+
+.premium-entry-v38.is-ready .premium-entry-v38__image{
+  opacity:.34;
+  transform:scale(1.014);
+}
+
+.premium-entry-v38.is-revealing .premium-entry-v38__image{
+  opacity:.82;
+  filter:grayscale(.04) brightness(.68) contrast(1.05);
+  transform:scale(1.006);
+}
+
+.premium-entry-v38__paper{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255,255,255,.52), rgba(255,255,255,0) 34%),
+    linear-gradient(135deg, #eee9df 0%, #ded9cf 42%, #cfc8bc 100%);
+  opacity:1;
+  transition:opacity 1.05s ease, transform 1.05s cubic-bezier(.17,.84,.22,1);
+  will-change:opacity;
+}
+
+.premium-entry-v38.is-revealing .premium-entry-v38__paper{
+  opacity:.16;
+  transform:scale(1.02);
+}
+
+.premium-entry-v38__light{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.26), rgba(255,255,255,0) 27%),
+    linear-gradient(90deg, rgba(0,0,0,.06), rgba(0,0,0,0) 28%, rgba(0,0,0,0) 72%, rgba(0,0,0,.08));
+  opacity:.74;
+  transition:opacity 1s ease;
+}
+
+.premium-entry-v38.is-revealing .premium-entry-v38__light{
+  opacity:.44;
+}
+
+.premium-entry-v38__content{
+  position:relative;
+  z-index:3;
+  display:grid;
+  justify-items:center;
+  gap:10px;
+  text-align:center;
+  opacity:0;
+  transform:translate3d(0,12px,0) scale(.985);
+  transition:
+    opacity .72s ease .16s,
+    transform .72s cubic-bezier(.17,.84,.22,1) .16s,
+    color .6s ease;
+  will-change:opacity, transform;
+}
+
+.premium-entry-v38.is-ready .premium-entry-v38__content{
+  opacity:1;
+  transform:none;
+}
+
+.premium-entry-v38.is-revealing .premium-entry-v38__content{
+  color:#fff;
+  transition:
+    opacity .45s ease,
+    transform .45s cubic-bezier(.17,.84,.22,1),
+    color .45s ease;
+}
+
+.premium-entry-v38__mark{
+  grid-area:1 / 1;
+  width:44px;
+  height:auto;
+  margin-bottom:8px;
+  transition:opacity .48s ease, transform .72s cubic-bezier(.17,.84,.22,1);
+}
+
+.premium-entry-v38__mark--dark{
+  opacity:.96;
+}
+
+.premium-entry-v38__mark--light{
+  opacity:0;
+}
+
+.premium-entry-v38.is-ready .premium-entry-v38__mark{
+  transform:scale(1.02);
+}
+
+.premium-entry-v38.is-revealing .premium-entry-v38__mark--dark{
+  opacity:0;
+}
+
+.premium-entry-v38.is-revealing .premium-entry-v38__mark--light{
+  opacity:.96;
+}
+
+.premium-entry-v38__content span{
+  font-size:11px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.premium-entry-v38__content strong{
+  color:rgba(0,0,0,.58);
+  font-size:10px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:color .45s ease;
+}
+
+.premium-entry-v38.is-revealing .premium-entry-v38__content strong{
+  color:rgba(255,255,255,.68);
+}
+
+.premium-entry-v38.is-leaving{
+  pointer-events:none;
+  animation:v38EntryLeave .56s cubic-bezier(.17,.84,.22,1) forwards;
+}
+
+.premium-entry-v38.is-leaving .premium-entry-v38__content{
+  opacity:0;
+  transform:translate3d(0,-8px,0) scale(.992);
+  transition:opacity .28s ease, transform .28s cubic-bezier(.17,.84,.22,1);
+}
+
+@keyframes v38EntryLeave{
+  to{opacity:0;visibility:hidden;}
+}
+
+/* Hard-disable every older entrance overlay in case browser cache creates it. */
+.premium-entry-v25,
+.premium-entry-v31,
+.premium-entry-v35,
+.premium-entry-v36,
+.premium-entry-v37{
+  display:none!important;
+}
+
+.premium-entry-v25__panel,
+.premium-entry-v25__grid,
+.premium-entry-v31__veil,
+.premium-entry-v35__veil,
+.premium-entry-v36__shade,
+.premium-entry-v37__line{
+  display:none!important;
+}
