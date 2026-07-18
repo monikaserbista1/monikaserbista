@@ -1107,3 +1107,29 @@
   animation:v36HeroTextStable .78s cubic-bezier(.17,.84,.22,1) .08s both!important;
   filter:none!important;
 }
+
+
+/* =======================================================================
+   V39 — clean mobile menu + larger logo final override.
+   ======================================================================= */
+@media (min-width:1000px){
+  .page-v39 .brand__mark{width:44px!important;height:44px!important;}
+  .page-v39 .brand__copy strong{font-size:12px!important;letter-spacing:.16em!important;}
+  .page-v39 .brand__copy small{font-size:9px!important;letter-spacing:.18em!important;}
+}
+@media (max-width:860px){
+  .page-v39 .mobile-menu nav a span{display:none!important;}
+  .page-v39 .mobile-menu nav a{
+    min-height:62px!important;
+    padding:0 22px!important;
+    border-bottom:1px solid rgba(255,255,255,.12)!important;
+    justify-content:space-between!important;
+    font-size:20px!important;
+    letter-spacing:-.035em!important;
+  }
+  .page-v39 .mobile-menu nav a::after{
+    content:"↗";
+    color:rgba(255,255,255,.42);
+    font-size:14px;
+  }
+}
