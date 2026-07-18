@@ -353,7 +353,7 @@
     node.textContent = new Date().getFullYear();
   });
 
-  // V35 studio-only entry — clean image fade, no bars, no slow strips
+  // V36 studio-only entry — ultra clean fade, stable text, no jumping
   const initMajorEntryV25 = () => {
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
@@ -372,13 +372,13 @@
 
     const source = heroImage?.currentSrc || heroImage?.src || 'hero-01.jpg';
     const gate = document.createElement('div');
-    gate.className = 'premium-entry-v35';
+    gate.className = 'premium-entry-v36';
     gate.style.setProperty('--entry-bg', `url("${source}")`);
     gate.innerHTML = `
-      <div class="premium-entry-v35__image" aria-hidden="true"></div>
-      <div class="premium-entry-v35__veil" aria-hidden="true"></div>
-      <div class="premium-entry-v35__content">
-        <img src="monogram-white.png" alt="" class="premium-entry-v35__mark">
+      <div class="premium-entry-v36__image" aria-hidden="true"></div>
+      <div class="premium-entry-v36__shade" aria-hidden="true"></div>
+      <div class="premium-entry-v36__content">
+        <img src="monogram-white.png" alt="" class="premium-entry-v36__mark">
         <span>MONIKA SERBISTA</span>
         <strong>Projektowanie wnętrz</strong>
       </div>`;
@@ -392,100 +392,43 @@
       document.body.classList.remove('entry-v25-active');
       document.body.classList.add('entry-v25-finished');
       window.dispatchEvent(new CustomEvent('monna:entry-complete'));
-    }, 1450);
+    }, 1480);
   };
   initMajorEntryV25();
 
-  const initBriefPopup = () => {
-    if (window.localStorage?.getItem('monnaBriefPopupClosed') === '1') return;
-    const popup = document.createElement('aside');
-    popup.className = 'premium-brief-popup';
-    popup.innerHTML = '<button type="button" aria-label="Zamknij">×</button><small>Brief</small><strong>Masz metraż i kilka zdjęć?</strong><p>Wyślij krótki opis, a wrócimy z uporządkowanym zakresem rozmowy.</p><a href="kontakt.html">Wyślij zapytanie ↗</a>';
-    const show = () => popup.classList.add('is-visible');
-    const hide = () => { popup.classList.remove('is-visible'); window.localStorage?.setItem('monnaBriefPopupClosed','1'); };
-    popup.querySelector('button')?.addEventListener('click', hide);
-    document.body.appendChild(popup);
-    let triggered = false;
-    const trigger = () => { if (triggered) return; triggered = true; show(); };
-    window.setTimeout(trigger, 5200);
-    window.addEventListener('scroll', () => { if (window.scrollY > window.innerHeight * 0.7) trigger(); }, { passive:true });
-  };
-  initBriefPopup();
+  // V36 start notification — bottom right, subtle premium toast
+  const initStartToastV36 = () => {
+    if (reducedMotion) return;
+    const isStudioPage =
+      !document.body.classList.contains('subpage') &&
+      (location.pathname.endsWith('/') || location.pathname.endsWith('/index.html') || document.querySelector('.hero'));
+    if (!isStudioPage) return;
 
-  document.querySelectorAll('.scope-image-bars-v23 details').forEach((details) => {
-    details.addEventListener('toggle', () => {
-      if (!details.open) return;
-      document.querySelectorAll('.scope-image-bars-v23 details').forEach((other) => { if (other !== details) other.open = false; });
-    });
-  });
+    const toast = document.createElement('aside');
+    toast.className = 'v36-start-toast';
+    toast.innerHTML = `
+      <button type="button" aria-label="Zamknij powiadomienie">×</button>
+      <small>Projekt wnętrza</small>
+      <strong>Masz mieszkanie lub dom do urządzenia?</strong>
+      <p>Wyślij krótki opis, a wrócimy z uporządkowanym zakresem współpracy.</p>
+      <a href="kontakt.html">Przejdź do briefu ↗</a>`;
+    document.body.appendChild(toast);
 
-  document.querySelectorAll('.scope-showcase-v24 details').forEach((details) => {
-    details.addEventListener('toggle', () => {
-      if (!details.open) return;
-      document.querySelectorAll('.scope-showcase-v24 details').forEach((other) => { if (other !== details) other.open = false; });
-    });
-  });
-
-
-  // V25 premium interactions: progress, magnetic buttons, scope/axis motion
-  const initMajorInteractionsV25 = () => {
-    document.body.classList.add('lux-v25-ready');
-
-    const progress = document.createElement('div');
-    progress.className = 'scroll-progress-v25';
-    document.body.appendChild(progress);
-    const updateProgress = () => {
-      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      progress.style.transform = `scaleX(${Math.min(1, Math.max(0, window.scrollY / max))})`;
+    const show = () => toast.classList.add('is-visible');
+    const hide = () => {
+      toast.classList.remove('is-visible');
+      window.setTimeout(() => toast.remove(), 520);
     };
-    updateProgress();
-    window.addEventListener('scroll', updateProgress, { passive: true });
 
-    if (!reducedMotion && window.matchMedia('(pointer:fine)').matches) {
-      // V26: cursor glow removed. Magnetic interactions stay active.
-const magnetSelectors = [
-        '.hero-btn', '.header-cta', '.line-link', '.editorial-link', '.submit-btn',
-        '.scope-showcase-v24 summary', '.scope-showcase-v24__panel a',
-        '.process-orbit-v16__line article', '.contact-direct-v23 a', '.contact-socials-v21 a', '.contact-socials-v23 a', '.premium-brief-popup a'
-      ].join(',');
-
-      document.querySelectorAll(magnetSelectors).forEach((target) => {
-        let raf = null;
-        target.addEventListener('pointermove', (event) => {
-          const rect = target.getBoundingClientRect();
-          const x = (event.clientX - rect.left - rect.width / 2) / rect.width;
-          const y = (event.clientY - rect.top - rect.height / 2) / rect.height;
-          target.style.setProperty('--mx', `${x.toFixed(3)}`);
-          target.style.setProperty('--my', `${y.toFixed(3)}`);
-          if (target.matches('.hero-btn, .header-cta, .line-link, .editorial-link, .submit-btn, .scope-showcase-v24__panel a, .contact-direct-v23 a, .contact-socials-v21 a, .contact-socials-v23 a')) {
-            if (raf) cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => {
-              target.style.transform = `translate3d(${x * 10}px, ${y * 9}px, 0)`;
-            });
-          }
-        });
-        target.addEventListener('pointerleave', () => {
-          target.style.removeProperty('--mx');
-          target.style.removeProperty('--my');
-          target.style.transform = '';
-        });
-      });
-    }
-
-    document.querySelectorAll('.scope-showcase-v24 details').forEach((details) => {
-      const summary = details.querySelector('summary');
-      summary?.setAttribute('aria-expanded', String(details.open));
-      details.addEventListener('toggle', () => {
-        summary?.setAttribute('aria-expanded', String(details.open));
-        if (details.open) details.classList.add('has-opened');
-      });
-    });
+    toast.querySelector('button')?.addEventListener('click', hide);
+    toast.querySelector('a')?.addEventListener('click', hide);
+    window.setTimeout(show, 2300);
+    window.setTimeout(() => {
+      if (document.body.contains(toast)) hide();
+    }, 9800);
   };
-  initMajorInteractionsV25();
+  initStartToastV36();
 
-
-
-  // V34 final motion polish: progressive reveal, subtle parallax + details accessibility
   const initFinalMotionV34 = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

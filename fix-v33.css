@@ -1089,3 +1089,21 @@
     line-height:1.55!important;
   }
 }
+
+
+/* =======================================================================
+   V36 — hero text stability for Oferta + Aktualności
+   ======================================================================= */
+.page-oferta.page-v36 .v33-subhero h1,
+.page-aktualnosci.page-v36 .v33-subhero h1{
+  animation:v36HeroTitleStable .78s cubic-bezier(.17,.84,.22,1) both!important;
+  letter-spacing:-.086em!important;
+  filter:none!important;
+  contain:paint;
+}
+
+.page-oferta.page-v36 .v33-subhero p:not(.page-kicker),
+.page-aktualnosci.page-v36 .v33-subhero p:not(.page-kicker){
+  animation:v36HeroTextStable .78s cubic-bezier(.17,.84,.22,1) .08s both!important;
+  filter:none!important;
+}
