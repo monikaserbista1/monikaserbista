@@ -353,7 +353,7 @@
     node.textContent = new Date().getFullYear();
   });
 
-  // V36 studio-only entry — ultra clean fade, stable text, no jumping
+  // V37 studio-only entry — architectural calm reveal, no flash/pika
   const initMajorEntryV25 = () => {
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
@@ -371,28 +371,36 @@
       document.querySelector('main img');
 
     const source = heroImage?.currentSrc || heroImage?.src || 'hero-01.jpg';
+
     const gate = document.createElement('div');
-    gate.className = 'premium-entry-v36';
+    gate.className = 'premium-entry-v37';
     gate.style.setProperty('--entry-bg', `url("${source}")`);
     gate.innerHTML = `
-      <div class="premium-entry-v36__image" aria-hidden="true"></div>
-      <div class="premium-entry-v36__shade" aria-hidden="true"></div>
-      <div class="premium-entry-v36__content">
-        <img src="monogram-white.png" alt="" class="premium-entry-v36__mark">
+      <div class="premium-entry-v37__base" aria-hidden="true"></div>
+      <div class="premium-entry-v37__image" aria-hidden="true"></div>
+      <div class="premium-entry-v37__grain" aria-hidden="true"></div>
+      <div class="premium-entry-v37__line" aria-hidden="true"></div>
+      <div class="premium-entry-v37__content">
+        <img src="monogram-white.png" alt="" class="premium-entry-v37__mark">
         <span>MONIKA SERBISTA</span>
         <strong>Projektowanie wnętrz</strong>
       </div>`;
+
     document.body.classList.add('entry-v25-active');
     document.body.prepend(gate);
 
-    requestAnimationFrame(() => gate.classList.add('is-ready'));
-    window.setTimeout(() => gate.classList.add('is-leaving'), 980);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => gate.classList.add('is-ready'));
+    });
+
+    window.setTimeout(() => gate.classList.add('is-opening'), 760);
+    window.setTimeout(() => gate.classList.add('is-leaving'), 1780);
     window.setTimeout(() => {
       gate.remove();
       document.body.classList.remove('entry-v25-active');
       document.body.classList.add('entry-v25-finished');
       window.dispatchEvent(new CustomEvent('monna:entry-complete'));
-    }, 1480);
+    }, 2360);
   };
   initMajorEntryV25();
 

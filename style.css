@@ -1762,3 +1762,191 @@ body.subpage .premium-entry-v36{
     width:auto;
   }
 }
+
+
+/* =======================================================================
+   V37 — START ANIMATION FIX ONLY
+   Calm architectural reveal, no flash / no sudden blinking / no strips.
+   ======================================================================= */
+
+body.subpage .premium-entry-v37{
+  display:none!important;
+}
+
+.premium-entry-v37{
+  position:fixed;
+  inset:0;
+  z-index:22000;
+  overflow:hidden;
+  isolation:isolate;
+  display:grid;
+  place-items:center;
+  background:#050505;
+  color:#fff;
+  contain:layout paint style;
+}
+
+.premium-entry-v37__base{
+  position:absolute;
+  inset:0;
+  z-index:-5;
+  background:#050505;
+}
+
+.premium-entry-v37__image{
+  position:absolute;
+  inset:-2.5%;
+  z-index:-4;
+  background-image:var(--entry-bg);
+  background-size:cover;
+  background-position:center;
+  opacity:.18;
+  transform:scale(1.045);
+  filter:grayscale(.08) brightness(.54) contrast(1.06);
+  clip-path:inset(0 50% 0 50%);
+  will-change:clip-path, transform, opacity;
+  transition:
+    clip-path 1.14s cubic-bezier(.17,.84,.22,1),
+    transform 1.38s cubic-bezier(.17,.84,.22,1),
+    opacity 1.05s ease,
+    filter 1.05s ease;
+}
+
+.premium-entry-v37.is-ready .premium-entry-v37__image{
+  opacity:.74;
+  clip-path:inset(0 0 0 0);
+  transform:scale(1.012);
+  filter:grayscale(.05) brightness(.62) contrast(1.06);
+}
+
+.premium-entry-v37__grain{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255,255,255,.08), rgba(255,255,255,0) 34%),
+    linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.34), rgba(0,0,0,.72)),
+    rgba(0,0,0,.2);
+  opacity:.88;
+  transition:opacity 1s ease;
+}
+
+.premium-entry-v37.is-opening .premium-entry-v37__grain{
+  opacity:.62;
+}
+
+.premium-entry-v37__line{
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:2;
+  width:min(440px,62vw);
+  height:1px;
+  background:rgba(255,255,255,.72);
+  transform:translate(-50%,-50%) scaleX(0);
+  transform-origin:center;
+  opacity:.72;
+}
+
+.premium-entry-v37.is-ready .premium-entry-v37__line{
+  animation:v37LineOpen .72s cubic-bezier(.17,.84,.22,1) .08s both;
+}
+
+@keyframes v37LineOpen{
+  0%{transform:translate(-50%,-50%) scaleX(0);opacity:0}
+  45%{opacity:.78}
+  100%{transform:translate(-50%,-50%) scaleX(1);opacity:.34}
+}
+
+.premium-entry-v37.is-opening .premium-entry-v37__line{
+  animation:v37LineOut .42s cubic-bezier(.17,.84,.22,1) both;
+}
+
+@keyframes v37LineOut{
+  to{transform:translate(-50%,-50%) scaleX(.08);opacity:0}
+}
+
+.premium-entry-v37__content{
+  position:relative;
+  z-index:3;
+  display:grid;
+  justify-items:center;
+  gap:10px;
+  text-align:center;
+  opacity:0;
+  transform:translate3d(0,10px,0);
+  will-change:opacity, transform;
+  transition:
+    opacity .62s ease .22s,
+    transform .62s cubic-bezier(.17,.84,.22,1) .22s;
+}
+
+.premium-entry-v37.is-ready .premium-entry-v37__content{
+  opacity:1;
+  transform:none;
+}
+
+.premium-entry-v37__mark{
+  width:44px;
+  height:auto;
+  margin-bottom:8px;
+  opacity:.96;
+  transform:scale(.94);
+  transition:transform .74s cubic-bezier(.17,.84,.22,1), opacity .74s ease;
+}
+
+.premium-entry-v37.is-ready .premium-entry-v37__mark{
+  transform:scale(1);
+}
+
+.premium-entry-v37__content span{
+  font-size:11px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.premium-entry-v37__content strong{
+  color:rgba(255,255,255,.66);
+  font-size:10px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.premium-entry-v37.is-leaving{
+  pointer-events:none;
+  animation:v37EntryLeave .58s cubic-bezier(.17,.84,.22,1) forwards;
+}
+
+.premium-entry-v37.is-leaving .premium-entry-v37__content{
+  opacity:0;
+  transform:translate3d(0,-8px,0);
+  transition:opacity .28s ease, transform .28s cubic-bezier(.17,.84,.22,1);
+}
+
+@keyframes v37EntryLeave{
+  0%{opacity:1}
+  100%{opacity:0}
+}
+
+/* Hard-disable older start overlays if browser cache creates them. */
+.premium-entry-v25,
+.premium-entry-v31,
+.premium-entry-v35,
+.premium-entry-v36{
+  display:none!important;
+}
+
+.premium-entry-v25__panel,
+.premium-entry-v25__grid,
+.premium-entry-v31__veil,
+.premium-entry-v35__veil,
+.premium-entry-v36__shade{
+  display:none!important;
+}
