@@ -367,7 +367,7 @@
     node.textContent = new Date().getFullYear();
   });
 
-  // V41 studio-only entry — atelier blueprint reveal, intro only
+  // V42 studio-only entry — dark cinematic signature reveal, intro only
   const initMajorEntryV25 = () => {
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
@@ -381,27 +381,18 @@
     const frames = Array.from(document.querySelectorAll('.hero__frame'));
     const activeFrame = document.querySelector('.hero__frame.is-active') || frames[0];
     const source = activeFrame?.currentSrc || activeFrame?.src || 'hero-01.jpg';
-    const sourceTwo = frames[1]?.currentSrc || frames[1]?.src || 'hero-02.jpg';
-    const sourceThree = frames[2]?.currentSrc || frames[2]?.src || 'hero-03.jpg';
 
     const gate = document.createElement('div');
-    gate.className = 'premium-entry-v41';
+    gate.className = 'premium-entry-v42';
     gate.style.setProperty('--entry-bg', `url("${source}")`);
-    gate.style.setProperty('--entry-bg-2', `url("${sourceTwo}")`);
-    gate.style.setProperty('--entry-bg-3', `url("${sourceThree}")`);
     gate.innerHTML = `
-      <div class="premium-entry-v41__canvas" aria-hidden="true"></div>
-      <div class="premium-entry-v41__image" aria-hidden="true"></div>
-      <div class="premium-entry-v41__grid" aria-hidden="true"></div>
-      <div class="premium-entry-v41__plans" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-      <div class="premium-entry-v41__frame" aria-hidden="true"></div>
-      <div class="premium-entry-v41__content">
-        <img src="monogram-black.png" alt="" class="premium-entry-v41__mark premium-entry-v41__mark--dark">
-        <img src="monogram-white.png" alt="" class="premium-entry-v41__mark premium-entry-v41__mark--light">
-        <span>MONIKA SERBISTA</span>
-        <strong>Projektowanie wnętrz</strong>
+      <div class="premium-entry-v42__image" aria-hidden="true"></div>
+      <div class="premium-entry-v42__shade" aria-hidden="true"></div>
+      <div class="premium-entry-v42__glow" aria-hidden="true"></div>
+      <div class="premium-entry-v42__signature" aria-hidden="true">MS</div>
+      <div class="premium-entry-v42__content">
+        <img src="logo-white.png" alt="" class="premium-entry-v42__logo">
+        <span>PROJEKTOWANIE WNĘTRZ</span>
       </div>`;
 
     document.body.classList.add('entry-v25-active');
@@ -411,15 +402,15 @@
       requestAnimationFrame(() => gate.classList.add('is-ready'));
     });
 
-    window.setTimeout(() => gate.classList.add('is-material'), 720);
-    window.setTimeout(() => gate.classList.add('is-reveal'), 1420);
-    window.setTimeout(() => gate.classList.add('is-leaving'), 2460);
+    window.setTimeout(() => gate.classList.add('is-focus'), 720);
+    window.setTimeout(() => gate.classList.add('is-reveal'), 1500);
+    window.setTimeout(() => gate.classList.add('is-leaving'), 2550);
     window.setTimeout(() => {
       gate.remove();
       document.body.classList.remove('entry-v25-active');
       document.body.classList.add('entry-v25-finished');
       window.dispatchEvent(new CustomEvent('monna:entry-complete'));
-    }, 3040);
+    }, 3140);
   };
   initMajorEntryV25();
 
