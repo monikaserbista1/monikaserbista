@@ -3468,3 +3468,77 @@ html,body{overflow-x:hidden!important;}
     padding-right:18px!important;
   }
 }
+
+
+/* =======================================================================
+   V40 — client final fixes only
+   Real project labels are handled in HTML. This block only supports UI polish.
+   ======================================================================= */
+
+/* Keep V39 logo/menu polish active for the current cache class too */
+@media (min-width: 1000px){
+  .page-v40 .brand{ gap:14px; }
+  .page-v40 .brand__mark{ width:44px!important; height:44px!important; }
+  .page-v40 .brand__copy strong{ font-size:12px!important; letter-spacing:.16em!important; }
+  .page-v40 .brand__copy small{ font-size:9px!important; letter-spacing:.18em!important; }
+}
+
+@media (max-width: 860px){
+  .page-v40 .mobile-menu{ background:rgba(7,7,7,.96); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+  .page-v40 .mobile-menu nav{ gap:0!important; }
+  .page-v40 .mobile-menu nav a{ min-height:62px; display:flex!important; align-items:center!important; justify-content:space-between!important; padding:0 22px!important; border-bottom:1px solid rgba(255,255,255,.12)!important; color:#fff!important; font-size:20px!important; line-height:1!important; letter-spacing:-.035em!important; }
+  .page-v40 .mobile-menu nav a span{ display:none!important; }
+  .page-v40 .mobile-menu nav a::after{ content:"↗"; color:rgba(255,255,255,.42); font-size:14px; font-weight:400; }
+  .page-v40 .mobile-menu nav a.is-active::after{ color:#fff; }
+  .page-v40 .mobile-menu__foot{ color:rgba(255,255,255,.68); }
+}
+
+/* Mobile toast/popup smaller — bottom-right, not a huge full-width card */
+@media (max-width: 760px){
+  .page-v40 .v36-start-toast,
+  .page-v40 .premium-brief-popup{
+    left:auto!important;
+    right:12px!important;
+    bottom:12px!important;
+    width:min(292px, calc(100vw - 24px))!important;
+    padding:14px 15px 13px!important;
+    border-radius:0!important;
+  }
+
+  .page-v40 .v36-start-toast strong,
+  .page-v40 .premium-brief-popup strong{
+    margin:8px 28px 6px 0!important;
+    max-width:230px!important;
+    font-size:17px!important;
+    line-height:1.08!important;
+    letter-spacing:-.045em!important;
+  }
+
+  .page-v40 .v36-start-toast p,
+  .page-v40 .premium-brief-popup p{
+    max-width:230px!important;
+    margin-bottom:10px!important;
+    font-size:11.5px!important;
+    line-height:1.45!important;
+  }
+
+  .page-v40 .v36-start-toast small,
+  .page-v40 .premium-brief-popup small{
+    font-size:8px!important;
+  }
+
+  .page-v40 .v36-start-toast a,
+  .page-v40 .premium-brief-popup a{
+    font-size:8.5px!important;
+    padding-bottom:5px!important;
+  }
+
+  .page-v40 .v36-start-toast button,
+  .page-v40 .premium-brief-popup button{
+    top:8px!important;
+    right:8px!important;
+    width:24px!important;
+    height:24px!important;
+    font-size:18px!important;
+  }
+}
