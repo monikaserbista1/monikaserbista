@@ -189,43 +189,57 @@
   });
 
   const galleries = {
-    apartament: {
-      title: 'Apartament — Warszawa, 78 m²',
+    'ciechanow': {
+      title: 'Ciechanów',
       images: [
-        ['pokojglowny.jpg', 'Jasna strefa dzienna z jadalnią'],
-        ['pokojglowny2.jpg', 'Detal salonu w neutralnych tonach']
+        ['realizacja-ciechanow-01.webp', 'Salon z kuchnią i jadalnią w Ciechanowie']
       ]
     },
-    salon: {
-      title: 'Dom — Ciechanów, 142 m²',
+    'dom-bialoleka': {
+      title: 'Dom Białołęka',
       images: [
-        ['salon1.jpg', 'Salon w jasnych tonach'],
-        ['salon2.jpg', 'Strefa telewizyjna z kominkiem'],
-        ['salon3.jpg', 'Jadalnia i duże przeszklenie'],
-        ['salon4.jpg', 'Salon otwarty na ogród']
+        ['realizacja-dom-bialoleka-04.webp', 'Salon połączony z jadalnią w domu na Białołęce'],
+        ['realizacja-dom-bialoleka-02.webp', 'Salon z jadalnią i kuchnią w domu na Białołęce'],
+        ['realizacja-dom-bialoleka-03.webp', 'Kuchnia i jadalnia w domu na Białołęce'],
+        ['realizacja-dom-bialoleka-01.webp', 'Sypialnia w domu na Białołęce']
       ]
     },
-    'kuchnia-salon': {
-      title: 'Strefa dzienna — Płock, 56 m²',
+    'dom-ciechanow': {
+      title: 'Dom Ciechanów',
       images: [
-        ['salonkuchnia1.jpg', 'Strefa dzienna z drewnianą zabudową'],
-        ['salonkuchnia2.jpg', 'Kuchnia z czarnymi detalami'],
-        ['kuchnia1.jpg', 'Kuchnia z jadalnią']
+        ['realizacja-dom-ciechanow-02.webp', 'Kuchnia z wyspą w domu w Ciechanowie'],
+        ['realizacja-dom-ciechanow-01.webp', 'Sypialnia w domu w Ciechanowie']
       ]
     },
-    lazienka: {
-      title: 'Łazienka — Legionowo, 12 m²',
+    'dom-nasielsk': {
+      title: 'Dom Nasielsk',
       images: [
-        ['lazienka1.jpg', 'Łazienka pod skosem z wanną'],
-        ['lazienka2.jpg', 'Jasna łazienka z zabudową i lustrem']
+        ['realizacja-dom-nasielsk-01.webp', 'Sypialnia ze skosami w domu w Nasielsku'],
+        ['realizacja-dom-nasielsk-02.webp', 'Jasna sypialnia w domu w Nasielsku'],
+        ['realizacja-dom-nasielsk-03.webp', 'Łazienka pod skosami w domu w Nasielsku']
       ]
     },
-    sypialnia: {
-      title: 'Sypialnia — Olsztyn, 18 m²',
+    'gabinet-stomatologiczny': {
+      title: 'Gabinet stomatologiczny',
       images: [
-        ['sypialnia1.jpg', 'Sypialnia w neutralnej palecie'],
-        ['sypialnia2.jpg', 'Toaletka i zabudowa sypialni'],
-        ['sypialnia3.jpg', 'Miękkie tkaniny i światło']
+        ['realizacja-gabinet-stomatologiczny-nowa-01.webp', 'Poczekalnia gabinetu stomatologicznego'],
+        ['realizacja-gabinet-stomatologiczny-nowa-03.webp', 'Strefa oczekiwania w gabinecie stomatologicznym'],
+        ['realizacja-gabinet-stomatologiczny-nowa-02.webp', 'Gabinet stomatologiczny']
+      ]
+    },
+    'mieszkanie-ciechanow': {
+      title: 'Mieszkanie Ciechanów',
+      images: [
+        ['realizacja-mieszkanie-ciechanow-01.webp', 'Salon z kuchnią w mieszkaniu w Ciechanowie'],
+        ['realizacja-mieszkanie-ciechanow-02.webp', 'Łazienka w mieszkaniu w Ciechanowie']
+      ]
+    },
+    'dom-przasnysz': {
+      title: 'Dom Przasnysz',
+      images: [
+        ['realizacja-dom-przasnysz-01.webp', 'Salon z kuchnią w domu w Przasnyszu'],
+        ['realizacja-dom-przasnysz-02.webp', 'Jadalnia i kuchnia w domu w Przasnyszu'],
+        ['realizacja-dom-przasnysz-03.webp', 'Salon w domu w Przasnyszu']
       ]
     }
   };
@@ -353,7 +367,7 @@
     node.textContent = new Date().getFullYear();
   });
 
-  // V38 studio-only entry — soft material reveal, no black bars
+  // V41 studio-only entry — atelier blueprint reveal, intro only
   const initMajorEntryV25 = () => {
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
@@ -364,24 +378,28 @@
       return;
     }
 
-    const heroImage =
-      document.querySelector('.hero__frame.is-active img') ||
-      document.querySelector('.hero__frame.is-active') ||
-      document.querySelector('.hero__frame img') ||
-      document.querySelector('main img');
-
-    const source = heroImage?.currentSrc || heroImage?.src || 'hero-01.jpg';
+    const frames = Array.from(document.querySelectorAll('.hero__frame'));
+    const activeFrame = document.querySelector('.hero__frame.is-active') || frames[0];
+    const source = activeFrame?.currentSrc || activeFrame?.src || 'hero-01.jpg';
+    const sourceTwo = frames[1]?.currentSrc || frames[1]?.src || 'hero-02.jpg';
+    const sourceThree = frames[2]?.currentSrc || frames[2]?.src || 'hero-03.jpg';
 
     const gate = document.createElement('div');
-    gate.className = 'premium-entry-v38';
+    gate.className = 'premium-entry-v41';
     gate.style.setProperty('--entry-bg', `url("${source}")`);
+    gate.style.setProperty('--entry-bg-2', `url("${sourceTwo}")`);
+    gate.style.setProperty('--entry-bg-3', `url("${sourceThree}")`);
     gate.innerHTML = `
-      <div class="premium-entry-v38__image" aria-hidden="true"></div>
-      <div class="premium-entry-v38__paper" aria-hidden="true"></div>
-      <div class="premium-entry-v38__light" aria-hidden="true"></div>
-      <div class="premium-entry-v38__content">
-        <img src="monogram-black.png" alt="" class="premium-entry-v38__mark premium-entry-v38__mark--dark">
-        <img src="monogram-white.png" alt="" class="premium-entry-v38__mark premium-entry-v38__mark--light">
+      <div class="premium-entry-v41__canvas" aria-hidden="true"></div>
+      <div class="premium-entry-v41__image" aria-hidden="true"></div>
+      <div class="premium-entry-v41__grid" aria-hidden="true"></div>
+      <div class="premium-entry-v41__plans" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="premium-entry-v41__frame" aria-hidden="true"></div>
+      <div class="premium-entry-v41__content">
+        <img src="monogram-black.png" alt="" class="premium-entry-v41__mark premium-entry-v41__mark--dark">
+        <img src="monogram-white.png" alt="" class="premium-entry-v41__mark premium-entry-v41__mark--light">
         <span>MONIKA SERBISTA</span>
         <strong>Projektowanie wnętrz</strong>
       </div>`;
@@ -393,14 +411,15 @@
       requestAnimationFrame(() => gate.classList.add('is-ready'));
     });
 
-    window.setTimeout(() => gate.classList.add('is-revealing'), 820);
-    window.setTimeout(() => gate.classList.add('is-leaving'), 1850);
+    window.setTimeout(() => gate.classList.add('is-material'), 720);
+    window.setTimeout(() => gate.classList.add('is-reveal'), 1420);
+    window.setTimeout(() => gate.classList.add('is-leaving'), 2460);
     window.setTimeout(() => {
       gate.remove();
       document.body.classList.remove('entry-v25-active');
       document.body.classList.add('entry-v25-finished');
       window.dispatchEvent(new CustomEvent('monna:entry-complete'));
-    }, 2450);
+    }, 3040);
   };
   initMajorEntryV25();
 

@@ -2218,3 +2218,360 @@ body.subpage .premium-entry-v38{
     color:rgba(255,255,255,.68);
   }
 }
+
+
+/* =======================================================================
+   V40 — client final fixes only
+   Real project labels are handled in HTML. This block only supports UI polish.
+   ======================================================================= */
+
+/* Keep V39 logo/menu polish active for the current cache class too */
+@media (min-width: 1000px){
+  .page-v40 .brand{ gap:14px; }
+  .page-v40 .brand__mark{ width:44px!important; height:44px!important; }
+  .page-v40 .brand__copy strong{ font-size:12px!important; letter-spacing:.16em!important; }
+  .page-v40 .brand__copy small{ font-size:9px!important; letter-spacing:.18em!important; }
+}
+
+@media (max-width: 860px){
+  .page-v40 .mobile-menu{ background:rgba(7,7,7,.96); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+  .page-v40 .mobile-menu nav{ gap:0!important; }
+  .page-v40 .mobile-menu nav a{ min-height:62px; display:flex!important; align-items:center!important; justify-content:space-between!important; padding:0 22px!important; border-bottom:1px solid rgba(255,255,255,.12)!important; color:#fff!important; font-size:20px!important; line-height:1!important; letter-spacing:-.035em!important; }
+  .page-v40 .mobile-menu nav a span{ display:none!important; }
+  .page-v40 .mobile-menu nav a::after{ content:"↗"; color:rgba(255,255,255,.42); font-size:14px; font-weight:400; }
+  .page-v40 .mobile-menu nav a.is-active::after{ color:#fff; }
+  .page-v40 .mobile-menu__foot{ color:rgba(255,255,255,.68); }
+}
+
+/* Mobile toast/popup smaller — bottom-right, not a huge full-width card */
+@media (max-width: 760px){
+  .page-v40 .v36-start-toast,
+  .page-v40 .premium-brief-popup{
+    left:auto!important;
+    right:12px!important;
+    bottom:12px!important;
+    width:min(292px, calc(100vw - 24px))!important;
+    padding:14px 15px 13px!important;
+    border-radius:0!important;
+  }
+
+  .page-v40 .v36-start-toast strong,
+  .page-v40 .premium-brief-popup strong{
+    margin:8px 28px 6px 0!important;
+    max-width:230px!important;
+    font-size:17px!important;
+    line-height:1.08!important;
+    letter-spacing:-.045em!important;
+  }
+
+  .page-v40 .v36-start-toast p,
+  .page-v40 .premium-brief-popup p{
+    max-width:230px!important;
+    margin-bottom:10px!important;
+    font-size:11.5px!important;
+    line-height:1.45!important;
+  }
+
+  .page-v40 .v36-start-toast small,
+  .page-v40 .premium-brief-popup small{
+    font-size:8px!important;
+  }
+
+  .page-v40 .v36-start-toast a,
+  .page-v40 .premium-brief-popup a{
+    font-size:8.5px!important;
+    padding-bottom:5px!important;
+  }
+
+  .page-v40 .v36-start-toast button,
+  .page-v40 .premium-brief-popup button{
+    top:8px!important;
+    right:8px!important;
+    width:24px!important;
+    height:24px!important;
+    font-size:18px!important;
+  }
+}
+
+
+/* =======================================================================
+   V41 — INTRO ONLY
+   Advanced atelier / blueprint reveal. No page layout changes.
+   ======================================================================= */
+
+body.subpage .premium-entry-v41{
+  display:none!important;
+}
+
+.premium-entry-v41{
+  position:fixed;
+  inset:0;
+  z-index:24000;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+  background:#e8e2d7;
+  color:#0b0b0b;
+  contain:layout paint style;
+}
+
+.premium-entry-v41__canvas{
+  position:absolute;
+  inset:0;
+  z-index:-8;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,.65), rgba(255,255,255,0) 34%),
+    linear-gradient(135deg,#f2ede4 0%,#ded8cc 48%,#cfc7b9 100%);
+}
+
+.premium-entry-v41__image{
+  position:absolute;
+  inset:-2%;
+  z-index:-7;
+  background-image:var(--entry-bg);
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:scale(1.045);
+  filter:grayscale(.06) brightness(.66) contrast(1.05);
+  clip-path:circle(0% at 50% 50%);
+  will-change:clip-path, opacity, transform;
+  transition:
+    clip-path 1.15s cubic-bezier(.17,.84,.22,1),
+    opacity 1s ease,
+    transform 1.35s cubic-bezier(.17,.84,.22,1),
+    filter .9s ease;
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__image{
+  opacity:.9;
+  transform:scale(1.008);
+  filter:grayscale(.03) brightness(.67) contrast(1.05);
+  clip-path:circle(76% at 50% 50%);
+}
+
+.premium-entry-v41__grid{
+  position:absolute;
+  inset:0;
+  z-index:-5;
+  opacity:.42;
+  background-image:
+    linear-gradient(rgba(0,0,0,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px);
+  background-size:clamp(42px,5vw,74px) clamp(42px,5vw,74px);
+  transform:scale(1.04);
+  mask-image:radial-gradient(circle at center, #000 0 42%, transparent 72%);
+  -webkit-mask-image:radial-gradient(circle at center, #000 0 42%, transparent 72%);
+  transition:opacity .8s ease, transform 1.2s cubic-bezier(.17,.84,.22,1);
+}
+
+.premium-entry-v41.is-material .premium-entry-v41__grid{
+  opacity:.24;
+  transform:scale(1);
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__grid{
+  opacity:0;
+}
+
+.premium-entry-v41__frame{
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:1;
+  width:min(520px,72vw);
+  aspect-ratio:1.72;
+  border:1px solid rgba(0,0,0,.22);
+  transform:translate(-50%,-50%) scale(.86);
+  opacity:0;
+  pointer-events:none;
+  transition:
+    opacity .68s ease,
+    transform .95s cubic-bezier(.17,.84,.22,1),
+    border-color .45s ease;
+}
+
+.premium-entry-v41.is-ready .premium-entry-v41__frame{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__frame{
+  border-color:rgba(255,255,255,.32);
+  opacity:.22;
+  transform:translate(-50%,-50%) scale(1.08);
+}
+
+.premium-entry-v41__plans{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+}
+
+.premium-entry-v41__plans span{
+  position:absolute;
+  width:min(210px,28vw);
+  aspect-ratio:1.18;
+  border:1px solid rgba(0,0,0,.12);
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:translate3d(0,28px,0) scale(.96);
+  filter:grayscale(.12) saturate(.8) brightness(.94);
+  box-shadow:0 28px 90px rgba(0,0,0,.08);
+  transition:
+    opacity .72s ease,
+    transform .92s cubic-bezier(.17,.84,.22,1),
+    filter .72s ease;
+}
+
+.premium-entry-v41__plans span:nth-child(1){
+  left:clamp(24px,8vw,150px);
+  bottom:clamp(70px,11vw,150px);
+  background-image:var(--entry-bg);
+  transition-delay:.18s;
+}
+
+.premium-entry-v41__plans span:nth-child(2){
+  right:clamp(26px,9vw,168px);
+  top:clamp(76px,12vw,156px);
+  background-image:var(--entry-bg-2);
+  transition-delay:.27s;
+}
+
+.premium-entry-v41__plans span:nth-child(3){
+  right:clamp(90px,17vw,270px);
+  bottom:clamp(48px,7vw,112px);
+  width:min(164px,23vw);
+  background-image:var(--entry-bg-3);
+  transition-delay:.36s;
+}
+
+.premium-entry-v41.is-material .premium-entry-v41__plans span{
+  opacity:.46;
+  transform:none;
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__plans span{
+  opacity:0;
+  transform:translate3d(0,-16px,0) scale(.985);
+  transition-delay:0s;
+}
+
+.premium-entry-v41__content{
+  position:relative;
+  z-index:3;
+  display:grid;
+  justify-items:center;
+  gap:10px;
+  text-align:center;
+  opacity:0;
+  transform:translate3d(0,14px,0) scale(.985);
+  color:#0b0b0b;
+  transition:
+    opacity .72s ease .18s,
+    transform .72s cubic-bezier(.17,.84,.22,1) .18s,
+    color .5s ease;
+}
+
+.premium-entry-v41.is-ready .premium-entry-v41__content{
+  opacity:1;
+  transform:none;
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__content{
+  color:#fff;
+  transform:translate3d(0,-4px,0);
+}
+
+.premium-entry-v41__mark{
+  grid-area:1 / 1;
+  width:46px;
+  height:auto;
+  margin-bottom:9px;
+  transition:opacity .45s ease, transform .75s cubic-bezier(.17,.84,.22,1);
+}
+
+.premium-entry-v41__mark--dark{opacity:.96;}
+.premium-entry-v41__mark--light{opacity:0;}
+
+.premium-entry-v41.is-ready .premium-entry-v41__mark{
+  transform:scale(1.035);
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__mark--dark{
+  opacity:0;
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__mark--light{
+  opacity:.96;
+}
+
+.premium-entry-v41__content span{
+  font-size:11px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.premium-entry-v41__content strong{
+  color:rgba(0,0,0,.58);
+  font-size:10px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:color .5s ease;
+}
+
+.premium-entry-v41.is-reveal .premium-entry-v41__content strong{
+  color:rgba(255,255,255,.68);
+}
+
+.premium-entry-v41.is-leaving{
+  pointer-events:none;
+  animation:v41EntryOut .58s cubic-bezier(.17,.84,.22,1) forwards;
+}
+
+.premium-entry-v41.is-leaving .premium-entry-v41__content{
+  opacity:0;
+  transform:translate3d(0,-10px,0) scale(.992);
+  transition:opacity .24s ease, transform .24s cubic-bezier(.17,.84,.22,1);
+}
+
+@keyframes v41EntryOut{
+  to{opacity:0;visibility:hidden;}
+}
+
+/* Kill every older entrance overlay if a browser has cached old code. */
+.premium-entry-v25,
+.premium-entry-v31,
+.premium-entry-v35,
+.premium-entry-v36,
+.premium-entry-v37,
+.premium-entry-v38{
+  display:none!important;
+}
+
+@media(max-width:760px){
+  .premium-entry-v41__plans span:nth-child(1),
+  .premium-entry-v41__plans span:nth-child(3){
+    display:none;
+  }
+
+  .premium-entry-v41__plans span:nth-child(2){
+    width:42vw;
+    right:18px;
+    top:auto;
+    bottom:72px;
+  }
+
+  .premium-entry-v41__frame{
+    width:70vw;
+  }
+}
