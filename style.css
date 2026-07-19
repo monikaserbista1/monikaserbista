@@ -2295,182 +2295,112 @@ body.subpage .premium-entry-v38{
 
 
 /* =======================================================================
-   V43 — INTRO ONLY
-   Premium minimal hero reveal. No beige, no AI-looking effects, no page changes.
+   V44 — INTRO ONLY
+   Soft hero reveal. No logo, no beige screen, no extra effects.
    ======================================================================= */
 
-body.subpage .premium-entry-v43{
+body.subpage .premium-entry-v44{
   display:none!important;
 }
 
-.premium-entry-v43{
+.premium-entry-v44{
   position:fixed;
   inset:0;
-  z-index:26000;
+  z-index:27000;
   overflow:hidden;
   isolation:isolate;
-  display:grid;
-  place-items:center;
   background:#050505;
   color:#fff;
   contain:layout paint style;
 }
 
-.premium-entry-v43__photo{
+.premium-entry-v44__image{
   position:absolute;
-  inset:-2%;
-  z-index:-4;
+  inset:-3%;
   background-image:var(--entry-bg);
   background-size:cover;
   background-position:center;
-  opacity:.42;
-  transform:scale(1.045);
-  filter:grayscale(.08) brightness(.42) contrast(1.08) blur(10px);
-  will-change:opacity, transform, filter;
+  opacity:.94;
+  transform:scale(1.035);
+  filter:blur(18px) brightness(.72) saturate(.96);
   transition:
-    opacity 1.15s ease,
-    transform 1.4s cubic-bezier(.17,.84,.22,1),
-    filter 1.15s ease;
+    filter 1.15s cubic-bezier(.17,.84,.22,1),
+    transform 1.28s cubic-bezier(.17,.84,.22,1),
+    opacity .9s ease;
+  will-change:filter, transform, opacity;
 }
 
-.premium-entry-v43.is-ready .premium-entry-v43__photo{
-  opacity:.62;
-  transform:scale(1.025);
-  filter:grayscale(.06) brightness(.48) contrast(1.08) blur(4px);
+.premium-entry-v44.is-ready .premium-entry-v44__image{
+  opacity:.98;
+  transform:scale(1.022);
+  filter:blur(11px) brightness(.75) saturate(.98);
 }
 
-.premium-entry-v43.is-clear .premium-entry-v43__photo{
-  opacity:.92;
+.premium-entry-v44.is-clear .premium-entry-v44__image{
+  opacity:1;
   transform:scale(1.006);
-  filter:grayscale(.02) brightness(.62) contrast(1.06) blur(0);
+  filter:blur(0) brightness(.82) saturate(1);
 }
 
-.premium-entry-v43__veil{
+.premium-entry-v44__grain{
   position:absolute;
   inset:0;
-  z-index:-3;
   background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,.09), transparent 26%),
-    linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.36), rgba(0,0,0,.72)),
-    rgba(0,0,0,.34);
-  opacity:1;
-  transition:opacity 1s ease;
-}
-
-.premium-entry-v43.is-clear .premium-entry-v43__veil{
-  opacity:.62;
-}
-
-.premium-entry-v43__lines{
-  position:absolute;
-  left:50%;
-  top:50%;
-  z-index:1;
-  width:min(620px,74vw);
-  height:clamp(90px,12vw,148px);
-  translate:-50% -50%;
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.08), transparent 32%),
+    linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.38));
+  opacity:.72;
+  transition:opacity .9s ease;
   pointer-events:none;
 }
 
-.premium-entry-v43__lines span{
+.premium-entry-v44.is-clear .premium-entry-v44__grain{
+  opacity:.42;
+}
+
+.premium-entry-v44__caption{
   position:absolute;
-  left:0;
-  right:0;
-  height:1px;
-  background:rgba(255,255,255,.72);
-  transform:scaleX(0);
-  transform-origin:center;
+  left:clamp(22px,4vw,64px);
+  bottom:clamp(22px,4vw,54px);
+  margin:0;
+  color:rgba(255,255,255,.72);
+  font-size:clamp(9px,.86vw,12px);
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.28em;
+  text-transform:uppercase;
   opacity:0;
-}
-
-.premium-entry-v43__lines span:first-child{
-  top:0;
-}
-
-.premium-entry-v43__lines span:last-child{
-  bottom:0;
-}
-
-.premium-entry-v43.is-ready .premium-entry-v43__lines span{
-  animation:v43LineIn .76s cubic-bezier(.17,.84,.22,1) .12s both;
-}
-
-.premium-entry-v43.is-clear .premium-entry-v43__lines span{
-  animation:v43LineOut .5s cubic-bezier(.17,.84,.22,1) both;
-}
-
-@keyframes v43LineIn{
-  0%{opacity:0;transform:scaleX(0)}
-  55%{opacity:.72}
-  100%{opacity:.38;transform:scaleX(1)}
-}
-
-@keyframes v43LineOut{
-  to{opacity:0;transform:scaleX(.16)}
-}
-
-.premium-entry-v43__content{
-  position:relative;
-  z-index:3;
-  display:grid;
-  justify-items:center;
-  gap:16px;
-  text-align:center;
-  opacity:0;
-  transform:translate3d(0,18px,0);
-  filter:blur(8px);
-  will-change:opacity, transform, filter;
+  transform:translate3d(0,10px,0);
   transition:
-    opacity .78s ease .18s,
-    transform .82s cubic-bezier(.17,.84,.22,1) .18s,
-    filter .78s ease .18s;
+    opacity .72s ease .22s,
+    transform .72s cubic-bezier(.17,.84,.22,1) .22s;
+  pointer-events:none;
 }
 
-.premium-entry-v43.is-ready .premium-entry-v43__content{
+.premium-entry-v44.is-ready .premium-entry-v44__caption{
   opacity:1;
   transform:none;
-  filter:blur(0);
 }
 
-.premium-entry-v43.is-clear .premium-entry-v43__content{
-  transform:translate3d(0,-2px,0);
+.premium-entry-v44.is-clear .premium-entry-v44__caption{
+  opacity:.58;
 }
 
-.premium-entry-v43__logo{
-  width:clamp(260px,31vw,520px);
-  max-width:78vw;
-  height:auto;
-  opacity:.98;
-  filter:drop-shadow(0 20px 70px rgba(0,0,0,.48));
-}
-
-.premium-entry-v43__content small{
-  color:rgba(255,255,255,.68);
-  font-size:clamp(10px,1vw,13px);
-  line-height:1;
-  font-weight:800;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-
-.premium-entry-v43.is-leaving{
+.premium-entry-v44.is-leaving{
   pointer-events:none;
-  animation:v43EntryOut .54s cubic-bezier(.17,.84,.22,1) forwards;
+  animation:v44EntryOut .52s cubic-bezier(.17,.84,.22,1) forwards;
 }
 
-.premium-entry-v43.is-leaving .premium-entry-v43__content{
+.premium-entry-v44.is-leaving .premium-entry-v44__caption{
   opacity:0;
-  transform:translate3d(0,-12px,0);
-  filter:blur(7px);
-  transition:opacity .24s ease, transform .24s cubic-bezier(.17,.84,.22,1), filter .24s ease;
+  transform:translate3d(0,6px,0);
+  transition:opacity .22s ease, transform .22s ease;
 }
 
-@keyframes v43EntryOut{
+@keyframes v44EntryOut{
   to{opacity:0;visibility:hidden}
 }
 
-/* Hard-disable older entrance overlays only. */
+/* Wyłącz stare overlaye intro, gdyby przeglądarka miała coś z cache. */
 .premium-entry-v25,
 .premium-entry-v31,
 .premium-entry-v35,
@@ -2478,22 +2408,16 @@ body.subpage .premium-entry-v43{
 .premium-entry-v37,
 .premium-entry-v38,
 .premium-entry-v41,
-.premium-entry-v42{
+.premium-entry-v42,
+.premium-entry-v43{
   display:none!important;
 }
 
 @media(max-width:760px){
-  .premium-entry-v43__logo{
-    width:min(76vw,360px);
-  }
-
-  .premium-entry-v43__lines{
-    width:76vw;
-    height:104px;
-  }
-
-  .premium-entry-v43__content small{
-    font-size:9px;
+  .premium-entry-v44__caption{
+    left:22px;
+    bottom:24px;
+    font-size:8px;
     letter-spacing:.22em;
   }
 }

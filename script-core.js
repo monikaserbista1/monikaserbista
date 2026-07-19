@@ -367,7 +367,7 @@
     node.textContent = new Date().getFullYear();
   });
 
-  // V43 studio-only entry — premium minimal hero reveal, intro only
+  // V44 studio-only entry — soft hero reveal, no logo, intro only
   const initMajorEntryV25 = () => {
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
@@ -378,21 +378,21 @@
       return;
     }
 
-    const frames = Array.from(document.querySelectorAll('.hero__frame'));
-    const activeFrame = document.querySelector('.hero__frame.is-active') || frames[0];
+    const activeFrame =
+      document.querySelector('.hero__frame.is-active img') ||
+      document.querySelector('.hero__frame.is-active') ||
+      document.querySelector('.hero__frame img') ||
+      document.querySelector('main img');
+
     const source = activeFrame?.currentSrc || activeFrame?.src || 'hero-01.jpg';
 
     const gate = document.createElement('div');
-    gate.className = 'premium-entry-v43';
+    gate.className = 'premium-entry-v44';
     gate.style.setProperty('--entry-bg', `url("${source}")`);
     gate.innerHTML = `
-      <div class="premium-entry-v43__photo" aria-hidden="true"></div>
-      <div class="premium-entry-v43__veil" aria-hidden="true"></div>
-      <div class="premium-entry-v43__lines" aria-hidden="true"><span></span><span></span></div>
-      <div class="premium-entry-v43__content">
-        <img src="logo-white.png" alt="" class="premium-entry-v43__logo">
-        <small>Projektowanie wnętrz</small>
-      </div>`;
+      <div class="premium-entry-v44__image" aria-hidden="true"></div>
+      <div class="premium-entry-v44__grain" aria-hidden="true"></div>
+      <p class="premium-entry-v44__caption">Projektowanie wnętrz</p>`;
 
     document.body.classList.add('entry-v25-active');
     document.body.prepend(gate);
@@ -401,14 +401,14 @@
       requestAnimationFrame(() => gate.classList.add('is-ready'));
     });
 
-    window.setTimeout(() => gate.classList.add('is-clear'), 1050);
-    window.setTimeout(() => gate.classList.add('is-leaving'), 2050);
+    window.setTimeout(() => gate.classList.add('is-clear'), 760);
+    window.setTimeout(() => gate.classList.add('is-leaving'), 1650);
     window.setTimeout(() => {
       gate.remove();
       document.body.classList.remove('entry-v25-active');
       document.body.classList.add('entry-v25-finished');
       window.dispatchEvent(new CustomEvent('monna:entry-complete'));
-    }, 2620);
+    }, 2180);
   };
   initMajorEntryV25();
 
