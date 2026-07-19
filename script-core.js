@@ -445,6 +445,157 @@
   };
   initStartToastV36();
 
+
+  // V46 contact form selects — replace native dropdown UI with clean custom controls
+  const initContactSelectsV46 = () => {
+    const forms = document.querySelectorAll('form.contact-form-v23');
+    if (!forms.length) return;
+
+    const closeAll = (except = null) => {
+      document.querySelectorAll('.select-v46.is-open').forEach((box) => {
+        if (box !== except) box.classList.remove('is-open');
+      });
+    };
+
+    forms.forEach((form) => {
+      const selects = form.querySelectorAll('select:not([data-v46-ready])');
+
+      selects.forEach((select, index) => {
+        const originalName = select.getAttribute('name') || `select-${index}`;
+        const isRequired = select.hasAttribute('required');
+        const idBase = `select-v46-${Math.random().toString(36).slice(2, 9)}`;
+        const options = Array.from(select.options);
+
+        const selectedOption = options.find((option) => option.selected && !option.disabled) || options.find((option) => !option.disabled);
+        const placeholder = options.find((option) => option.disabled && option.selected)?.textContent?.trim() || options[0]?.textContent?.trim() || 'Wybierz';
+
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.name = originalName;
+        hidden.value = selectedOption?.value || '';
+        hidden.dataset.required = isRequired ? 'true' : 'false';
+
+        select.dataset.v46Ready = 'true';
+        select.dataset.originalName = originalName;
+        select.removeAttribute('name');
+        select.removeAttribute('required');
+        select.classList.add('select-v46-native');
+        select.tabIndex = -1;
+        select.setAttribute('aria-hidden', 'true');
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'select-v46';
+        wrapper.dataset.placeholder = placeholder;
+
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'select-v46__trigger';
+        trigger.setAttribute('aria-haspopup', 'listbox');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.setAttribute('aria-controls', `${idBase}-list`);
+        trigger.innerHTML = `<span>${hidden.value ? selectedOption.textContent.trim() : placeholder}</span><i aria-hidden="true"></i>`;
+
+        const list = document.createElement('div');
+        list.className = 'select-v46__list';
+        list.id = `${idBase}-list`;
+        list.setAttribute('role', 'listbox');
+
+        const update = (option) => {
+          hidden.value = option.value || option.textContent.trim();
+          select.value = option.value;
+          trigger.querySelector('span').textContent = option.textContent.trim();
+          wrapper.classList.toggle('has-value', Boolean(hidden.value));
+          wrapper.classList.remove('is-invalid');
+          list.querySelectorAll('[role="option"]').forEach((item) => {
+            item.setAttribute('aria-selected', item.dataset.value === hidden.value ? 'true' : 'false');
+          });
+        };
+
+        options.forEach((option) => {
+          if (option.disabled && !option.value) return;
+
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'select-v46__option';
+          item.setAttribute('role', 'option');
+          item.dataset.value = option.value || option.textContent.trim();
+          item.textContent = option.textContent.trim();
+          item.setAttribute('aria-selected', item.dataset.value === hidden.value ? 'true' : 'false');
+
+          item.addEventListener('click', (event) => {
+            event.preventDefault();
+            update(option);
+            wrapper.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.focus({ preventScroll:true });
+          });
+
+          list.appendChild(item);
+        });
+
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          const willOpen = !wrapper.classList.contains('is-open');
+          closeAll(wrapper);
+          wrapper.classList.toggle('is-open', willOpen);
+          trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        });
+
+        trigger.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            wrapper.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+
+          if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            wrapper.classList.add('is-open');
+            trigger.setAttribute('aria-expanded', 'true');
+            list.querySelector('.select-v46__option')?.focus({ preventScroll:true });
+          }
+        });
+
+        list.addEventListener('keydown', (event) => {
+          const items = Array.from(list.querySelectorAll('.select-v46__option'));
+          const current = items.indexOf(document.activeElement);
+          if (event.key === 'Escape') {
+            wrapper.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.focus({ preventScroll:true });
+          }
+          if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            items[Math.min(current + 1, items.length - 1)]?.focus({ preventScroll:true });
+          }
+          if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            items[Math.max(current - 1, 0)]?.focus({ preventScroll:true });
+          }
+        });
+
+        select.insertAdjacentElement('afterend', wrapper);
+        wrapper.append(trigger, list);
+        wrapper.insertAdjacentElement('afterend', hidden);
+      });
+
+      form.addEventListener('submit', (event) => {
+        const requiredFields = Array.from(form.querySelectorAll('input[type="hidden"][data-required="true"]'));
+        const invalid = requiredFields.find((field) => !field.value);
+        if (!invalid) return;
+
+        event.preventDefault();
+        const box = invalid.previousElementSibling;
+        box?.classList.add('is-invalid');
+        box?.querySelector('.select-v46__trigger')?.focus({ preventScroll:false });
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.select-v46')) closeAll();
+    }, { passive:true });
+  };
+  initContactSelectsV46();
+
   const initFinalMotionV34 = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

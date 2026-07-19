@@ -2421,3 +2421,153 @@ body.subpage .premium-entry-v44{
     letter-spacing:.22em;
   }
 }
+
+
+/* =======================================================================
+   V46 — CONTACT FORM SELECT FIX
+   Custom dropdowns so the native blue/white browser menu never breaks layout.
+   ======================================================================= */
+
+.contact-form-v23 .select-v46-native{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  clip:rect(0 0 0 0)!important;
+  clip-path:inset(50%)!important;
+}
+
+.contact-form-v23 .select-v46{
+  position:relative;
+  width:100%;
+  z-index:1;
+}
+
+.contact-form-v23 .select-v46.is-open{
+  z-index:80;
+}
+
+.contact-form-v23 .select-v46__trigger{
+  width:100%;
+  height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:0;
+  background:rgba(255,255,255,.045);
+  color:rgba(255,255,255,.88);
+  font:inherit;
+  font-size:14px;
+  line-height:1;
+  text-align:left;
+  cursor:pointer;
+  outline:none;
+  transition:
+    border-color .25s ease,
+    background .25s ease,
+    color .25s ease;
+}
+
+.contact-form-v23 .select-v46__trigger:hover,
+.contact-form-v23 .select-v46__trigger:focus-visible{
+  border-color:rgba(255,255,255,.34);
+  background:rgba(255,255,255,.075);
+}
+
+.contact-form-v23 .select-v46__trigger span{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.contact-form-v23 .select-v46__trigger i{
+  width:9px;
+  height:9px;
+  border-right:1px solid currentColor;
+  border-bottom:1px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);
+  opacity:.62;
+  flex:0 0 auto;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+.contact-form-v23 .select-v46.is-open .select-v46__trigger i{
+  transform:translateY(2px) rotate(225deg);
+  opacity:.9;
+}
+
+.contact-form-v23 .select-v46__list{
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(100% + 8px);
+  max-height:230px;
+  overflow:auto;
+  padding:6px;
+  border:1px solid rgba(255,255,255,.18);
+  background:#111;
+  box-shadow:0 22px 60px rgba(0,0,0,.42);
+  opacity:0;
+  transform:translate3d(0,-6px,0);
+  pointer-events:none;
+  transition:
+    opacity .18s ease,
+    transform .18s cubic-bezier(.17,.84,.22,1);
+}
+
+.contact-form-v23 .select-v46.is-open .select-v46__list{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+
+.contact-form-v23 .select-v46__option{
+  width:100%;
+  display:block;
+  padding:13px 12px;
+  border:0;
+  background:transparent;
+  color:rgba(255,255,255,.78);
+  font:inherit;
+  font-size:14px;
+  line-height:1.2;
+  text-align:left;
+  cursor:pointer;
+  transition:background .18s ease, color .18s ease;
+}
+
+.contact-form-v23 .select-v46__option:hover,
+.contact-form-v23 .select-v46__option:focus-visible,
+.contact-form-v23 .select-v46__option[aria-selected="true"]{
+  background:rgba(255,255,255,.09);
+  color:#fff;
+  outline:none;
+}
+
+.contact-form-v23 .select-v46.is-invalid .select-v46__trigger{
+  border-color:rgba(255,255,255,.58);
+  box-shadow:0 0 0 1px rgba(255,255,255,.22);
+}
+
+@media(max-width:760px){
+  .contact-form-v23 .select-v46__trigger{
+    height:50px;
+    font-size:13px;
+    padding:0 14px;
+  }
+
+  .contact-form-v23 .select-v46__list{
+    top:calc(100% + 6px);
+    max-height:210px;
+  }
+
+  .contact-form-v23 .select-v46__option{
+    padding:12px 10px;
+    font-size:13px;
+  }
+}
