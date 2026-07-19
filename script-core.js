@@ -367,7 +367,7 @@
     node.textContent = new Date().getFullYear();
   });
 
-  // V42 studio-only entry — dark cinematic signature reveal, intro only
+  // V43 studio-only entry — premium minimal hero reveal, intro only
   const initMajorEntryV25 = () => {
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
@@ -383,16 +383,15 @@
     const source = activeFrame?.currentSrc || activeFrame?.src || 'hero-01.jpg';
 
     const gate = document.createElement('div');
-    gate.className = 'premium-entry-v42';
+    gate.className = 'premium-entry-v43';
     gate.style.setProperty('--entry-bg', `url("${source}")`);
     gate.innerHTML = `
-      <div class="premium-entry-v42__image" aria-hidden="true"></div>
-      <div class="premium-entry-v42__shade" aria-hidden="true"></div>
-      <div class="premium-entry-v42__glow" aria-hidden="true"></div>
-      <div class="premium-entry-v42__signature" aria-hidden="true">MS</div>
-      <div class="premium-entry-v42__content">
-        <img src="logo-white.png" alt="" class="premium-entry-v42__logo">
-        <span>PROJEKTOWANIE WNĘTRZ</span>
+      <div class="premium-entry-v43__photo" aria-hidden="true"></div>
+      <div class="premium-entry-v43__veil" aria-hidden="true"></div>
+      <div class="premium-entry-v43__lines" aria-hidden="true"><span></span><span></span></div>
+      <div class="premium-entry-v43__content">
+        <img src="logo-white.png" alt="" class="premium-entry-v43__logo">
+        <small>Projektowanie wnętrz</small>
       </div>`;
 
     document.body.classList.add('entry-v25-active');
@@ -402,15 +401,14 @@
       requestAnimationFrame(() => gate.classList.add('is-ready'));
     });
 
-    window.setTimeout(() => gate.classList.add('is-focus'), 720);
-    window.setTimeout(() => gate.classList.add('is-reveal'), 1500);
-    window.setTimeout(() => gate.classList.add('is-leaving'), 2550);
+    window.setTimeout(() => gate.classList.add('is-clear'), 1050);
+    window.setTimeout(() => gate.classList.add('is-leaving'), 2050);
     window.setTimeout(() => {
       gate.remove();
       document.body.classList.remove('entry-v25-active');
       document.body.classList.add('entry-v25-finished');
       window.dispatchEvent(new CustomEvent('monna:entry-complete'));
-    }, 3140);
+    }, 2620);
   };
   initMajorEntryV25();
 
