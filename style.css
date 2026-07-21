@@ -2932,3 +2932,118 @@ body.subpage .premium-entry-v44{
     transform:translate(-4%, -2%)!important;
   }
 }
+
+
+/* =======================================================================
+   V52 — clean intro transition + readable select dropdowns
+   ======================================================================= */
+
+/* Intro: zostaje, ale przejście kończy się czystym fade/blur bez pulsowania. */
+.page-v50 .premium-entry-v44{
+  display:grid!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transition:
+    opacity .62s cubic-bezier(.22,.72,.22,1),
+    visibility .62s ease!important;
+}
+
+.page-v50 .premium-entry-v44__image{
+  transform:scale(1.01)!important;
+  animation:none!important;
+  transition:
+    filter .82s cubic-bezier(.22,.72,.22,1),
+    opacity .62s ease!important;
+}
+
+.page-v50 .premium-entry-v44.is-ready .premium-entry-v44__image,
+.page-v50 .premium-entry-v44.is-clear .premium-entry-v44__image{
+  transform:scale(1.01)!important;
+  animation:none!important;
+}
+
+.page-v50 .premium-entry-v44.is-clear .premium-entry-v44__image{
+  filter:brightness(.92) contrast(1.04) saturate(.88) blur(0)!important;
+}
+
+.page-v50 .premium-entry-v44.is-leaving{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  animation:none!important;
+}
+
+.page-v50 .premium-entry-v44.is-leaving .premium-entry-v44__image{
+  transform:scale(1.01)!important;
+  filter:brightness(.96) contrast(1.02) saturate(.9) blur(5px)!important;
+  opacity:.15!important;
+}
+
+.page-v50 .premium-entry-v44__caption{
+  transition:
+    opacity .52s cubic-bezier(.22,.72,.22,1),
+    transform .52s cubic-bezier(.22,.72,.22,1),
+    filter .52s ease!important;
+}
+
+.page-v50 .premium-entry-v44.is-leaving .premium-entry-v44__caption{
+  opacity:0!important;
+  transform:translateY(-6px)!important;
+  filter:blur(4px)!important;
+}
+
+/* Po zejściu intro hero/buttons wchodzą czysto, bez pulsowania. */
+.page-v50 .hero__controls{
+  opacity:0;
+  transform:translateY(14px);
+  transition:
+    opacity .58s cubic-bezier(.22,.72,.22,1),
+    transform .58s cubic-bezier(.22,.72,.22,1)!important;
+}
+
+.page-v50.entry-v25-finished .hero__controls{
+  opacity:1!important;
+  transform:none!important;
+  animation:none!important;
+}
+
+/* Formularz: dropdown po rozwinięciu ma czytelne opcje od razu. */
+.page-v50 .brief-form select,
+.page-v50 .field select{
+  color:#fff!important;
+  background-color:#050505!important;
+  border-bottom-color:rgba(255,255,255,.42)!important;
+  color-scheme:dark!important;
+}
+
+.page-v50 .brief-form select:focus,
+.page-v50 .field select:focus{
+  color:#fff!important;
+  background-color:#050505!important;
+  border-bottom-color:#fff!important;
+}
+
+.page-v50 .brief-form select option,
+.page-v50 .field select option{
+  color:#fff!important;
+  background:#111!important;
+}
+
+.page-v50 .brief-form select option:checked,
+.page-v50 .field select option:checked{
+  color:#fff!important;
+  background:#3b3b3b!important;
+}
+
+.page-v50 .brief-form select option:disabled,
+.page-v50 .field select option:disabled{
+  color:#bdbdbd!important;
+  background:#222!important;
+}
+
+/* Dla przeglądarek, które wymuszają jasny dropdown — tekst nadal zostaje widoczny. */
+.page-v50 select:-internal-list-box option{
+  color:#111!important;
+  background:#fff!important;
+}
