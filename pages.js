@@ -236,3 +236,35 @@ const magnetSelectors = [
   }
 
 })();
+
+
+// V48 — static offer scope, no gallery/news hover motion side-effects
+(() => {
+  const body = document.body;
+
+  // Hide breadcrumbs in DOM for assistive tech consistency with CSS removal.
+  document.querySelectorAll('.breadcrumbs').forEach((node) => node.setAttribute('hidden', ''));
+
+  if (body.classList.contains('page-oferta')) {
+    document.querySelectorAll('.v33-scope details').forEach((details) => {
+      details.open = true;
+      const summary = details.querySelector('summary');
+      summary?.setAttribute('aria-expanded', 'true');
+      summary?.addEventListener('click', (event) => {
+        event.preventDefault();
+        details.open = true;
+      });
+      details.addEventListener('toggle', () => {
+        if (!details.open) details.open = true;
+      });
+    });
+  }
+
+  if (body.classList.contains('page-realizacje')) {
+    document.querySelectorAll('.portfolio-half, .portfolio-half__image, .project-tile').forEach((card) => {
+      card.style.transform = 'none';
+      card.style.removeProperty('--mx');
+      card.style.removeProperty('--my');
+    });
+  }
+})();
