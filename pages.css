@@ -3542,3 +3542,119 @@ html,body{overflow-x:hidden!important;}
     font-size:18px!important;
   }
 }
+
+
+/* =======================================================================
+   V53 — Oferta: zakres statyczny, proces statyczny, kontakt bez kickera
+   Dotyczy tylko oferta.html dzięki klasie .page-v53.page-oferta.
+   ======================================================================= */
+
+/* Oferta / Zakres współpracy — bez harmonijki i bez hover-interakcji */
+.page-v53.page-oferta .v33-scope details,
+.page-v53.page-oferta .v33-scope details[open]{
+  pointer-events:auto!important;
+  transform:none!important;
+  transition:none!important;
+  box-shadow:none!important;
+}
+
+.page-v53.page-oferta .v33-scope summary{
+  cursor:default!important;
+  pointer-events:none!important;
+}
+
+.page-v53.page-oferta .v33-scope summary img,
+.page-v53.page-oferta .v33-scope summary strong,
+.page-v53.page-oferta .v33-scope summary span,
+.page-v53.page-oferta .v33-scope summary small{
+  transform:none!important;
+  filter:none!important;
+  transition:none!important;
+}
+
+.page-v53.page-oferta .v33-scope details:hover,
+.page-v53.page-oferta .v33-scope details:hover summary,
+.page-v53.page-oferta .v33-scope details:hover summary img,
+.page-v53.page-oferta .v33-scope details:hover summary strong{
+  transform:none!important;
+  filter:none!important;
+  box-shadow:none!important;
+}
+
+.page-v53.page-oferta .v33-scope summary i,
+.page-v53.page-oferta .v33-scope summary::after,
+.page-v53.page-oferta .v33-scope details::before,
+.page-v53.page-oferta .v33-scope details::after{
+  display:none!important;
+  opacity:0!important;
+  content:none!important;
+}
+
+.page-v53.page-oferta .v33-scope__panel{
+  display:grid!important;
+  height:auto!important;
+  max-height:none!important;
+  opacity:1!important;
+  overflow:visible!important;
+  transform:none!important;
+  transition:none!important;
+}
+
+.page-v53.page-oferta .v33-scope__panel a{
+  pointer-events:auto!important;
+}
+
+/* Oferta / Proces — bez hover-interakcji, kropek i bocznych borderów */
+.page-v53.page-oferta .v33-process *,
+.page-v53.page-oferta .v33-process *::before,
+.page-v53.page-oferta .v33-process *::after{
+  transition:none!important;
+  animation:none!important;
+}
+
+.page-v53.page-oferta .v33-process article,
+.page-v53.page-oferta .v33-process li,
+.page-v53.page-oferta .v33-process .v33-process__item,
+.page-v53.page-oferta .v33-process .process-step{
+  transform:none!important;
+  box-shadow:none!important;
+}
+
+.page-v53.page-oferta .v33-process article:hover,
+.page-v53.page-oferta .v33-process li:hover,
+.page-v53.page-oferta .v33-process .v33-process__item:hover,
+.page-v53.page-oferta .v33-process .process-step:hover{
+  transform:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+.page-v53.page-oferta .v33-process article::before,
+.page-v53.page-oferta .v33-process article::after,
+.page-v53.page-oferta .v33-process li::before,
+.page-v53.page-oferta .v33-process li::after,
+.page-v53.page-oferta .v33-process .v33-process__item::before,
+.page-v53.page-oferta .v33-process .v33-process__item::after,
+.page-v53.page-oferta .v33-process .process-step::before,
+.page-v53.page-oferta .v33-process .process-step::after{
+  display:none!important;
+  opacity:0!important;
+  content:none!important;
+}
+
+.page-v53.page-oferta .v33-process,
+.page-v53.page-oferta .v33-process__list,
+.page-v53.page-oferta .v33-process__grid,
+.page-v53.page-oferta .v33-process article,
+.page-v53.page-oferta .v33-process li,
+.page-v53.page-oferta .v33-process .v33-process__item{
+  border-left:0!important;
+  border-right:0!important;
+}
+
+/* Oferta / Kontakt — kicker usunięty w HTML, tu dodatkowe zabezpieczenie */
+.page-v53.page-oferta .v33-cta .page-kicker,
+.page-v53.page-oferta .offer-contact .page-kicker,
+.page-v53.page-oferta .contact-mini-v23 .page-kicker{
+  display:none!important;
+}
