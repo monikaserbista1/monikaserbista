@@ -3658,3 +3658,105 @@ html,body{overflow-x:hidden!important;}
 .page-v53.page-oferta .contact-mini-v23 .page-kicker{
   display:none!important;
 }
+
+
+/* =======================================================================
+   V54 — Oferta: proces bez kropek + czarny tekst w jasnych sekcjach
+   Dotyczy tylko oferta.html.
+   ======================================================================= */
+
+/* Oferta — tekst na jasnych sekcjach z powrotem czarny/ciemny */
+.page-v54.page-oferta .v33-scope,
+.page-v54.page-oferta .v33-scope *,
+.page-v54.page-oferta .v33-process,
+.page-v54.page-oferta .v33-process *,
+.page-v54.page-oferta .v33-news,
+.page-v54.page-oferta .v33-news *,
+.page-v54.page-oferta .offer-fixed,
+.page-v54.page-oferta .offer-fixed *,
+.page-v54.page-oferta .surface-paper,
+.page-v54.page-oferta .surface-paper *,
+.page-v54.page-oferta .surface-concrete,
+.page-v54.page-oferta .surface-concrete *{
+  color:#080808!important;
+}
+
+.page-v54.page-oferta .v33-scope p,
+.page-v54.page-oferta .v33-scope li,
+.page-v54.page-oferta .v33-scope small,
+.page-v54.page-oferta .v33-process p,
+.page-v54.page-oferta .v33-process li,
+.page-v54.page-oferta .v33-process small,
+.page-v54.page-oferta .v33-news p{
+  color:#3f3f3a!important;
+}
+
+.page-v54.page-oferta .v33-scope a,
+.page-v54.page-oferta .v33-process a,
+.page-v54.page-oferta .v33-news a{
+  color:#080808!important;
+}
+
+/* Proces / oś pracy — bez kropek, bez osiowych markerów i bocznych borderów */
+.page-v54.page-oferta .v33-process .dot,
+.page-v54.page-oferta .v33-process .dots,
+.page-v54.page-oferta .v33-process [class*="dot"],
+.page-v54.page-oferta .v33-process [class*="marker"],
+.page-v54.page-oferta .v33-process [class*="point"],
+.page-v54.page-oferta .v33-process [class*="bullet"]{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+}
+
+.page-v54.page-oferta .v33-process::before,
+.page-v54.page-oferta .v33-process::after,
+.page-v54.page-oferta .v33-process *::before,
+.page-v54.page-oferta .v33-process *::after{
+  display:none!important;
+  opacity:0!important;
+  content:none!important;
+  border:0!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+
+.page-v54.page-oferta .v33-process,
+.page-v54.page-oferta .v33-process__head,
+.page-v54.page-oferta .v33-process__list,
+.page-v54.page-oferta .v33-process__grid,
+.page-v54.page-oferta .v33-process__item,
+.page-v54.page-oferta .v33-process article,
+.page-v54.page-oferta .v33-process li,
+.page-v54.page-oferta .v33-process div{
+  border-left:0!important;
+  border-right:0!important;
+}
+
+.page-v54.page-oferta .v33-process article,
+.page-v54.page-oferta .v33-process li,
+.page-v54.page-oferta .v33-process .v33-process__item{
+  transform:none!important;
+  transition:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+.page-v54.page-oferta .v33-process article:hover,
+.page-v54.page-oferta .v33-process li:hover,
+.page-v54.page-oferta .v33-process .v33-process__item:hover{
+  transform:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+/* Proces — jeżeli numerki miały postać kropek/okręgów, zostają jako normalny tekst */
+.page-v54.page-oferta .v33-process span,
+.page-v54.page-oferta .v33-process strong,
+.page-v54.page-oferta .v33-process h2,
+.page-v54.page-oferta .v33-process h3{
+  color:#080808!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
