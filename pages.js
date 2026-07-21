@@ -238,14 +238,14 @@ const magnetSelectors = [
 })();
 
 
-// V48 — static offer scope, no gallery/news hover motion side-effects
+// V49 — real technical fixes for subpages
 (() => {
-  const body = document.body;
+  if (!document.body.classList.contains('page-v49')) return;
 
-  // Hide breadcrumbs in DOM for assistive tech consistency with CSS removal.
   document.querySelectorAll('.breadcrumbs').forEach((node) => node.setAttribute('hidden', ''));
 
-  if (body.classList.contains('page-oferta')) {
+  // Oferta: zakres ma być statyczny, zawsze otwarty.
+  if (document.body.classList.contains('page-oferta')) {
     document.querySelectorAll('.v33-scope details').forEach((details) => {
       details.open = true;
       const summary = details.querySelector('summary');
@@ -260,7 +260,18 @@ const magnetSelectors = [
     });
   }
 
-  if (body.classList.contains('page-realizacje')) {
+  // Kontakt: usuwamy transformy z linków, żeby po interakcji wracały na miejsce.
+  document.querySelectorAll('.contact-direct-v23 a').forEach((link) => {
+    link.querySelectorAll('span').forEach((span) => span.remove());
+    link.addEventListener('pointerleave', () => {
+      link.style.transform = 'none';
+      link.style.removeProperty('--mx');
+      link.style.removeProperty('--my');
+    }, { passive:true });
+  });
+
+  // Realizacje: zerujemy style dynamiczne z hover/magnetycznych interakcji.
+  if (document.body.classList.contains('page-realizacje')) {
     document.querySelectorAll('.portfolio-half, .portfolio-half__image, .project-tile').forEach((card) => {
       card.style.transform = 'none';
       card.style.removeProperty('--mx');
