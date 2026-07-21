@@ -3545,44 +3545,101 @@ html,body{overflow-x:hidden!important;}
 
 
 /* =======================================================================
-   V56 — OFERTA precise fix
-   Tylko: zakres bez harmonijki/hover, proces bez hover/kropek/bocznych linii,
-   kontakt bez kickera. Bez globalnej zmiany kolorów.
+   V58 — poprawki techniczne podstron
    ======================================================================= */
 
-/* A) Zakres współpracy: otwarte na stałe, bez harmonijki i bez hoverów */
-.page-v56.page-oferta .v33-scope details{
+/* Ogólne / Hero: bez breadcrumbs, spójne pozycje i bez przycinania nagłówków */
+.page-v58.subpage .breadcrumbs{
+  display:none!important;
+}
+.page-v58.subpage .page-hero,
+.page-v58.subpage .v33-subhero,
+.page-v58.subpage .v33-article-hero{
+  min-height:clamp(620px,82svh,780px)!important;
+  display:flex!important;
+  align-items:stretch!important;
+  padding:0!important;
+}
+.page-v58.subpage .page-hero__content,
+.page-v58.subpage .v33-subhero__content,
+.page-v58.subpage .v33-article-hero__content{
+  width:min(1240px,calc(100% - (var(--pad-x) * 2)))!important;
+  margin:0 auto!important;
+  min-height:inherit!important;
+  padding:calc(var(--header-h) + clamp(58px,8vh,96px)) 0 clamp(56px,8vh,92px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  gap:clamp(16px,2.2vw,28px)!important;
+}
+.page-v58.subpage .page-hero h1,
+.page-v58.subpage .v33-subhero h1,
+.page-v58.subpage .v33-article-hero h1{
+  margin:0!important;
+  line-height:1.02!important;
+  letter-spacing:-.064em!important;
+  overflow:visible!important;
+  text-wrap:balance!important;
+}
+.page-v58.subpage .page-hero p:not(.page-kicker),
+.page-v58.subpage .v33-subhero p:not(.page-kicker),
+.page-v58.subpage .v33-article-hero p:not(.page-kicker){
+  margin:0!important;
+  line-height:1.72!important;
+  max-width:760px!important;
+}
+.page-v58.subpage .page-kicker{
+  white-space:nowrap!important;
+  margin-bottom:0!important;
+}
+
+/* Nagłówki i odstępy: spokojniejszy line-height i jeden rytm */
+.page-v58.subpage h1,
+.page-v58.subpage h2,
+.page-v58.subpage h3{
+  overflow:visible!important;
+  text-wrap:balance!important;
+}
+.page-v58.subpage h2{
+  line-height:1.04!important;
+}
+.page-v58.subpage section h2 + p,
+.page-v58.subpage section h3 + p{
+  margin-top:18px!important;
+}
+.page-v58.subpage .page-kicker + h1,
+.page-v58.subpage .page-kicker + h2,
+.page-v58.subpage .page-kicker + h3{
+  margin-top:22px!important;
+}
+
+/* OFERTA: zakres współpracy statyczny, bez harmonijki/hover */
+.page-v58.page-oferta .v33-scope details{
   transform:none!important;
   transition:none!important;
 }
-
-.page-v56.page-oferta .v33-scope details:hover{
+.page-v58.page-oferta .v33-scope details:hover{
   transform:none!important;
 }
-
-.page-v56.page-oferta .v33-scope summary{
+.page-v58.page-oferta .v33-scope summary{
   cursor:default!important;
   pointer-events:none!important;
 }
-
-.page-v56.page-oferta .v33-scope summary img,
-.page-v56.page-oferta .v33-scope summary strong{
+.page-v58.page-oferta .v33-scope summary img,
+.page-v58.page-oferta .v33-scope summary strong{
   transform:none!important;
   filter:none!important;
   transition:none!important;
 }
-
-.page-v56.page-oferta .v33-scope details:hover summary img,
-.page-v56.page-oferta .v33-scope details:hover summary strong{
+.page-v58.page-oferta .v33-scope details:hover summary img,
+.page-v58.page-oferta .v33-scope details:hover summary strong{
   transform:none!important;
   filter:none!important;
 }
-
-.page-v56.page-oferta .v33-scope summary i{
+.page-v58.page-oferta .v33-scope summary i{
   display:none!important;
 }
-
-.page-v56.page-oferta .v33-scope__panel{
+.page-v58.page-oferta .v33-scope__panel{
   display:grid!important;
   max-height:none!important;
   height:auto!important;
@@ -3592,63 +3649,231 @@ html,body{overflow-x:hidden!important;}
   transition:none!important;
 }
 
-/* B) Proces: zero hover-interakcji, zero kropek i zero bocznych borderów.
-   Celowo targetujemy tylko znane elementy procesu, bez ruszania kolorów tekstu. */
-.page-v56.page-oferta .v33-process article,
-.page-v56.page-oferta .v33-process li,
-.page-v56.page-oferta .v33-process .v33-process__item,
-.page-v56.page-oferta .v33-process .v33-process__step,
-.page-v56.page-oferta .v33-process [class*="step"]{
-  transform:none!important;
-  transition:none!important;
-}
-
-.page-v56.page-oferta .v33-process article:hover,
-.page-v56.page-oferta .v33-process li:hover,
-.page-v56.page-oferta .v33-process .v33-process__item:hover,
-.page-v56.page-oferta .v33-process .v33-process__step:hover,
-.page-v56.page-oferta .v33-process [class*="step"]:hover{
+/* OFERTA: proces bez hover, kropek i bocznych borderów */
+.page-v58.page-oferta .v33-process__line,
+.page-v58.page-oferta .v33-process__line article,
+.page-v58.page-oferta .v33-process__line article:hover{
   transform:none!important;
   filter:none!important;
+  transition:none!important;
+  animation:none!important;
+}
+.page-v58.page-oferta .v33-process__line article i{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  width:0!important;
+  height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
   box-shadow:none!important;
 }
-
-/* kropki / markery */
-.page-v56.page-oferta .v33-process .dot,
-.page-v56.page-oferta .v33-process .dots,
-.page-v56.page-oferta .v33-process [class*="dot"],
-.page-v56.page-oferta .v33-process [class*="marker"],
-.page-v56.page-oferta .v33-process [class*="point"]{
-  display:none!important;
+.page-v58.page-oferta .v33-process__line article:hover h3,
+.page-v58.page-oferta .v33-process__line article:hover p,
+.page-v58.page-oferta .v33-process__line article:hover span,
+.page-v58.page-oferta .v33-process__line article:hover{
+  transform:none!important;
+  filter:none!important;
 }
-
-/* pseudo-kropki i pionowe kreski procesu — tylko na bezpośrednich elementach osi */
-.page-v56.page-oferta .v33-process article::before,
-.page-v56.page-oferta .v33-process article::after,
-.page-v56.page-oferta .v33-process li::before,
-.page-v56.page-oferta .v33-process li::after,
-.page-v56.page-oferta .v33-process .v33-process__item::before,
-.page-v56.page-oferta .v33-process .v33-process__item::after,
-.page-v56.page-oferta .v33-process .v33-process__step::before,
-.page-v56.page-oferta .v33-process .v33-process__step::after,
-.page-v56.page-oferta .v33-process [class*="step"]::before,
-.page-v56.page-oferta .v33-process [class*="step"]::after{
+.page-v58.page-oferta .v33-process__line article{
+  border-left:0!important;
+  border-right:0!important;
+  box-shadow:none!important;
+}
+.page-v58.page-oferta .v33-process__line::before,
+.page-v58.page-oferta .v33-process__line::after,
+.page-v58.page-oferta .v33-process__line article::before,
+.page-v58.page-oferta .v33-process__line article::after{
   display:none!important;
   content:none!important;
   opacity:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
 }
-
-/* boczne bordery tylko na kartach/listach procesu */
-.page-v56.page-oferta .v33-process article,
-.page-v56.page-oferta .v33-process li,
-.page-v56.page-oferta .v33-process .v33-process__item,
-.page-v56.page-oferta .v33-process .v33-process__step,
-.page-v56.page-oferta .v33-process [class*="step"]{
-  border-left:0!important;
-  border-right:0!important;
-}
-
-/* C) Kontakt: kicker ukryty awaryjnie, nawet jeśli HTML kiedyś wróci */
-.page-v56.page-oferta .v33-cta .page-kicker{
+.page-v58.page-oferta .v33-cta .page-kicker{
   display:none!important;
+}
+.page-v58.page-oferta .v33-cta .line-link,
+.page-v58.page-oferta .v33-cta .line-link span,
+.page-v58.page-oferta .v33-cta .line-link:hover,
+.page-v58.page-oferta .v33-cta .line-link:hover span{
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  filter:none!important;
+}
+
+/* REALIZACJE: podgląd galerii bez hover-interakcji, klik/modal zostaje */
+.page-v58.page-realizacje .portfolio-half,
+.page-v58.page-realizacje .portfolio-half:hover,
+.page-v58.page-realizacje .project-tile,
+.page-v58.page-realizacje .project-tile:hover,
+.page-v58.page-realizacje .portfolio-half__image,
+.page-v58.page-realizacje .portfolio-half__image:hover{
+  transform:none!important;
+  transition:none!important;
+  filter:none!important;
+  box-shadow:none!important;
+}
+.page-v58.page-realizacje .portfolio-half__image img,
+.page-v58.page-realizacje .portfolio-half__image:hover img,
+.page-v58.page-realizacje .project-tile:hover img{
+  transform:none!important;
+  transition:none!important;
+  filter:none!important;
+}
+.page-v58.page-realizacje .portfolio-half__place,
+.page-v58.page-realizacje .portfolio-half__area{
+  transition:none!important;
+}
+
+/* AKTUALNOŚCI: hover tylko saturacja obrazka + button/link */
+.page-v58.page-aktualnosci .v33-news__head{
+  align-items:end!important;
+  margin-bottom:42px!important;
+}
+.page-v58.page-aktualnosci .v33-news__head .page-kicker{
+  white-space:nowrap!important;
+}
+.page-v58.page-aktualnosci .v33-news__head p:not(.page-kicker){
+  margin-bottom:0!important;
+}
+.page-v58.page-aktualnosci .v33-news-card,
+.page-v58.page-aktualnosci .v33-news-card:hover{
+  transform:none!important;
+  box-shadow:none!important;
+}
+.page-v58.page-aktualnosci .v33-news-card h3,
+.page-v58.page-aktualnosci .v33-news-card:hover h3,
+.page-v58.page-aktualnosci .v33-news-card__copy,
+.page-v58.page-aktualnosci .v33-news-card:hover .v33-news-card__copy{
+  transform:none!important;
+}
+.page-v58.page-aktualnosci .v33-news-card figure img{
+  transition:filter .28s ease!important;
+}
+.page-v58.page-aktualnosci .v33-news-card:hover figure img{
+  transform:none!important;
+  filter:saturate(1.02) contrast(1.02)!important;
+}
+.page-v58.page-aktualnosci .v33-news-card span{
+  transition:color .22s ease, background .22s ease, border-color .22s ease!important;
+}
+
+/* KONTAKT: linki bez strzałek i bez przesuwania; formularz spójniejszy ze startem */
+.page-v58.page-kontakt .contact-direct-v23 a span{
+  display:none!important;
+}
+.page-v58.page-kontakt .contact-direct-v23 a,
+.page-v58.page-kontakt .contact-direct-v23 a:hover{
+  transform:none!important;
+  transition:color .22s ease, background .22s ease, border-color .22s ease!important;
+}
+.page-v58.page-kontakt .contact-direct-v23 a:hover{
+  color:#050505!important;
+}
+.page-v58.page-kontakt .contact-form-v23{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:22px 18px!important;
+}
+.page-v58.page-kontakt .field-v23 input,
+.page-v58.page-kontakt .field-v23 select,
+.page-v58.page-kontakt .field-v23 textarea{
+  border-radius:0!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.25)!important;
+  background:transparent!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+.page-v58.page-kontakt .field-v23 input:focus,
+.page-v58.page-kontakt .field-v23 select:focus,
+.page-v58.page-kontakt .field-v23 textarea:focus{
+  border-bottom-color:#fff!important;
+}
+
+/* FAQ / harmonijki: wspólny styl ikony jak zakres HP */
+.page-v58 .faq-list summary span,
+.page-v58 .faq-list--page summary span{
+  flex:0 0 auto!important;
+  transform:rotate(0deg)!important;
+  transition:transform .28s cubic-bezier(.2,.75,.2,1), background .22s ease, color .22s ease, border-color .22s ease!important;
+}
+.page-v58 .faq-list summary:hover span,
+.page-v58 .faq-list--page summary:hover span,
+.page-v58 .faq-list details[open] summary span,
+.page-v58 .faq-list--page details[open] summary span{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+.page-v58 .faq-list summary,
+.page-v58 .faq-list--page summary{
+  position:relative!important;
+  overflow:visible!important;
+}
+.page-v58 .faq-list summary::after,
+.page-v58 .faq-list--page summary::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  bottom:0!important;
+  width:0!important;
+  height:1px!important;
+  background:#fff!important;
+  transition:width .35s cubic-bezier(.2,.75,.2,1)!important;
+}
+.page-v58 .faq-list summary:hover::after,
+.page-v58 .faq-list--page summary:hover::after{
+  width:100%!important;
+}
+
+/* Footer: podstrony — linki i napis przy logo czytelne */
+.page-v58.subpage .site-footer{
+  background:#050505!important;
+  color:#fff!important;
+}
+.page-v58.subpage .site-footer a,
+.page-v58.subpage .site-footer__nav a{
+  color:rgba(255,255,255,.86)!important;
+}
+.page-v58.subpage .site-footer a:hover{
+  color:#fff!important;
+}
+.page-v58.subpage .site-footer__meta,
+.page-v58.subpage .site-footer__meta span{
+  color:rgba(255,255,255,.64)!important;
+}
+.page-v58.subpage .site-footer__logo{
+  opacity:1!important;
+  filter:none!important;
+}
+
+@media(max-width:860px){
+  .page-v58.subpage .page-hero__content,
+  .page-v58.subpage .v33-subhero__content,
+  .page-v58.subpage .v33-article-hero__content{
+    width:calc(100% - 36px)!important;
+    padding-top:calc(var(--header-h) + 52px)!important;
+    padding-bottom:56px!important;
+  }
+  .page-v58.subpage .page-hero h1,
+  .page-v58.subpage .v33-subhero h1,
+  .page-v58.subpage .v33-article-hero h1{
+    line-height:1.04!important;
+    letter-spacing:-.055em!important;
+  }
+  .page-v58.page-kontakt .contact-form-v23{
+    grid-template-columns:1fr!important;
+  }
+  .page-v58.page-kontakt .field-v23--half,
+  .page-v58.page-kontakt .field-v23--third,
+  .page-v58.page-kontakt .field-v23--full{
+    grid-column:1!important;
+  }
 }

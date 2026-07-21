@@ -414,7 +414,6 @@
 
   // V36 start notification — bottom right, subtle premium toast
   const initStartToastV36 = () => {
-    if (document.body.classList.contains('page-v50')) return;
     if (reducedMotion) return;
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
@@ -637,26 +636,22 @@
 })();
 
 
-// V51 — homepage only: keep entry animation, remove end pulse, keep accordion/phone fixes
+// V58 — homepage interactions: stable accordion heights and social phone gap fix
 (() => {
   const body = document.body;
-  if (!body.classList.contains('page-v50')) return;
+  if (!body.classList.contains('page-v58')) return;
 
-  body.classList.remove('entry-v24-active');
+  // No parallax transform on phone — prevents flashing empty edge.
+  const phone = document.querySelector('.social-phone');
+  if (phone) {
+    phone.removeAttribute('data-parallax');
+    phone.style.transform = 'none';
+  }
 
-  // Hero slider itself stays stable: no scale/pulse between frames.
-  document.querySelectorAll('.hero__frame').forEach((frame, index) => {
-    frame.style.transform = 'none';
-    frame.style.animation = 'none';
-    if (index === 0 && !document.querySelector('.hero__frame.is-active')) {
-      frame.classList.add('is-active');
-    }
-  });
-
-  // HP services accordion: measured smooth height, no clipped plus icon.
+  // HP services smooth measured panels.
   const serviceItems = [...document.querySelectorAll('.service-item')];
 
-  const refreshServicePanelsV51 = () => {
+  const refreshServicePanelsV58 = () => {
     serviceItems.forEach((item) => {
       const panel = item.querySelector('.service-item__panel');
       if (!panel) return;
@@ -673,24 +668,16 @@
       const panel = item.querySelector('.service-item__panel');
       const button = item.querySelector('button');
       if (!panel || !button) return;
-
       panel.hidden = false;
       button.addEventListener('click', () => {
-        window.requestAnimationFrame(refreshServicePanelsV51);
-        window.setTimeout(refreshServicePanelsV51, 90);
-        window.setTimeout(refreshServicePanelsV51, 260);
+        window.requestAnimationFrame(refreshServicePanelsV58);
+        window.setTimeout(refreshServicePanelsV58, 90);
+        window.setTimeout(refreshServicePanelsV58, 260);
       });
     });
 
-    window.addEventListener('resize', refreshServicePanelsV51, { passive: true });
-    window.addEventListener('load', refreshServicePanelsV51);
-    refreshServicePanelsV51();
-  }
-
-  // Social phone: remove parallax transform that caused a visible flashing gap.
-  const phone = document.querySelector('.social-phone');
-  if (phone) {
-    phone.removeAttribute('data-parallax');
-    phone.style.transform = 'none';
+    window.addEventListener('resize', refreshServicePanelsV58, { passive: true });
+    window.addEventListener('load', refreshServicePanelsV58);
+    refreshServicePanelsV58();
   }
 })();

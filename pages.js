@@ -238,23 +238,33 @@ const magnetSelectors = [
 })();
 
 
-// V56 — Oferta: zakres otwarty na stałe, bez zwijania
+// V58 — subpage technical fixes
 (() => {
   const body = document.body;
-  if (!body.classList.contains('page-v56') || !body.classList.contains('page-oferta')) return;
+  if (!body.classList.contains('page-v58')) return;
 
-  document.querySelectorAll('.v33-scope details').forEach((details) => {
-    details.open = true;
-    const summary = details.querySelector('summary');
-    summary?.setAttribute('aria-expanded', 'true');
-
-    summary?.addEventListener('click', (event) => {
-      event.preventDefault();
+  // Oferta: zakres współpracy otwarty na stałe, bez zwijania.
+  if (body.classList.contains('page-oferta')) {
+    document.querySelectorAll('.v33-scope details').forEach((details) => {
       details.open = true;
-    });
+      const summary = details.querySelector('summary');
+      summary?.setAttribute('aria-expanded', 'true');
 
-    details.addEventListener('toggle', () => {
-      if (!details.open) details.open = true;
+      summary?.addEventListener('click', (event) => {
+        event.preventDefault();
+        details.open = true;
+      });
+
+      details.addEventListener('toggle', () => {
+        if (!details.open) details.open = true;
+      });
     });
-  });
+  }
+
+  // Kontakt/direct links: remove arrow spans from accessibility flow too.
+  if (body.classList.contains('page-kontakt')) {
+    document.querySelectorAll('.contact-direct-v23 a span').forEach((span) => {
+      span.setAttribute('aria-hidden', 'true');
+    });
+  }
 })();
