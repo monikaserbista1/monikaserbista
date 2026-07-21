@@ -18,7 +18,7 @@
   }
 
   const core = document.createElement('script');
-  core.src = 'script-core.js?v=58.0.0';
+  core.src = 'script-core.js?v=59.0.0';
   core.async = false;
   document.head.appendChild(core);
 })();

@@ -3877,3 +3877,110 @@ html,body{overflow-x:hidden!important;}
     grid-column:1!important;
   }
 }
+
+
+/* =======================================================================
+   V59 — domknięcie audytu: mocniejsze targetowanie bez globalnego rozwalania
+   ======================================================================= */
+
+/* REALIZACJE — pełne odcięcie hoverów na podglądzie kafli, ale lightbox/klik zostaje */
+.page-v58.page-realizacje .portfolio-halves .portfolio-half,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half:hover,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half:focus-within,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image:hover,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image:focus-visible{
+  transform:none!important;
+  translate:none!important;
+  scale:1!important;
+  filter:none!important;
+  box-shadow:none!important;
+}
+
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image img,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half:hover .portfolio-half__image img,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image:hover img,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image:focus-visible img{
+  transform:none!important;
+  scale:1!important;
+  filter:saturate(.72) contrast(.94)!important;
+  transition:none!important;
+}
+
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image::before,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__image::after,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half:hover .portfolio-half__image::before,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half:hover .portfolio-half__image::after{
+  transform:none!important;
+  transition:none!important;
+}
+
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__place,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half__area,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half:hover .portfolio-half__place,
+.page-v58.page-realizacje .portfolio-halves .portfolio-half:hover .portfolio-half__area{
+  transform:none!important;
+  opacity:1!important;
+  transition:none!important;
+}
+
+/* AKTUALNOŚCI — karta i tekst stoją; hover tylko obrazek + "Czytaj artykuł" */
+.page-v58.page-aktualnosci .v33-news-card,
+.page-v58.page-aktualnosci .v33-news-card:hover,
+.page-v58.page-aktualnosci .v33-news-card:focus-visible{
+  transform:none!important;
+  translate:none!important;
+  scale:1!important;
+  box-shadow:none!important;
+}
+
+.page-v58.page-aktualnosci .v33-news-card *,
+.page-v58.page-aktualnosci .v33-news-card:hover *{
+  transform:none!important;
+}
+
+.page-v58.page-aktualnosci .v33-news-card figure img{
+  transition:filter .28s ease!important;
+  transform:none!important;
+}
+
+.page-v58.page-aktualnosci .v33-news-card:hover figure img,
+.page-v58.page-aktualnosci .v33-news-card:focus-visible figure img{
+  filter:saturate(1.04) contrast(1.02)!important;
+  transform:none!important;
+}
+
+.page-v58.page-aktualnosci .v33-news-card span{
+  transform:none!important;
+  transition:color .22s ease, background .22s ease, border-color .22s ease!important;
+}
+
+/* OFERTA / proces — content głowy procesu wyrównany do dołu zgodnie z news-head */
+.page-v58.page-oferta .v33-process__head{
+  align-items:flex-end!important;
+}
+
+/* FAQ — wyłączenie starych hover-przesunięć z wcześniejszych wersji */
+.page-v58 .faq-list details,
+.page-v58 .faq-list details:hover,
+.page-v58 .faq-list--page details,
+.page-v58 .faq-list--page details:hover{
+  transform:none!important;
+}
+
+/* FAQ — płynniejszy panel odpowiedzi bez skakania */
+.page-v58 .faq-list details p,
+.page-v58 .faq-list--page details p{
+  overflow:hidden!important;
+  max-height:0;
+  opacity:0;
+  transform:translateY(-4px);
+  transition:max-height .34s cubic-bezier(.2,.75,.2,1), opacity .22s ease, transform .28s cubic-bezier(.2,.75,.2,1), padding .28s ease!important;
+}
+
+.page-v58 .faq-list details[open] p,
+.page-v58 .faq-list--page details[open] p{
+  max-height:220px;
+  opacity:1;
+  transform:none;
+}
