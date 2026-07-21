@@ -2571,3 +2571,281 @@ body.subpage .premium-entry-v44{
     font-size:13px;
   }
 }
+
+
+/* =======================================================================
+   V50 — START / STRONA GŁÓWNA: poprawki techniczne od Moniki
+   Tylko homepage. Podstrony nie dostają klasy .page-v50, więc zostają bez zmian.
+   ======================================================================= */
+
+/* HERO / SLIDER HP — bez pulsowania, bez wejściowego overlayu, bez skakania */
+.page-v50 .premium-entry,
+.page-v50 .premium-entry-v24,
+.page-v50 .premium-entry-v25,
+.page-v50 .premium-entry-v28,
+.page-v50 .premium-entry-v29,
+.page-v50 .premium-entry-v31,
+.page-v50 .premium-entry-v35,
+.page-v50 .premium-entry-v36,
+.page-v50 .premium-entry-v37,
+.page-v50 .premium-entry-v38,
+.page-v50 .premium-entry-v41,
+.page-v50 .premium-entry-v42,
+.page-v50 .premium-entry-v43,
+.page-v50 .premium-entry-v44{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+.page-v50.entry-v24-active,
+.page-v50.entry-v25-active{
+  overflow:auto!important;
+}
+
+.page-v50 .section-kicker::after,
+.page-v50 .hero__controls,
+.page-v50.entry-v25-finished .hero__controls{
+  animation:none!important;
+}
+
+.page-v50 .hero{
+  overflow:hidden!important;
+  background:#050505!important;
+}
+
+.page-v50 .hero__frames{
+  overflow:hidden!important;
+  contain:paint!important;
+  background:#050505!important;
+}
+
+.page-v50 .hero__frame{
+  opacity:0!important;
+  transform:none!important;
+  scale:1!important;
+  animation:none!important;
+  transition:opacity .72s ease!important;
+  filter:saturate(.96) contrast(1.03)!important;
+  backface-visibility:hidden!important;
+  will-change:opacity!important;
+}
+
+.page-v50 .hero__frame.is-active{
+  opacity:1!important;
+  transform:none!important;
+  scale:1!important;
+}
+
+/* ZAKRES WSPÓŁPRACY HP — płynna harmonijka + nieprzycinana ikonka */
+.page-v50 .services,
+.page-v50 .services__copy,
+.page-v50 .service-list,
+.page-v50 .service-item,
+.page-v50 .service-item button{
+  overflow:visible!important;
+}
+
+.page-v50 .service-item{
+  position:relative!important;
+  isolation:isolate!important;
+}
+
+.page-v50 .service-item::before{
+  height:1px!important;
+  background:#fff!important;
+  transition:width .38s cubic-bezier(.2,.75,.2,1)!important;
+}
+
+.page-v50 .service-item button{
+  position:relative!important;
+  z-index:2!important;
+  padding-right:2px!important;
+}
+
+.page-v50 .service-item strong{
+  transition:transform .28s cubic-bezier(.2,.75,.2,1)!important;
+}
+
+.page-v50 .service-item button:hover strong{
+  transform:translateX(5px)!important;
+}
+
+.page-v50 .service-item i{
+  width:36px!important;
+  height:36px!important;
+  flex:0 0 36px!important;
+  overflow:visible!important;
+  transform:rotate(0deg)!important;
+  transform-origin:center!important;
+  transition:
+    transform .28s cubic-bezier(.2,.75,.2,1),
+    background .22s ease,
+    color .22s ease,
+    border-color .22s ease!important;
+}
+
+.page-v50 .service-item button:hover i,
+.page-v50 .service-item.is-open i{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+.page-v50 .service-item__panel,
+.page-v50 .service-item__panel[hidden],
+.page-v50 .service-item:not(.is-open) .service-item__panel{
+  display:grid!important;
+  grid-template-columns:1fr auto!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  opacity:0!important;
+  transform:translateY(-6px)!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  transition:
+    max-height .46s cubic-bezier(.2,.75,.2,1),
+    opacity .25s ease,
+    transform .34s cubic-bezier(.2,.75,.2,1),
+    padding .34s ease!important;
+}
+
+.page-v50 .service-item.is-open .service-item__panel{
+  max-height:var(--service-panel-height,260px)!important;
+  opacity:1!important;
+  transform:none!important;
+  padding-bottom:22px!important;
+}
+
+/* WYBRANE REALIZACJE HP — shade zawsze pokrywa cały kafel, bez błędu bordera */
+.page-v50 .project-card{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  transform:none;
+}
+
+.page-v50 .project-card:hover,
+.page-v50 .project-card:focus-visible{
+  transform:none!important;
+}
+
+.page-v50 .project-card img{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+}
+
+.page-v50 .project-card__shade{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  border:0!important;
+  outline:0!important;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,0) 42%,rgba(0,0,0,.78) 100%)!important;
+  opacity:.55!important;
+  pointer-events:none!important;
+}
+
+.page-v50 .project-card:hover .project-card__shade,
+.page-v50 .project-card:focus-visible .project-card__shade{
+  opacity:.78!important;
+}
+
+.page-v50 .project-card__meta{
+  z-index:2!important;
+}
+
+/* KONTAKT HP — kontener jak reszta gridu + H2 nie nachodzi na lead */
+.page-v50 .contact__panel{
+  width:min(1320px,calc(100% - (var(--pad-x) * 2)))!important;
+  max-width:none!important;
+  margin-inline:auto!important;
+  padding:clamp(86px,8vw,124px) 0!important;
+}
+
+.page-v50 .contact__panel h2{
+  margin:28px 0 18px!important;
+  line-height:1.04!important;
+  letter-spacing:-.058em!important;
+  overflow:visible!important;
+  text-wrap:balance!important;
+}
+
+.page-v50 .contact__lead{
+  margin:0 0 34px!important;
+  line-height:1.7!important;
+  max-width:620px!important;
+}
+
+/* SM/FAQ — FAQ do góry, telefon bez migającej przerwy */
+.page-v50 .social-faq{
+  align-items:stretch!important;
+}
+
+.page-v50 .faq-panel__content{
+  justify-content:flex-start!important;
+  min-height:100%!important;
+}
+
+.page-v50 .social-showcase{
+  overflow:hidden!important;
+}
+
+.page-v50 .social-phone{
+  transform:none!important;
+  will-change:auto!important;
+}
+
+.page-v50 .social-phone__shell{
+  overflow:hidden!important;
+}
+
+.page-v50 .social-phone__screen{
+  overflow:hidden!important;
+  background:#fff!important;
+}
+
+.page-v50 .social-phone__screen img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:top center!important;
+  transform:none!important;
+  filter:none!important;
+  backface-visibility:hidden!important;
+}
+
+@media(max-width:820px){
+  .page-v50 .service-item__panel,
+  .page-v50 .service-item__panel[hidden],
+  .page-v50 .service-item:not(.is-open) .service-item__panel{
+    grid-template-columns:1fr!important;
+  }
+
+  .page-v50 .contact__panel{
+    width:calc(100% - 36px)!important;
+    padding-top:82px!important;
+    padding-bottom:82px!important;
+  }
+
+  .page-v50 .contact__panel h2{
+    line-height:1.06!important;
+  }
+
+  .page-v50 .faq-panel__content{
+    justify-content:flex-start!important;
+  }
+}
