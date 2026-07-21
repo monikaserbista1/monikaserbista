@@ -3545,218 +3545,110 @@ html,body{overflow-x:hidden!important;}
 
 
 /* =======================================================================
-   V53 — Oferta: zakres statyczny, proces statyczny, kontakt bez kickera
-   Dotyczy tylko oferta.html dzięki klasie .page-v53.page-oferta.
+   V56 — OFERTA precise fix
+   Tylko: zakres bez harmonijki/hover, proces bez hover/kropek/bocznych linii,
+   kontakt bez kickera. Bez globalnej zmiany kolorów.
    ======================================================================= */
 
-/* Oferta / Zakres współpracy — bez harmonijki i bez hover-interakcji */
-.page-v53.page-oferta .v33-scope details,
-.page-v53.page-oferta .v33-scope details[open]{
-  pointer-events:auto!important;
+/* A) Zakres współpracy: otwarte na stałe, bez harmonijki i bez hoverów */
+.page-v56.page-oferta .v33-scope details{
   transform:none!important;
   transition:none!important;
-  box-shadow:none!important;
 }
 
-.page-v53.page-oferta .v33-scope summary{
+.page-v56.page-oferta .v33-scope details:hover{
+  transform:none!important;
+}
+
+.page-v56.page-oferta .v33-scope summary{
   cursor:default!important;
   pointer-events:none!important;
 }
 
-.page-v53.page-oferta .v33-scope summary img,
-.page-v53.page-oferta .v33-scope summary strong,
-.page-v53.page-oferta .v33-scope summary span,
-.page-v53.page-oferta .v33-scope summary small{
+.page-v56.page-oferta .v33-scope summary img,
+.page-v56.page-oferta .v33-scope summary strong{
   transform:none!important;
   filter:none!important;
   transition:none!important;
 }
 
-.page-v53.page-oferta .v33-scope details:hover,
-.page-v53.page-oferta .v33-scope details:hover summary,
-.page-v53.page-oferta .v33-scope details:hover summary img,
-.page-v53.page-oferta .v33-scope details:hover summary strong{
+.page-v56.page-oferta .v33-scope details:hover summary img,
+.page-v56.page-oferta .v33-scope details:hover summary strong{
   transform:none!important;
   filter:none!important;
-  box-shadow:none!important;
 }
 
-.page-v53.page-oferta .v33-scope summary i,
-.page-v53.page-oferta .v33-scope summary::after,
-.page-v53.page-oferta .v33-scope details::before,
-.page-v53.page-oferta .v33-scope details::after{
+.page-v56.page-oferta .v33-scope summary i{
   display:none!important;
-  opacity:0!important;
-  content:none!important;
 }
 
-.page-v53.page-oferta .v33-scope__panel{
+.page-v56.page-oferta .v33-scope__panel{
   display:grid!important;
-  height:auto!important;
   max-height:none!important;
+  height:auto!important;
   opacity:1!important;
   overflow:visible!important;
   transform:none!important;
   transition:none!important;
 }
 
-.page-v53.page-oferta .v33-scope__panel a{
-  pointer-events:auto!important;
-}
-
-/* Oferta / Proces — bez hover-interakcji, kropek i bocznych borderów */
-.page-v53.page-oferta .v33-process *,
-.page-v53.page-oferta .v33-process *::before,
-.page-v53.page-oferta .v33-process *::after{
+/* B) Proces: zero hover-interakcji, zero kropek i zero bocznych borderów.
+   Celowo targetujemy tylko znane elementy procesu, bez ruszania kolorów tekstu. */
+.page-v56.page-oferta .v33-process article,
+.page-v56.page-oferta .v33-process li,
+.page-v56.page-oferta .v33-process .v33-process__item,
+.page-v56.page-oferta .v33-process .v33-process__step,
+.page-v56.page-oferta .v33-process [class*="step"]{
+  transform:none!important;
   transition:none!important;
-  animation:none!important;
 }
 
-.page-v53.page-oferta .v33-process article,
-.page-v53.page-oferta .v33-process li,
-.page-v53.page-oferta .v33-process .v33-process__item,
-.page-v53.page-oferta .v33-process .process-step{
+.page-v56.page-oferta .v33-process article:hover,
+.page-v56.page-oferta .v33-process li:hover,
+.page-v56.page-oferta .v33-process .v33-process__item:hover,
+.page-v56.page-oferta .v33-process .v33-process__step:hover,
+.page-v56.page-oferta .v33-process [class*="step"]:hover{
   transform:none!important;
-  box-shadow:none!important;
-}
-
-.page-v53.page-oferta .v33-process article:hover,
-.page-v53.page-oferta .v33-process li:hover,
-.page-v53.page-oferta .v33-process .v33-process__item:hover,
-.page-v53.page-oferta .v33-process .process-step:hover{
-  transform:none!important;
-  box-shadow:none!important;
   filter:none!important;
+  box-shadow:none!important;
 }
 
-.page-v53.page-oferta .v33-process article::before,
-.page-v53.page-oferta .v33-process article::after,
-.page-v53.page-oferta .v33-process li::before,
-.page-v53.page-oferta .v33-process li::after,
-.page-v53.page-oferta .v33-process .v33-process__item::before,
-.page-v53.page-oferta .v33-process .v33-process__item::after,
-.page-v53.page-oferta .v33-process .process-step::before,
-.page-v53.page-oferta .v33-process .process-step::after{
+/* kropki / markery */
+.page-v56.page-oferta .v33-process .dot,
+.page-v56.page-oferta .v33-process .dots,
+.page-v56.page-oferta .v33-process [class*="dot"],
+.page-v56.page-oferta .v33-process [class*="marker"],
+.page-v56.page-oferta .v33-process [class*="point"]{
   display:none!important;
-  opacity:0!important;
-  content:none!important;
 }
 
-.page-v53.page-oferta .v33-process,
-.page-v53.page-oferta .v33-process__list,
-.page-v53.page-oferta .v33-process__grid,
-.page-v53.page-oferta .v33-process article,
-.page-v53.page-oferta .v33-process li,
-.page-v53.page-oferta .v33-process .v33-process__item{
+/* pseudo-kropki i pionowe kreski procesu — tylko na bezpośrednich elementach osi */
+.page-v56.page-oferta .v33-process article::before,
+.page-v56.page-oferta .v33-process article::after,
+.page-v56.page-oferta .v33-process li::before,
+.page-v56.page-oferta .v33-process li::after,
+.page-v56.page-oferta .v33-process .v33-process__item::before,
+.page-v56.page-oferta .v33-process .v33-process__item::after,
+.page-v56.page-oferta .v33-process .v33-process__step::before,
+.page-v56.page-oferta .v33-process .v33-process__step::after,
+.page-v56.page-oferta .v33-process [class*="step"]::before,
+.page-v56.page-oferta .v33-process [class*="step"]::after{
+  display:none!important;
+  content:none!important;
+  opacity:0!important;
+}
+
+/* boczne bordery tylko na kartach/listach procesu */
+.page-v56.page-oferta .v33-process article,
+.page-v56.page-oferta .v33-process li,
+.page-v56.page-oferta .v33-process .v33-process__item,
+.page-v56.page-oferta .v33-process .v33-process__step,
+.page-v56.page-oferta .v33-process [class*="step"]{
   border-left:0!important;
   border-right:0!important;
 }
 
-/* Oferta / Kontakt — kicker usunięty w HTML, tu dodatkowe zabezpieczenie */
-.page-v53.page-oferta .v33-cta .page-kicker,
-.page-v53.page-oferta .offer-contact .page-kicker,
-.page-v53.page-oferta .contact-mini-v23 .page-kicker{
+/* C) Kontakt: kicker ukryty awaryjnie, nawet jeśli HTML kiedyś wróci */
+.page-v56.page-oferta .v33-cta .page-kicker{
   display:none!important;
-}
-
-
-/* =======================================================================
-   V54 — Oferta: proces bez kropek + czarny tekst w jasnych sekcjach
-   Dotyczy tylko oferta.html.
-   ======================================================================= */
-
-/* Oferta — tekst na jasnych sekcjach z powrotem czarny/ciemny */
-.page-v54.page-oferta .v33-scope,
-.page-v54.page-oferta .v33-scope *,
-.page-v54.page-oferta .v33-process,
-.page-v54.page-oferta .v33-process *,
-.page-v54.page-oferta .v33-news,
-.page-v54.page-oferta .v33-news *,
-.page-v54.page-oferta .offer-fixed,
-.page-v54.page-oferta .offer-fixed *,
-.page-v54.page-oferta .surface-paper,
-.page-v54.page-oferta .surface-paper *,
-.page-v54.page-oferta .surface-concrete,
-.page-v54.page-oferta .surface-concrete *{
-  color:#080808!important;
-}
-
-.page-v54.page-oferta .v33-scope p,
-.page-v54.page-oferta .v33-scope li,
-.page-v54.page-oferta .v33-scope small,
-.page-v54.page-oferta .v33-process p,
-.page-v54.page-oferta .v33-process li,
-.page-v54.page-oferta .v33-process small,
-.page-v54.page-oferta .v33-news p{
-  color:#3f3f3a!important;
-}
-
-.page-v54.page-oferta .v33-scope a,
-.page-v54.page-oferta .v33-process a,
-.page-v54.page-oferta .v33-news a{
-  color:#080808!important;
-}
-
-/* Proces / oś pracy — bez kropek, bez osiowych markerów i bocznych borderów */
-.page-v54.page-oferta .v33-process .dot,
-.page-v54.page-oferta .v33-process .dots,
-.page-v54.page-oferta .v33-process [class*="dot"],
-.page-v54.page-oferta .v33-process [class*="marker"],
-.page-v54.page-oferta .v33-process [class*="point"],
-.page-v54.page-oferta .v33-process [class*="bullet"]{
-  display:none!important;
-  opacity:0!important;
-  visibility:hidden!important;
-}
-
-.page-v54.page-oferta .v33-process::before,
-.page-v54.page-oferta .v33-process::after,
-.page-v54.page-oferta .v33-process *::before,
-.page-v54.page-oferta .v33-process *::after{
-  display:none!important;
-  opacity:0!important;
-  content:none!important;
-  border:0!important;
-  background:none!important;
-  box-shadow:none!important;
-}
-
-.page-v54.page-oferta .v33-process,
-.page-v54.page-oferta .v33-process__head,
-.page-v54.page-oferta .v33-process__list,
-.page-v54.page-oferta .v33-process__grid,
-.page-v54.page-oferta .v33-process__item,
-.page-v54.page-oferta .v33-process article,
-.page-v54.page-oferta .v33-process li,
-.page-v54.page-oferta .v33-process div{
-  border-left:0!important;
-  border-right:0!important;
-}
-
-.page-v54.page-oferta .v33-process article,
-.page-v54.page-oferta .v33-process li,
-.page-v54.page-oferta .v33-process .v33-process__item{
-  transform:none!important;
-  transition:none!important;
-  box-shadow:none!important;
-  filter:none!important;
-}
-
-.page-v54.page-oferta .v33-process article:hover,
-.page-v54.page-oferta .v33-process li:hover,
-.page-v54.page-oferta .v33-process .v33-process__item:hover{
-  transform:none!important;
-  box-shadow:none!important;
-  filter:none!important;
-}
-
-/* Proces — jeżeli numerki miały postać kropek/okręgów, zostają jako normalny tekst */
-.page-v54.page-oferta .v33-process span,
-.page-v54.page-oferta .v33-process strong,
-.page-v54.page-oferta .v33-process h2,
-.page-v54.page-oferta .v33-process h3{
-  color:#080808!important;
-  background:transparent!important;
-  border:0!important;
-  box-shadow:none!important;
 }

@@ -238,19 +238,21 @@ const magnetSelectors = [
 })();
 
 
-// V53 — Oferta: keep scope cards open and non-toggleable
+// V56 — Oferta: zakres otwarty na stałe, bez zwijania
 (() => {
   const body = document.body;
-  if (!body.classList.contains('page-v53') || !body.classList.contains('page-oferta')) return;
+  if (!body.classList.contains('page-v56') || !body.classList.contains('page-oferta')) return;
 
   document.querySelectorAll('.v33-scope details').forEach((details) => {
     details.open = true;
     const summary = details.querySelector('summary');
     summary?.setAttribute('aria-expanded', 'true');
+
     summary?.addEventListener('click', (event) => {
       event.preventDefault();
       details.open = true;
     });
+
     details.addEventListener('toggle', () => {
       if (!details.open) details.open = true;
     });
