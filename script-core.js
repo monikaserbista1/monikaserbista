@@ -401,14 +401,14 @@
       requestAnimationFrame(() => gate.classList.add('is-ready'));
     });
 
-    window.setTimeout(() => gate.classList.add('is-clear'), 760);
-    window.setTimeout(() => gate.classList.add('is-leaving'), 1650);
+    window.setTimeout(() => gate.classList.add('is-clear'), 720);
+    window.setTimeout(() => gate.classList.add('is-leaving'), 1580);
     window.setTimeout(() => {
       gate.remove();
       document.body.classList.remove('entry-v25-active');
       document.body.classList.add('entry-v25-finished');
       window.dispatchEvent(new CustomEvent('monna:entry-complete'));
-    }, 2180);
+    }, 2520);
   };
   initMajorEntryV25();
 

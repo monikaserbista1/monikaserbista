@@ -99,12 +99,14 @@
     if (event.key === 'Escape') close();
   });
 
-  document.querySelectorAll('.faq-list details').forEach((details) => {
-    details.addEventListener('toggle', () => {
-      if (!details.open) return;
-      document.querySelectorAll('.faq-list details').forEach((other) => { if (other !== details) other.open = false; });
+  if (!document.body.classList.contains('page-kontakt')) {
+    document.querySelectorAll('.faq-list details').forEach((details) => {
+      details.addEventListener('toggle', () => {
+        if (!details.open) return;
+        document.querySelectorAll('.faq-list details').forEach((other) => { if (other !== details) other.open = false; });
+      });
     });
-  });
+  }
   document.querySelectorAll('[data-year]').forEach((node) => { node.textContent = new Date().getFullYear(); });
   // V31: no entry animation on subpages.
   document.body.classList.add('entry-v25-finished');
@@ -341,6 +343,9 @@ const magnetSelectors = [
       if (details.classList.contains('is-open-v62') || details.open) {
         closeFaq(details);
       } else {
+        faqs.forEach((other) => {
+          if (other !== details && (other.classList.contains('is-open-v62') || other.open)) closeFaq(other);
+        });
         openFaq(details);
       }
     });

@@ -3175,3 +3175,94 @@ body.subpage .premium-entry-v44{
     max-width:100%!important;
   }
 }
+
+
+/* =======================================================================
+   V64 — final client screenshots pass
+   ======================================================================= */
+
+/* Intro: spokojny crossfade bez zmiany szerokości strony i bez końcowego strzału. */
+.page-v64.entry-v25-active{
+  overflow-y:scroll!important;
+  overflow-x:hidden!important;
+}
+
+.page-v64 .premium-entry-v44{
+  opacity:1!important;
+  visibility:visible!important;
+  transition:opacity .9s cubic-bezier(.22,.72,.22,1)!important;
+}
+
+.page-v64 .premium-entry-v44.is-leaving{
+  opacity:0!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  animation:none!important;
+}
+
+.page-v64 .premium-entry-v44.is-leaving .premium-entry-v44__image{
+  opacity:1!important;
+  filter:brightness(.82) contrast(1.02) saturate(.96) blur(0)!important;
+  transform:scale(1.01)!important;
+}
+
+.page-v64 .hero,
+.page-v64 .hero__frames{
+  background:#050505!important;
+}
+
+/* HP realizacje: shade wychodzi poza kadr i jest przycinany dopiero przez kartę. */
+.page-v64 .project-card{
+  overflow:hidden!important;
+  clip-path:inset(0)!important;
+  background:#050505!important;
+}
+
+.page-v64 .project-card__shade,
+.page-v64 .project-card:hover .project-card__shade,
+.page-v64 .project-card:focus-visible .project-card__shade{
+  inset:-8px!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:calc(100% + 16px)!important;
+  min-height:calc(100% + 16px)!important;
+  background:linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.25) 52%,rgba(0,0,0,.88) 100%)!important;
+}
+
+/* Telefon FB: większy screen, aby czarne rogi nie odsłaniały pustego tła. */
+.page-v64 .social-phone__screen{
+  position:relative!important;
+  background:#111!important;
+}
+
+.page-v64 .social-phone__screen img{
+  position:absolute!important;
+  inset:-5% -7% -7%!important;
+  width:114%!important;
+  height:112%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:top center!important;
+  transform:none!important;
+}
+
+/* Stopka: logo spokojniejsze, mniej kontrastowe i bez efektu przeostrzenia. */
+.page-v64 .site-footer__logo{
+  width:clamp(230px,18vw,280px)!important;
+  max-width:280px!important;
+  opacity:.84!important;
+  filter:brightness(.9)!important;
+}
+
+@media(max-width:760px){
+  .page-v64.entry-v25-active{overflow-y:auto!important;}
+  .page-v64 .site-footer__logo{
+    width:225px!important;
+    opacity:.86!important;
+  }
+  .page-v64 .social-phone__screen img{
+    inset:-6% -8% -8%!important;
+    width:116%!important;
+    height:114%!important;
+  }
+}

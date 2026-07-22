@@ -5015,3 +5015,215 @@ html,body{overflow-x:hidden!important;}
     max-width:100%!important;
   }
 }
+
+
+/* =======================================================================
+   V64 — final client screenshots pass
+   ======================================================================= */
+
+/* Oferta / Proces: całkowicie statyczna sekcja, również bez reveal i hoverów. */
+.page-v64.page-oferta .v33-process,
+.page-v64.page-oferta .v33-process *,
+.page-v64.page-oferta .v33-process *::before,
+.page-v64.page-oferta .v33-process *::after,
+.page-v64.page-oferta .v33-process:hover,
+.page-v64.page-oferta .v33-process *:hover{
+  animation:none!important;
+  transition:none!important;
+  transform:none!important;
+  translate:none!important;
+  scale:1!important;
+  filter:none!important;
+  box-shadow:none!important;
+}
+
+.page-v64.page-oferta .v33-process .reveal,
+.page-v64.page-oferta .v33-process .reveal.is-visible{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  filter:none!important;
+}
+
+.page-v64.page-oferta .v33-process__line i,
+.page-v64.page-oferta .v33-process__line::before,
+.page-v64.page-oferta .v33-process__line::after,
+.page-v64.page-oferta .v33-process__line article::before,
+.page-v64.page-oferta .v33-process__line article::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Realizacje: więcej zdjęcia, niższy panel i bez nakładania podpisów. */
+.page-v64.page-realizacje .portfolio-half{
+  grid-template-rows:clamp(540px,46vw,700px) 340px!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__copy{
+  height:340px!important;
+  min-height:340px!important;
+  padding:clamp(34px,3vw,48px)!important;
+  overflow:hidden!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__copy .page-kicker{
+  margin:0 0 16px!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__copy h2{
+  margin:0 0 14px!important;
+  font-size:clamp(38px,3.7vw,62px)!important;
+  line-height:1.04!important;
+  letter-spacing:-.062em!important;
+  text-wrap:balance!important;
+  overflow:visible!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__copy p{
+  font-size:13px!important;
+  line-height:1.65!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__place,
+.page-v64.page-realizacje .portfolio-half__area{
+  left:24px!important;
+  right:auto!important;
+  top:auto!important;
+  max-width:calc(100% - 48px)!important;
+  text-align:left!important;
+  white-space:normal!important;
+  transform:none!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__place{
+  bottom:48px!important;
+  font-size:clamp(24px,2.5vw,42px)!important;
+  line-height:1!important;
+  letter-spacing:-.055em!important;
+  color:rgba(255,255,255,.54)!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__area{
+  bottom:22px!important;
+  font-size:10px!important;
+  line-height:1!important;
+  letter-spacing:.16em!important;
+  font-weight:800!important;
+  color:rgba(255,255,255,.76)!important;
+}
+
+.page-v64.page-realizacje .portfolio-half__image::after{
+  height:30%!important;
+  background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.7))!important;
+}
+
+/* Artykuły: jeden grid, jeden rytm i CTA wyrównane do treści. */
+.page-v64.page-article .v33-article-lead,
+.page-v64.page-article .v33-article-sections,
+.page-v64.page-article .v33-article-callout{
+  width:min(980px,100%)!important;
+  box-sizing:border-box!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+.page-v64.page-article .v33-article-lead{
+  margin-bottom:0!important;
+  padding-bottom:48px!important;
+}
+
+.page-v64.page-article .v33-article-section{
+  grid-template-columns:90px minmax(0,1fr)!important;
+  gap:clamp(28px,4vw,64px)!important;
+  min-height:260px!important;
+  padding:48px 0!important;
+  align-items:start!important;
+}
+
+.page-v64.page-article .v33-article-section h2{
+  margin:0 0 16px!important;
+  font-size:clamp(38px,3.7vw,62px)!important;
+  line-height:1.02!important;
+  letter-spacing:-.065em!important;
+  text-wrap:balance!important;
+}
+
+.page-v64.page-article .v33-article-section h2 + p,
+.page-v64.page-article .v33-article-section p{
+  margin:0!important;
+  max-width:760px!important;
+  font-size:clamp(16px,1.25vw,20px)!important;
+  line-height:1.78!important;
+}
+
+.page-v64.page-article .v33-article-callout{
+  min-height:250px!important;
+  margin-top:64px!important;
+  padding:42px 54px 42px clamp(118px,10vw,154px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  border-radius:0!important;
+}
+
+.page-v64.page-article .v33-article-callout strong{
+  margin:0 0 12px!important;
+  font-size:clamp(34px,3.3vw,52px)!important;
+  line-height:1.02!important;
+}
+
+.page-v64.page-article .v33-article-callout p{
+  margin:0 0 22px!important;
+}
+
+/* Kontakt / FAQ: otwarcie i zamknięcie w tym samym płynnym tempie co HP. */
+.page-v64.page-kontakt .faq-list--page p{
+  max-height:0;
+  overflow:hidden!important;
+  opacity:0!important;
+  transform:translateY(-6px)!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  transition:max-height .46s cubic-bezier(.2,.75,.2,1),opacity .25s ease,transform .34s cubic-bezier(.2,.75,.2,1),padding .34s ease!important;
+}
+
+.page-v64.page-kontakt .faq-list--page details[open] p,
+.page-v64.page-kontakt .faq-list--page details.is-open-v62 p{
+  opacity:1!important;
+  transform:none!important;
+  padding-top:2px!important;
+  padding-bottom:24px!important;
+}
+
+/* Spokojniejsze logo na każdej podstronie. */
+.page-v64.subpage .site-footer__logo{
+  width:clamp(230px,18vw,280px)!important;
+  max-width:280px!important;
+  opacity:.84!important;
+  filter:brightness(.9)!important;
+}
+
+@media(max-width:760px){
+  .page-v64.page-realizacje .portfolio-half{
+    grid-template-rows:clamp(390px,92vw,560px) auto!important;
+  }
+  .page-v64.page-realizacje .portfolio-half__copy{
+    height:auto!important;
+    min-height:250px!important;
+    overflow:visible!important;
+  }
+  .page-v64.page-article .v33-article-section{
+    grid-template-columns:1fr!important;
+    min-height:0!important;
+    gap:16px!important;
+    padding:36px 0!important;
+  }
+  .page-v64.page-article .v33-article-callout{
+    min-height:0!important;
+    padding:34px 26px!important;
+  }
+  .page-v64.subpage .site-footer__logo{
+    width:225px!important;
+    opacity:.86!important;
+  }
+}
