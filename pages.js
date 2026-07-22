@@ -238,33 +238,91 @@ const magnetSelectors = [
 })();
 
 
-// V58 — subpage technical fixes
+
+
+// V60 — subpage precise remaining fixes
 (() => {
   const body = document.body;
-  if (!body.classList.contains('page-v58')) return;
+  if (!body.classList.contains('page-v60')) return;
 
-  // Oferta: zakres współpracy otwarty na stałe, bez zwijania.
-  if (body.classList.contains('page-oferta')) {
-    document.querySelectorAll('.v33-scope details').forEach((details) => {
-      details.open = true;
-      const summary = details.querySelector('summary');
-      summary?.setAttribute('aria-expanded', 'true');
-
-      summary?.addEventListener('click', (event) => {
-        event.preventDefault();
-        details.open = true;
-      });
-
-      details.addEventListener('toggle', () => {
-        if (!details.open) details.open = true;
-      });
-    });
-  }
-
-  // Kontakt/direct links: remove arrow spans from accessibility flow too.
+  // Kontakt/direct links: arrow spans hidden from a11y too.
   if (body.classList.contains('page-kontakt')) {
     document.querySelectorAll('.contact-direct-v23 a span').forEach((span) => {
       span.setAttribute('aria-hidden', 'true');
     });
+  }
+
+  // Oferta: v33-scope accordion works like HP style, not all-open static.
+  if (body.classList.contains('page-oferta')) {
+    const detailsItems = [...document.querySelectorAll('.v33-scope details')];
+
+    const closeDetails = (details) => {
+      const panel = details.querySelector('.v33-scope__panel');
+      const summary = details.querySelector('summary');
+      if (!panel || !details.open) return;
+
+      panel.style.maxHeight = `${panel.scrollHeight}px`;
+      panel.style.opacity = '1';
+      details.classList.remove('is-open-v60');
+      summary?.setAttribute('aria-expanded', 'false');
+
+      requestAnimationFrame(() => {
+        panel.style.maxHeight = '0px';
+        panel.style.opacity = '0';
+      });
+
+      window.setTimeout(() => {
+        if (!details.classList.contains('is-open-v60')) {
+          details.open = false;
+        }
+      }, 360);
+    };
+
+    const openDetails = (details) => {
+      const panel = details.querySelector('.v33-scope__panel');
+      const summary = details.querySelector('summary');
+      if (!panel) return;
+
+      details.open = true;
+      details.classList.add('is-open-v60');
+      summary?.setAttribute('aria-expanded', 'true');
+      panel.style.maxHeight = '0px';
+      panel.style.opacity = '0';
+
+      requestAnimationFrame(() => {
+        panel.style.maxHeight = `${panel.scrollHeight + 20}px`;
+        panel.style.opacity = '1';
+      });
+    };
+
+    detailsItems.forEach((details) => {
+      const summary = details.querySelector('summary');
+      const panel = details.querySelector('.v33-scope__panel');
+      if (!summary || !panel) return;
+
+      details.open = false;
+      details.classList.remove('is-open-v60');
+      summary.setAttribute('aria-expanded', 'false');
+      panel.style.maxHeight = '0px';
+      panel.style.opacity = '0';
+
+      summary.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (details.classList.contains('is-open-v60')) {
+          closeDetails(details);
+        } else {
+          openDetails(details);
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      detailsItems.forEach((details) => {
+        const panel = details.querySelector('.v33-scope__panel');
+        if (panel && details.classList.contains('is-open-v60')) {
+          panel.style.maxHeight = `${panel.scrollHeight + 20}px`;
+        }
+      });
+    }, { passive: true });
   }
 })();

@@ -3984,3 +3984,287 @@ html,body{overflow-x:hidden!important;}
   opacity:1;
   transform:none;
 }
+
+
+/* =======================================================================
+   V60 — remaining precise fixes: subpages
+   ======================================================================= */
+
+/* Breadcrumbs usunięte z HTML, ale zostaje awaryjne zabezpieczenie */
+.page-v60.subpage .breadcrumbs{
+  display:none!important;
+}
+
+/* Wspólny system hero podstron */
+.page-v60.subpage .hero-unified-v60{
+  min-height:clamp(620px,82svh,780px)!important;
+  display:flex!important;
+  align-items:stretch!important;
+  padding:0!important;
+}
+
+.page-v60.subpage .hero-unified-v60 .page-hero__content,
+.page-v60.subpage .hero-unified-v60 .v33-subhero__content,
+.page-v60.subpage .hero-unified-v60 .v33-article-hero__content{
+  width:min(1240px,calc(100% - (var(--pad-x) * 2)))!important;
+  margin:0 auto!important;
+  min-height:inherit!important;
+  padding:calc(var(--header-h) + clamp(58px,8vh,96px)) 0 clamp(56px,8vh,92px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  gap:clamp(16px,2.2vw,28px)!important;
+}
+
+.page-v60.subpage .hero-unified-v60 h1{
+  margin-top:auto!important;
+  margin-bottom:0!important;
+  line-height:1.02!important;
+  letter-spacing:-.064em!important;
+  overflow:visible!important;
+  text-wrap:balance!important;
+}
+
+.page-v60.subpage .hero-unified-v60 p:not(.page-kicker){
+  margin:0!important;
+  line-height:1.72!important;
+  max-width:760px!important;
+}
+
+/* Aktualności / nagłówek sekcji */
+.page-v60.page-aktualnosci .v33-news__head{
+  align-items:end!important;
+  margin-bottom:42px!important;
+}
+
+.page-v60.page-aktualnosci .v33-news__head .page-kicker{
+  white-space:nowrap!important;
+}
+
+.page-v60.page-aktualnosci .v33-news__head p:not(.page-kicker){
+  margin-bottom:0!important;
+}
+
+/* Kontakt — formularz 1:1 ze startu, tylko osadzony w prawej połowie */
+.page-v60.page-kontakt .contact-final-v23{
+  grid-template-columns:minmax(300px,.82fr) minmax(420px,1fr)!important;
+}
+
+.page-v60.page-kontakt .contact-form-shell-v60{
+  align-self:start!important;
+  background:#050505!important;
+  padding:clamp(28px,3vw,42px)!important;
+  border:1px solid rgba(0,0,0,.14)!important;
+  box-shadow:0 34px 90px rgba(0,0,0,.18)!important;
+}
+
+.page-v60.page-kontakt .contact-brief-v60{
+  padding-top:18px!important;
+  border-top:1px solid rgba(255,255,255,.08)!important;
+  background:transparent!important;
+}
+
+.page-v60.page-kontakt .contact-brief-v60 .field{
+  display:grid!important;
+  gap:9px!important;
+}
+
+.page-v60.page-kontakt .contact-brief-v60 .field label,
+.page-v60.page-kontakt .contact-brief-v60 .field > label{
+  font-size:7px!important;
+  font-weight:700!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+  color:#898985!important;
+}
+
+.page-v60.page-kontakt .contact-brief-v60 input,
+.page-v60.page-kontakt .contact-brief-v60 select,
+.page-v60.page-kontakt .contact-brief-v60 textarea{
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.25)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  padding:0 0 12px!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+
+.page-v60.page-kontakt .contact-brief-v60 input:focus,
+.page-v60.page-kontakt .contact-brief-v60 select:focus,
+.page-v60.page-kontakt .contact-brief-v60 textarea:focus{
+  border-bottom-color:#fff!important;
+}
+
+/* Kontakt — przyciski obok formularza nie robią się czarne i nie znikają */
+.page-v60.page-kontakt .contact-direct-v23 a,
+.page-v60.page-kontakt .contact-direct-v23 a:hover,
+.page-v60.page-kontakt .contact-direct-v23 a:focus-visible{
+  transform:none!important;
+  background:#ede9e0!important;
+  color:#080808!important;
+  border-color:rgba(0,0,0,.18)!important;
+}
+
+.page-v60.page-kontakt .contact-direct-v23 a:hover,
+.page-v60.page-kontakt .contact-direct-v23 a:focus-visible{
+  background:#f7f3ea!important;
+  color:#080808!important;
+}
+
+.page-v60.page-kontakt .contact-direct-v23 a span{
+  display:none!important;
+}
+
+/* Oferta — zakres wraca do klikalnej harmonijki według wzoru HP */
+.page-v60.page-oferta .v33-scope details{
+  transform:none!important;
+  transition:none!important;
+  overflow:visible!important;
+}
+
+.page-v60.page-oferta .v33-scope summary{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+  position:relative!important;
+  overflow:visible!important;
+}
+
+.page-v60.page-oferta .v33-scope summary::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:auto!important;
+  bottom:0!important;
+  width:0!important;
+  height:1px!important;
+  background:#fff!important;
+  transition:width .36s cubic-bezier(.2,.75,.2,1)!important;
+}
+
+.page-v60.page-oferta .v33-scope summary:hover::after{
+  width:100%!important;
+}
+
+.page-v60.page-oferta .v33-scope summary strong{
+  transition:transform .28s cubic-bezier(.2,.75,.2,1)!important;
+}
+
+.page-v60.page-oferta .v33-scope summary:hover strong{
+  transform:translateX(5px)!important;
+}
+
+.page-v60.page-oferta .v33-scope summary i{
+  display:grid!important;
+  place-items:center!important;
+  width:36px!important;
+  height:36px!important;
+  flex:0 0 36px!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:rotate(0deg)!important;
+  transform-origin:center!important;
+  overflow:visible!important;
+  transition:transform .28s cubic-bezier(.2,.75,.2,1), background .22s ease, color .22s ease, border-color .22s ease!important;
+}
+
+.page-v60.page-oferta .v33-scope summary:hover i,
+.page-v60.page-oferta .v33-scope details.is-open-v60 summary i{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+.page-v60.page-oferta .v33-scope__panel{
+  display:grid!important;
+  max-height:0;
+  opacity:0;
+  overflow:hidden!important;
+  transform:translateY(-6px);
+  transition:max-height .36s cubic-bezier(.2,.75,.2,1), opacity .22s ease, transform .28s cubic-bezier(.2,.75,.2,1), padding .28s ease!important;
+}
+
+.page-v60.page-oferta .v33-scope details.is-open-v60 .v33-scope__panel{
+  opacity:1!important;
+  transform:none!important;
+}
+
+/* FAQ/harmonijki — styl według HP */
+.page-v60 .faq-list details,
+.page-v60 .faq-list--page details{
+  transform:none!important;
+}
+
+.page-v60 .faq-list summary,
+.page-v60 .faq-list--page summary{
+  position:relative!important;
+  overflow:visible!important;
+}
+
+.page-v60 .faq-list summary::after,
+.page-v60 .faq-list--page summary::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  bottom:0!important;
+  width:0!important;
+  height:1px!important;
+  background:#fff!important;
+  transition:width .36s cubic-bezier(.2,.75,.2,1)!important;
+}
+
+.page-v60 .faq-list summary:hover::after,
+.page-v60 .faq-list--page summary:hover::after{
+  width:100%!important;
+}
+
+.page-v60 .faq-list summary span,
+.page-v60 .faq-list--page summary span{
+  flex:0 0 36px!important;
+  width:36px!important;
+  height:36px!important;
+  display:grid!important;
+  place-items:center!important;
+  transform:rotate(0deg)!important;
+  transition:transform .28s cubic-bezier(.2,.75,.2,1), background .22s ease, color .22s ease, border-color .22s ease!important;
+}
+
+.page-v60 .faq-list details[open] summary span,
+.page-v60 .faq-list--page details[open] summary span,
+.page-v60 .faq-list summary:hover span,
+.page-v60 .faq-list--page summary:hover span{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+/* Stopka — napis "Projektowanie wnętrz" mocniejszy */
+.page-v60.subpage .site-footer__meta span:nth-child(2){
+  color:rgba(255,255,255,.84)!important;
+  font-size:11px!important;
+  font-weight:700!important;
+  letter-spacing:.14em!important;
+  text-transform:uppercase!important;
+}
+
+@media(max-width:860px){
+  .page-v60.page-kontakt .contact-final-v23{
+    grid-template-columns:1fr!important;
+  }
+
+  .page-v60.subpage .hero-unified-v60 .page-hero__content,
+  .page-v60.subpage .hero-unified-v60 .v33-subhero__content,
+  .page-v60.subpage .hero-unified-v60 .v33-article-hero__content{
+    width:calc(100% - 36px)!important;
+    padding-top:calc(var(--header-h) + 52px)!important;
+    padding-bottom:56px!important;
+  }
+
+  .page-v60.subpage .hero-unified-v60 h1{
+    line-height:1.04!important;
+    letter-spacing:-.055em!important;
+  }
+}
