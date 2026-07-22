@@ -285,7 +285,7 @@ const magnetSelectors = [
 // V62 — contact FAQ smooth measured animation like homepage accordions
 (() => {
   const body = document.body;
-  if (!body.classList.contains('page-v62') || !body.classList.contains('page-kontakt')) return;
+  if (!body.classList.contains('page-v62') || !body.classList.contains('page-kontakt') || body.classList.contains('page-v65')) return;
 
   const faqs = [...document.querySelectorAll('.faq-list--page details')];
 
@@ -358,5 +358,66 @@ const magnetSelectors = [
         paragraph.style.maxHeight = `${paragraph.scrollHeight + 34}px`;
       }
     });
+  }, { passive: true });
+})();
+
+
+// V65 — contact FAQ: one animation owner, immune to older !important rules
+(() => {
+  const body = document.body;
+  if (!body.classList.contains('page-v65') || !body.classList.contains('page-kontakt')) return;
+
+  const items = [...document.querySelectorAll('.faq-list--page details')];
+  const duration = 520;
+
+  const setHeight = (item) => {
+    const panel = item.querySelector('p');
+    if (!panel) return;
+    item.style.setProperty('--faq-height', `${panel.scrollHeight + 34}px`);
+  };
+
+  const openItem = (item) => {
+    const summary = item.querySelector('summary');
+    item.open = true;
+    setHeight(item);
+    summary?.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => item.classList.add('is-open-v65'));
+    });
+  };
+
+  const closeItem = (item) => {
+    const summary = item.querySelector('summary');
+    setHeight(item);
+    summary?.setAttribute('aria-expanded', 'false');
+    item.classList.remove('is-open-v65');
+    window.setTimeout(() => {
+      if (!item.classList.contains('is-open-v65')) item.open = false;
+    }, duration);
+  };
+
+  items.forEach((item) => {
+    const summary = item.querySelector('summary');
+    if (!summary) return;
+
+    item.classList.remove('is-open-v62');
+    summary.setAttribute('aria-expanded', 'false');
+    item.open = false;
+
+    summary.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (item.classList.contains('is-open-v65')) {
+        closeItem(item);
+        return;
+      }
+      items.forEach((other) => {
+        if (other !== item && other.classList.contains('is-open-v65')) closeItem(other);
+      });
+      openItem(item);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    items.filter((item) => item.classList.contains('is-open-v65')).forEach(setHeight);
   }, { passive: true });
 })();

@@ -3266,3 +3266,30 @@ body.subpage .premium-entry-v44{
     height:114%!important;
   }
 }
+
+
+/* V65 — final social override: full corners, calmer screenshot rendering. */
+.page-v65 .social-phone__screen{
+  isolation:isolate!important;
+  background:#0d1117!important;
+}
+
+.page-v65 .social-phone__screen img{
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  object-position:top center!important;
+  transform:scale(1.006)!important;
+  filter:contrast(.90) saturate(.88) brightness(1.025) blur(.16px)!important;
+}
+
+@media(max-width:760px){
+  .page-v65 .social-phone__screen img{
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    transform:scale(1.008)!important;
+  }
+}
