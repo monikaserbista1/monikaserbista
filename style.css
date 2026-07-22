@@ -2817,3 +2817,150 @@ body.subpage .premium-entry-v44{
 }
 
 /* V59 cache marker */
+
+
+/* =======================================================================
+   V60 — remaining precise fixes: home portfolio shade, H2 system, dropdowns
+   ======================================================================= */
+
+/* Start / Wybrane realizacje: shade i border mają przykrywać CAŁY kadr bez widocznych rogów */
+.page-v60 .project-card{
+  position:relative!important;
+  overflow:hidden!important;
+  border:0!important;
+  outline:0!important;
+  background:#050505!important;
+  isolation:isolate!important;
+}
+
+.page-v60 .project-card img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  z-index:0!important;
+}
+
+.page-v60 .project-card__shade{
+  position:absolute!important;
+  inset:-2px!important;
+  width:auto!important;
+  height:auto!important;
+  z-index:1!important;
+  display:block!important;
+  pointer-events:none!important;
+  border:0!important;
+  outline:0!important;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,0) 28%,rgba(0,0,0,.22) 58%,rgba(0,0,0,.86) 100%)!important;
+  opacity:.66!important;
+}
+
+.page-v60 .project-card:hover .project-card__shade,
+.page-v60 .project-card:focus-visible .project-card__shade{
+  opacity:.86!important;
+}
+
+.page-v60 .project-card::before,
+.page-v60 .project-card::after,
+.page-v60 .project-card__shade::before,
+.page-v60 .project-card__shade::after{
+  display:none!important;
+  content:none!important;
+}
+
+.page-v60 .project-card__meta{
+  z-index:2!important;
+}
+
+/* Jeden spokojny system H2 + odstępy kicker → H2 → opis */
+.page-v60 .studio-note h2,
+.page-v60 .services__copy h2,
+.page-v60 .portfolio__head h2,
+.page-v60 .about__copy h2,
+.page-v60 .process__copy h2,
+.page-v60 .contact__panel h2,
+.page-v60 .social-faq h2,
+.page-v60.subpage section h2,
+.page-v60.subpage .contact-final-v23__intro h2,
+.page-v60.subpage .v33-news__head h2,
+.page-v60.subpage .v33-scope__head h2,
+.page-v60.subpage .v33-process__head h2{
+  font-size:clamp(42px,5vw,86px)!important;
+  line-height:1.04!important;
+  letter-spacing:-.062em!important;
+  margin:22px 0 18px!important;
+  overflow:visible!important;
+  text-wrap:balance!important;
+}
+
+.page-v60 .section-kicker + h2,
+.page-v60 .page-kicker + h2,
+.page-v60 .section-kicker + h1,
+.page-v60 .page-kicker + h1{
+  margin-top:22px!important;
+}
+
+.page-v60 h2 + p,
+.page-v60 .portfolio__head h2 + p,
+.page-v60 .contact__panel h2 + p,
+.page-v60.subpage h2 + p{
+  margin-top:0!important;
+  margin-bottom:0!important;
+  line-height:1.72!important;
+}
+
+/* Dropdowny: jeden styl na starcie i kontakcie, bez systemowego białego selecta */
+.page-v60 select,
+.page-v60 .field select,
+.page-v60 .field-v23 select{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  color:#fff!important;
+  background-color:#050505!important;
+  border-radius:0!important;
+  color-scheme:dark!important;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255,255,255,.8) 50%),
+    linear-gradient(135deg, rgba(255,255,255,.8) 50%, transparent 50%)!important;
+  background-position:
+    calc(100% - 12px) 48%,
+    calc(100% - 7px) 48%!important;
+  background-size:5px 5px,5px 5px!important;
+  background-repeat:no-repeat!important;
+  padding-right:28px!important;
+}
+
+.page-v60 select option,
+.page-v60 .field select option,
+.page-v60 .field-v23 select option{
+  color:#fff!important;
+  background:#111!important;
+}
+
+.page-v60 select option:checked,
+.page-v60 .field select option:checked,
+.page-v60 .field-v23 select option:checked{
+  background:#343434!important;
+  color:#fff!important;
+}
+
+@media(max-width:760px){
+  .page-v60 .studio-note h2,
+  .page-v60 .services__copy h2,
+  .page-v60 .portfolio__head h2,
+  .page-v60 .about__copy h2,
+  .page-v60 .process__copy h2,
+  .page-v60 .contact__panel h2,
+  .page-v60 .social-faq h2,
+  .page-v60.subpage section h2,
+  .page-v60.subpage .contact-final-v23__intro h2,
+  .page-v60.subpage .v33-news__head h2,
+  .page-v60.subpage .v33-scope__head h2,
+  .page-v60.subpage .v33-process__head h2{
+    font-size:clamp(36px,11vw,58px)!important;
+    line-height:1.06!important;
+    margin:18px 0 14px!important;
+  }
+}
