@@ -2298,3 +2298,18 @@ body.subpage .premium-entry-v44{
     image-rendering:auto!important;
   }
 }
+
+/* V71 — cień telefonu bez ponownej rasteryzacji screena na hoverze. */
+.page-v71 .social-phone,
+.page-v71 .social-phone:hover{
+  filter:none!important;
+  will-change:auto!important;
+}
+
+.page-v71 .social-phone__shell{
+  transition:box-shadow .35s ease!important;
+}
+
+.page-v71 .social-phone:hover .social-phone__shell{
+  box-shadow:0 34px 76px rgba(0,0,0,.24)!important;
+}
