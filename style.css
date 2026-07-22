@@ -3381,3 +3381,12 @@ body.subpage .premium-entry-v44{
     will-change:auto!important;
   }
 }
+
+
+/* V68 — stronger but still clean desktop softening of the Facebook preview. */
+@media(min-width:821px) and (pointer:fine){
+  .page-v68 .social-phone__screen img{
+    filter:blur(.6px) contrast(.84) saturate(.88)!important;
+    image-rendering:auto!important;
+  }
+}
