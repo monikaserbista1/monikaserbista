@@ -4268,3 +4268,298 @@ html,body{overflow-x:hidden!important;}
     letter-spacing:-.055em!important;
   }
 }
+
+
+/* =======================================================================
+   V61 — targeted fixes: Oferta, Realizacje, Kontakt FAQ/form
+   ======================================================================= */
+
+/* OFERTA — zakres współpracy cały czas rozwinięty, bez klikania/hover-interakcji */
+.page-v61.page-oferta .v33-scope details,
+.page-v61.page-oferta .v33-scope details[open],
+.page-v61.page-oferta .v33-scope details:hover{
+  transform:none!important;
+  transition:none!important;
+  overflow:visible!important;
+}
+
+.page-v61.page-oferta .v33-scope summary{
+  cursor:default!important;
+  pointer-events:none!important;
+  overflow:visible!important;
+}
+
+.page-v61.page-oferta .v33-scope summary::after,
+.page-v61.page-oferta .v33-scope summary:hover::after{
+  display:none!important;
+  content:none!important;
+  width:0!important;
+}
+
+.page-v61.page-oferta .v33-scope summary img,
+.page-v61.page-oferta .v33-scope summary strong,
+.page-v61.page-oferta .v33-scope summary em,
+.page-v61.page-oferta .v33-scope summary span,
+.page-v61.page-oferta .v33-scope summary:hover img,
+.page-v61.page-oferta .v33-scope summary:hover strong,
+.page-v61.page-oferta .v33-scope summary:hover em,
+.page-v61.page-oferta .v33-scope summary:hover span{
+  transform:none!important;
+  filter:none!important;
+  transition:none!important;
+}
+
+.page-v61.page-oferta .v33-scope summary i{
+  display:none!important;
+}
+
+.page-v61.page-oferta .v33-scope__panel{
+  display:grid!important;
+  height:auto!important;
+  max-height:none!important;
+  opacity:1!important;
+  overflow:visible!important;
+  transform:none!important;
+  transition:none!important;
+}
+
+/* OFERTA — proces bez żadnej animacji na hoverze */
+.page-v61.page-oferta .v33-process__line,
+.page-v61.page-oferta .v33-process__line *,
+.page-v61.page-oferta .v33-process__line *::before,
+.page-v61.page-oferta .v33-process__line *::after{
+  transition:none!important;
+  animation:none!important;
+}
+
+.page-v61.page-oferta .v33-process__line article,
+.page-v61.page-oferta .v33-process__line article:hover,
+.page-v61.page-oferta .v33-process__line article:hover h3,
+.page-v61.page-oferta .v33-process__line article:hover p,
+.page-v61.page-oferta .v33-process__line article:hover span{
+  transform:none!important;
+  filter:none!important;
+  box-shadow:none!important;
+}
+
+.page-v61.page-oferta .v33-process__line article i{
+  display:none!important;
+}
+
+.page-v61.page-oferta .v33-process__line article,
+.page-v61.page-oferta .v33-process__line article::before,
+.page-v61.page-oferta .v33-process__line article::after{
+  border-left:0!important;
+  border-right:0!important;
+}
+
+/* REALIZACJE — czarny pasek/gradient opisów zawsze w tym samym miejscu */
+.page-v61.page-realizacje .portfolio-halves .portfolio-half__image{
+  position:relative!important;
+  overflow:hidden!important;
+}
+
+.page-v61.page-realizacje .portfolio-halves .portfolio-half__image::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  top:auto!important;
+  height:34%!important;
+  z-index:1!important;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.74) 100%)!important;
+  opacity:1!important;
+  transform:none!important;
+  pointer-events:none!important;
+}
+
+.page-v61.page-realizacje .portfolio-halves .portfolio-half__place,
+.page-v61.page-realizacje .portfolio-halves .portfolio-half__area{
+  z-index:2!important;
+  bottom:22px!important;
+  top:auto!important;
+  transform:none!important;
+  opacity:1!important;
+  transition:none!important;
+}
+
+.page-v61.page-realizacje .portfolio-halves .portfolio-half__place{
+  left:22px!important;
+}
+
+.page-v61.page-realizacje .portfolio-halves .portfolio-half__area{
+  right:22px!important;
+  text-align:right!important;
+}
+
+/* KONTAKT — większy, wyrównany formularz */
+.page-v61.page-kontakt .contact-final-v23{
+  grid-template-columns:minmax(360px,.78fr) minmax(560px,1.22fr)!important;
+  gap:clamp(44px,6vw,108px)!important;
+  align-items:start!important;
+}
+
+.page-v61.page-kontakt .contact-form-shell-v60{
+  width:100%!important;
+  align-self:start!important;
+  padding:clamp(34px,3.6vw,58px)!important;
+  background:#050505!important;
+}
+
+.page-v61.page-kontakt .contact-brief-v60{
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:26px 22px!important;
+}
+
+.page-v61.page-kontakt .contact-brief-v60 .field input,
+.page-v61.page-kontakt .contact-brief-v60 .field select,
+.page-v61.page-kontakt .contact-brief-v60 .field textarea{
+  font-size:15px!important;
+  padding-bottom:14px!important;
+}
+
+.page-v61.page-kontakt .contact-brief-v60 .field label{
+  margin-bottom:10px!important;
+}
+
+.page-v61.page-kontakt .contact-brief-v60 textarea{
+  min-height:150px!important;
+}
+
+.page-v61.page-kontakt .contact-brief-v60 .submit-btn{
+  min-width:220px!important;
+  min-height:58px!important;
+}
+
+/* KONTAKT — przyciski obok formularza nie robią się czarne */
+.page-v61.page-kontakt .contact-direct-v23 a,
+.page-v61.page-kontakt .contact-direct-v23 a:hover,
+.page-v61.page-kontakt .contact-direct-v23 a:focus-visible{
+  background:#ede9e0!important;
+  color:#080808!important;
+  transform:none!important;
+  border-color:rgba(0,0,0,.18)!important;
+}
+
+.page-v61.page-kontakt .contact-direct-v23 a:hover,
+.page-v61.page-kontakt .contact-direct-v23 a:focus-visible{
+  background:#f7f3ea!important;
+  color:#080808!important;
+}
+
+.page-v61.page-kontakt .contact-direct-v23 a span{
+  display:none!important;
+}
+
+/* KONTAKT FAQ — plusy po prawej, tekst ładniej, płynne otwieranie/zamykanie */
+.page-v61.page-kontakt .faq-focus-v13{
+  padding-top:clamp(78px,8vw,130px)!important;
+}
+
+.page-v61.page-kontakt .faq-list--page{
+  width:min(980px,calc(100% - var(--pad-x) * 2))!important;
+  margin-inline:auto!important;
+}
+
+.page-v61.page-kontakt .faq-list--page details{
+  border-bottom:1px solid rgba(255,255,255,.18)!important;
+  padding:0!important;
+  transform:none!important;
+}
+
+.page-v61.page-kontakt .faq-list--page summary{
+  min-height:78px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px!important;
+  align-items:center!important;
+  gap:28px!important;
+  padding:0!important;
+  font-size:clamp(24px,2.15vw,36px)!important;
+  line-height:1.15!important;
+  letter-spacing:-.052em!important;
+}
+
+.page-v61.page-kontakt .faq-list--page summary span{
+  grid-column:2!important;
+  justify-self:end!important;
+  width:38px!important;
+  height:38px!important;
+  flex:0 0 38px!important;
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+}
+
+.page-v61.page-kontakt .faq-list--page summary::after{
+  display:none!important;
+}
+
+.page-v61.page-kontakt .faq-list--page p{
+  max-height:0;
+  overflow:hidden!important;
+  opacity:0;
+  transform:translateY(-4px);
+  margin:0!important;
+  padding:0 74px 0 0!important;
+  color:rgba(255,255,255,.72)!important;
+  font-size:15px!important;
+  line-height:1.78!important;
+  transition:
+    max-height .38s cubic-bezier(.2,.75,.2,1),
+    opacity .24s ease,
+    transform .32s cubic-bezier(.2,.75,.2,1),
+    padding .32s ease!important;
+}
+
+.page-v61.page-kontakt .faq-list--page details[open] p{
+  max-height:240px!important;
+  opacity:1!important;
+  transform:none!important;
+  padding:2px 74px 28px 0!important;
+}
+
+.page-v61.page-kontakt .faq-list--page details[open] summary span,
+.page-v61.page-kontakt .faq-list--page summary:hover span{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+@media(max-width:1020px){
+  .page-v61.page-kontakt .contact-final-v23{
+    grid-template-columns:1fr!important;
+  }
+
+  .page-v61.page-kontakt .contact-form-shell-v60{
+    padding:28px 22px!important;
+  }
+}
+
+@media(max-width:680px){
+  .page-v61.page-kontakt .contact-brief-v60{
+    grid-template-columns:1fr!important;
+  }
+
+  .page-v61.page-kontakt .contact-brief-v60 .field--half,
+  .page-v61.page-kontakt .contact-brief-v60 .field--third,
+  .page-v61.page-kontakt .contact-brief-v60 .field--full{
+    grid-column:1!important;
+  }
+
+  .page-v61.page-kontakt .faq-list--page summary{
+    grid-template-columns:minmax(0,1fr) 34px!important;
+    font-size:clamp(21px,6vw,30px)!important;
+  }
+
+  .page-v61.page-kontakt .faq-list--page summary span{
+    width:34px!important;
+    height:34px!important;
+  }
+
+  .page-v61.page-kontakt .faq-list--page p,
+  .page-v61.page-kontakt .faq-list--page details[open] p{
+    padding-right:0!important;
+  }
+}
