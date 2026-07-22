@@ -4891,3 +4891,127 @@ html,body{overflow-x:hidden!important;}
     width:210px!important;
   }
 }
+
+
+/* =======================================================================
+   V63 — targeted subpage fixes
+   ======================================================================= */
+
+/* Realizacje: każda fotografia i każdy czarny panel mają identyczną wysokość. */
+.page-v63.page-realizacje .portfolio-half{
+  grid-template-rows:clamp(480px,43vw,640px) 410px!important;
+  min-height:0!important;
+  background:#050505!important;
+}
+
+.page-v63.page-realizacje .portfolio-half__image,
+.page-v63.page-realizacje .portfolio-half__image:hover,
+.page-v63.page-realizacje .portfolio-half__image:focus-visible{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  transform:none!important;
+  overflow:hidden!important;
+}
+
+.page-v63.page-realizacje .portfolio-half__image img,
+.page-v63.page-realizacje .portfolio-half:hover .portfolio-half__image img,
+.page-v63.page-realizacje .portfolio-half__image:hover img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  transform:none!important;
+  scale:1!important;
+}
+
+.page-v63.page-realizacje .portfolio-half__copy{
+  width:100%!important;
+  height:410px!important;
+  min-height:410px!important;
+  overflow:hidden!important;
+  justify-content:flex-start!important;
+  background:#050505!important;
+}
+
+/* Kontakt / FAQ: proporcje, typografia i interakcje dokładnie jak na HP. */
+.page-v63.page-kontakt .faq-list--page summary{
+  min-height:0!important;
+  padding:23px 0!important;
+  grid-template-columns:minmax(0,1fr) 32px!important;
+  gap:18px!important;
+  font-size:clamp(17px,1.18vw,20px)!important;
+  line-height:1.35!important;
+  letter-spacing:-.025em!important;
+  transition:padding-left .25s ease,color .25s ease!important;
+}
+
+.page-v63.page-kontakt .faq-list--page summary:hover{
+  padding-left:8px!important;
+}
+
+.page-v63.page-kontakt .faq-list--page summary span{
+  width:32px!important;
+  height:32px!important;
+  font-size:16px!important;
+  transform:rotate(0deg)!important;
+  background:transparent!important;
+  color:#fff!important;
+  border-color:rgba(255,255,255,.25)!important;
+}
+
+.page-v63.page-kontakt .faq-list--page summary:hover span{
+  transform:rotate(0deg)!important;
+  background:transparent!important;
+  color:#fff!important;
+  border-color:rgba(255,255,255,.38)!important;
+}
+
+.page-v63.page-kontakt .faq-list--page details[open] summary span,
+.page-v63.page-kontakt .faq-list--page details.is-open-v62 summary span{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+.page-v63.page-kontakt .faq-list--page p{
+  max-width:680px!important;
+  font-size:clamp(14px,.92vw,16px)!important;
+  line-height:1.72!important;
+}
+
+/* Stopka na wszystkich podstronach. */
+.page-v63.subpage .site-footer__logo{
+  width:clamp(250px,22vw,340px)!important;
+  max-width:340px!important;
+  height:auto!important;
+  opacity:1!important;
+  filter:none!important;
+}
+
+.page-v63.subpage .site-footer__meta span:nth-child(2){
+  color:#f1f1ee!important;
+  opacity:1!important;
+}
+
+@media(max-width:760px){
+  .page-v63.page-realizacje .portfolio-half{
+    grid-template-rows:clamp(360px,86vw,520px) auto!important;
+  }
+
+  .page-v63.page-realizacje .portfolio-half__copy{
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+
+  .page-v63.page-kontakt .faq-list--page summary{
+    grid-template-columns:minmax(0,1fr) 32px!important;
+    font-size:17px!important;
+  }
+
+  .page-v63.subpage .site-footer__logo{
+    width:240px!important;
+    max-width:100%!important;
+  }
+}

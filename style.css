@@ -3090,3 +3090,88 @@ body.subpage .premium-entry-v44{
   margin-top:0!important;
   margin-bottom:0!important;
 }
+
+
+/* =======================================================================
+   V63 — final targeted fixes after full client-list verification
+   ======================================================================= */
+
+/* HP / Wybrane realizacje: nieruchomy kadr, pełny shade i brak odkrywania krawędzi. */
+.page-v63 .project-card,
+.page-v63 .project-card:hover,
+.page-v63 .project-card:focus-visible{
+  transform:none!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  border:0!important;
+  outline:0!important;
+}
+
+.page-v63 .project-card img,
+.page-v63 .project-card:hover img,
+.page-v63 .project-card:focus-visible img{
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  transform:none!important;
+  scale:1!important;
+  object-fit:cover!important;
+  transition:filter .32s ease!important;
+}
+
+.page-v63 .project-card__shade,
+.page-v63 .project-card:hover .project-card__shade,
+.page-v63 .project-card:focus-visible .project-card__shade{
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  transform:none!important;
+  border:0!important;
+  outline:0!important;
+}
+
+/* HP / Zakres: na hoverze tylko linia + slide tekstu; ikonka zmienia się po otwarciu. */
+.page-v63 .service-item button:hover i{
+  transform:rotate(0deg)!important;
+  background:transparent!important;
+  color:#fff!important;
+  border-color:rgba(255,255,255,.38)!important;
+}
+
+.page-v63 .service-item.is-open i{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+/* FAQ na HP: ten sam spokojny model interakcji co w wytycznych. */
+.page-v63 .faq-list summary:hover span{
+  transform:rotate(0deg)!important;
+  background:transparent!important;
+  color:#fff!important;
+  border-color:rgba(255,255,255,.38)!important;
+}
+
+.page-v63 .faq-list details[open] summary span{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+/* Stopka: większe, ostre logo bez przygaszenia drobnego podpisu. */
+.page-v63 .site-footer__logo{
+  width:clamp(250px,22vw,340px)!important;
+  max-width:340px!important;
+  height:auto!important;
+  opacity:1!important;
+  filter:none!important;
+}
+
+@media(max-width:760px){
+  .page-v63 .site-footer__logo{
+    width:240px!important;
+    max-width:100%!important;
+  }
+}
