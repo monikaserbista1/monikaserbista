@@ -4563,3 +4563,331 @@ html,body{overflow-x:hidden!important;}
     padding-right:0!important;
   }
 }
+
+
+/* =======================================================================
+   V62 — final visual fixes: FAQ kontakt, realizacje, footer, headings
+   ======================================================================= */
+
+/* PODSTRONA REALIZACJE — większe zdjęcia i równa czarna belka/copy w każdym kaflu */
+.page-v62.page-realizacje .portfolio-halves__grid{
+  align-items:start!important;
+  gap:clamp(22px,2.4vw,38px)!important;
+}
+
+.page-v62.page-realizacje .portfolio-half{
+  display:grid!important;
+  grid-template-rows:clamp(455px,44vw,660px) minmax(315px,auto)!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  background:#050505!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__image{
+  min-height:0!important;
+  height:100%!important;
+  overflow:hidden!important;
+  position:relative!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  transform:none!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__image::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  height:38%!important;
+  z-index:1!important;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.78) 100%)!important;
+  opacity:1!important;
+  pointer-events:none!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__place,
+.page-v62.page-realizacje .portfolio-half__area{
+  z-index:2!important;
+  top:auto!important;
+  bottom:22px!important;
+  opacity:1!important;
+  transform:none!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__copy{
+  min-height:315px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  padding:clamp(44px,4vw,66px)!important;
+  background:#050505!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__copy .page-kicker{
+  margin:0 0 22px!important;
+  white-space:nowrap!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__copy h2{
+  font-size:clamp(44px,4.9vw,86px)!important;
+  line-height:1.02!important;
+  margin:0 0 22px!important;
+}
+
+.page-v62.page-realizacje .portfolio-half__copy p{
+  margin:0!important;
+  max-width:640px!important;
+  line-height:1.72!important;
+}
+
+/* KONTAKT FAQ — skopiowany koncept z HP: pełna szerokość listy, plus po prawej, hover border + slide */
+.page-v62.page-kontakt .faq-focus-v13,
+.page-v62.page-kontakt .faq-focus-v16{
+  background:#050505!important;
+  color:#fff!important;
+  padding:clamp(86px,8vw,134px) var(--pad-x)!important;
+}
+
+.page-v62.page-kontakt .faq-focus-v13__head{
+  width:min(1180px,100%)!important;
+  margin:0 auto clamp(36px,4vw,58px)!important;
+  text-align:left!important;
+}
+
+.page-v62.page-kontakt .faq-focus-v13__head h2{
+  font-size:clamp(48px,5.8vw,98px)!important;
+  line-height:1.02!important;
+  margin:22px 0 0!important;
+  letter-spacing:-.064em!important;
+}
+
+.page-v62.page-kontakt .faq-list--page{
+  width:min(1180px,100%)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  gap:0!important;
+}
+
+.page-v62.page-kontakt .faq-list--page details{
+  border-bottom:1px solid rgba(255,255,255,.18)!important;
+  padding:0!important;
+  background:transparent!important;
+  transform:none!important;
+}
+
+.page-v62.page-kontakt .faq-list--page summary{
+  min-height:82px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px!important;
+  align-items:center!important;
+  gap:30px!important;
+  padding:0!important;
+  list-style:none!important;
+  cursor:pointer!important;
+  position:relative!important;
+  overflow:visible!important;
+  font-size:clamp(22px,2.1vw,34px)!important;
+  line-height:1.16!important;
+  letter-spacing:-.052em!important;
+  transition:padding-left .28s cubic-bezier(.2,.75,.2,1)!important;
+}
+
+.page-v62.page-kontakt .faq-list--page summary::-webkit-details-marker{
+  display:none!important;
+}
+
+.page-v62.page-kontakt .faq-list--page summary::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  bottom:0!important;
+  width:0!important;
+  height:1px!important;
+  background:#fff!important;
+  transition:width .34s cubic-bezier(.2,.75,.2,1)!important;
+  display:block!important;
+}
+
+.page-v62.page-kontakt .faq-list--page summary:hover{
+  padding-left:8px!important;
+}
+
+.page-v62.page-kontakt .faq-list--page summary:hover::after{
+  width:100%!important;
+}
+
+.page-v62.page-kontakt .faq-list--page summary span{
+  grid-column:2!important;
+  justify-self:end!important;
+  width:38px!important;
+  height:38px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid rgba(255,255,255,.24)!important;
+  border-radius:999px!important;
+  margin:0!important;
+  transform:rotate(0deg)!important;
+  transition:
+    transform .28s cubic-bezier(.2,.75,.2,1),
+    background .22s ease,
+    color .22s ease,
+    border-color .22s ease!important;
+}
+
+.page-v62.page-kontakt .faq-list--page details[open] summary span,
+.page-v62.page-kontakt .faq-list--page details.is-open-v62 summary span,
+.page-v62.page-kontakt .faq-list--page summary:hover span{
+  transform:rotate(45deg)!important;
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+
+.page-v62.page-kontakt .faq-list--page p{
+  max-height:0;
+  overflow:hidden!important;
+  opacity:0;
+  transform:translateY(-6px);
+  margin:0!important;
+  padding:0 74px 0 0!important;
+  color:rgba(255,255,255,.72)!important;
+  font-size:15px!important;
+  line-height:1.78!important;
+  transition:
+    max-height .38s cubic-bezier(.2,.75,.2,1),
+    opacity .24s ease,
+    transform .32s cubic-bezier(.2,.75,.2,1),
+    padding .32s ease!important;
+}
+
+.page-v62.page-kontakt .faq-list--page details[open] p,
+.page-v62.page-kontakt .faq-list--page details.is-open-v62 p{
+  max-height:260px;
+  opacity:1;
+  transform:none;
+  padding:2px 74px 30px 0!important;
+}
+
+/* KONTAKT — formularz większy, bardziej wyrównany i mniej "ostry" */
+.page-v62.page-kontakt .contact-final-v23{
+  grid-template-columns:minmax(360px,.72fr) minmax(620px,1.28fr)!important;
+  align-items:start!important;
+}
+
+.page-v62.page-kontakt .contact-form-shell-v60{
+  width:100%!important;
+  max-width:none!important;
+  padding:clamp(42px,4.4vw,72px)!important;
+  background:#050505!important;
+}
+
+.page-v62.page-kontakt .contact-brief-v60{
+  gap:30px 24px!important;
+}
+
+.page-v62.page-kontakt .contact-brief-v60 .field input,
+.page-v62.page-kontakt .contact-brief-v60 .field select,
+.page-v62.page-kontakt .contact-brief-v60 .field textarea{
+  font-size:15px!important;
+  color:rgba(255,255,255,.88)!important;
+  border-bottom-color:rgba(255,255,255,.24)!important;
+}
+
+.page-v62.page-kontakt .contact-brief-v60 textarea{
+  min-height:170px!important;
+}
+
+/* STOPKA — logo/napis czytelniej na dole */
+.page-v62 .site-footer__top{
+  align-items:center!important;
+  gap:clamp(22px,3vw,46px)!important;
+}
+
+.page-v62 .site-footer__logo{
+  width:clamp(210px,18vw,285px)!important;
+  max-width:285px!important;
+  opacity:1!important;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.16))!important;
+}
+
+.page-v62.subpage .site-footer__meta span:nth-child(2),
+.page-v62 .site-footer__meta span:nth-child(2){
+  color:rgba(255,255,255,.88)!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+
+/* News-head / sekcje nagłówkowe — ujednolicenie odstępów */
+.page-v62.page-aktualnosci .v33-news__head,
+.page-v62 .news-wall__intro,
+.page-v62 .portfolio__head,
+.page-v62.subpage .v33-news__head{
+  align-items:end!important;
+  margin-bottom:clamp(36px,4vw,52px)!important;
+}
+
+.page-v62.page-aktualnosci .v33-news__head .page-kicker,
+.page-v62.subpage .v33-news__head .page-kicker{
+  white-space:nowrap!important;
+}
+
+.page-v62.page-aktualnosci .v33-news__head p:not(.page-kicker),
+.page-v62.subpage .v33-news__head p:not(.page-kicker){
+  margin-bottom:0!important;
+}
+
+/* Ostatnie domknięcie H2 na podstronach */
+.page-v62.subpage section h2,
+.page-v62.subpage .contact-final-v23__intro h2,
+.page-v62.subpage .v33-news__head h2,
+.page-v62.subpage .v33-scope__head h2,
+.page-v62.subpage .v33-process__head h2{
+  font-size:clamp(42px,5vw,86px)!important;
+  line-height:1.04!important;
+  margin:24px 0 18px!important;
+  letter-spacing:-.062em!important;
+}
+
+@media(max-width:1020px){
+  .page-v62.page-kontakt .contact-final-v23{
+    grid-template-columns:1fr!important;
+  }
+}
+
+@media(max-width:760px){
+  .page-v62.page-realizacje .portfolio-half{
+    grid-template-rows:clamp(360px,86vw,520px) auto!important;
+  }
+
+  .page-v62.page-realizacje .portfolio-half__copy{
+    min-height:auto!important;
+    padding:34px 24px!important;
+  }
+
+  .page-v62.page-kontakt .faq-list--page summary{
+    grid-template-columns:minmax(0,1fr) 34px!important;
+    min-height:74px!important;
+  }
+
+  .page-v62.page-kontakt .faq-list--page summary span{
+    width:34px!important;
+    height:34px!important;
+  }
+
+  .page-v62.page-kontakt .faq-list--page p,
+  .page-v62.page-kontakt .faq-list--page details[open] p,
+  .page-v62.page-kontakt .faq-list--page details.is-open-v62 p{
+    padding-right:0!important;
+  }
+
+  .page-v62 .site-footer__logo{
+    width:210px!important;
+  }
+}

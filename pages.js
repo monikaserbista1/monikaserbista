@@ -278,3 +278,80 @@ const magnetSelectors = [
     });
   }
 })();
+
+
+// V62 — contact FAQ smooth measured animation like homepage accordions
+(() => {
+  const body = document.body;
+  if (!body.classList.contains('page-v62') || !body.classList.contains('page-kontakt')) return;
+
+  const faqs = [...document.querySelectorAll('.faq-list--page details')];
+
+  const openFaq = (details) => {
+    const paragraph = details.querySelector('p');
+    const summary = details.querySelector('summary');
+    if (!paragraph) return;
+
+    details.open = true;
+    details.classList.add('is-open-v62');
+    summary?.setAttribute('aria-expanded', 'true');
+
+    paragraph.style.maxHeight = '0px';
+    paragraph.style.opacity = '0';
+
+    requestAnimationFrame(() => {
+      paragraph.style.maxHeight = `${paragraph.scrollHeight + 34}px`;
+      paragraph.style.opacity = '1';
+    });
+  };
+
+  const closeFaq = (details) => {
+    const paragraph = details.querySelector('p');
+    const summary = details.querySelector('summary');
+    if (!paragraph) return;
+
+    paragraph.style.maxHeight = `${paragraph.scrollHeight + 34}px`;
+    paragraph.style.opacity = '1';
+    details.classList.remove('is-open-v62');
+    summary?.setAttribute('aria-expanded', 'false');
+
+    requestAnimationFrame(() => {
+      paragraph.style.maxHeight = '0px';
+      paragraph.style.opacity = '0';
+    });
+
+    window.setTimeout(() => {
+      if (!details.classList.contains('is-open-v62')) {
+        details.open = false;
+      }
+    }, 420);
+  };
+
+  faqs.forEach((details) => {
+    const summary = details.querySelector('summary');
+    const paragraph = details.querySelector('p');
+    if (!summary || !paragraph) return;
+
+    summary.setAttribute('aria-expanded', String(details.open));
+    paragraph.style.maxHeight = details.open ? `${paragraph.scrollHeight + 34}px` : '0px';
+    paragraph.style.opacity = details.open ? '1' : '0';
+
+    summary.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (details.classList.contains('is-open-v62') || details.open) {
+        closeFaq(details);
+      } else {
+        openFaq(details);
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    faqs.forEach((details) => {
+      const paragraph = details.querySelector('p');
+      if (paragraph && (details.open || details.classList.contains('is-open-v62'))) {
+        paragraph.style.maxHeight = `${paragraph.scrollHeight + 34}px`;
+      }
+    });
+  }, { passive: true });
+})();
