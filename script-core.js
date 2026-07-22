@@ -1,6 +1,10 @@
 (() => {
   'use strict';
 
+  // Windows rasterizes the embedded social screenshot more aggressively than
+  // macOS/iOS. The class lets CSS soften only that platform.
+  document.documentElement.classList.toggle('is-windows', /Windows/i.test(navigator.userAgent));
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const header = document.querySelector('[data-header]');
   const menuToggle = document.querySelector('.menu-toggle');

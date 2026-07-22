@@ -382,7 +382,9 @@ const magnetSelectors = [
   if (!body.classList.contains('page-v66') || !body.classList.contains('page-kontakt')) return;
 
   const items = [...document.querySelectorAll('.faq-list--page details')];
-  const duration = 440;
+  const duration = 340;
+  const switchDelay = 190;
+  let pendingOpenTimer = 0;
 
   const measure = (item) => {
     const answer = item.querySelector('p');
@@ -410,12 +412,18 @@ const magnetSelectors = [
     summary.setAttribute('aria-expanded', 'false');
     summary.addEventListener('click', (event) => {
       event.preventDefault();
+      window.clearTimeout(pendingOpenTimer);
       if (item.classList.contains('is-open-v66')) {
         close(item);
         return;
       }
-      items.forEach((other) => { if (other !== item && other.classList.contains('is-open-v66')) close(other); });
-      open(item);
+      const current = items.find((other) => other !== item && other.classList.contains('is-open-v66'));
+      if (current) {
+        close(current);
+        pendingOpenTimer = window.setTimeout(() => open(item), switchDelay);
+      } else {
+        open(item);
+      }
     });
   });
 

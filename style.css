@@ -15,6 +15,13 @@
   --serif:"Newsreader",Georgia,serif;
 }
 
+
+/* V67 — Windows-only softening for the Facebook preview screenshot. */
+.is-windows .page-v67 .social-phone__screen img{
+  filter:contrast(.9) saturate(.92) blur(.25px)!important;
+  transform:scale(1.003);
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;background:var(--black)}
 body{margin:0;background:var(--black);color:var(--white);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:hidden}

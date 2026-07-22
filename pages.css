@@ -176,6 +176,8 @@
   min-height:620px;
   max-height:860px;
 }
+
+
 .page-oferta.page-v18 .sub-hero-v16{padding:calc(var(--header-h) + 56px) var(--pad-x) clamp(70px,9vh,110px)}
 .page-oferta.page-v18 .sub-hero-v16__image img{filter:brightness(.56) contrast(.96);object-position:center center}
 .page-oferta.page-v18 .sub-hero-v16::after{background:linear-gradient(90deg,rgba(5,5,5,.82) 0%,rgba(5,5,5,.42) 50%,rgba(5,5,5,.26)),linear-gradient(0deg,rgba(5,5,5,.50),transparent 52%)}
@@ -5368,5 +5370,67 @@ html,body{overflow-x:hidden!important;}
     color:#050505!important;
     -webkit-text-fill-color:#050505!important;
     transform:none!important;
+  }
+}
+
+
+/* =======================================================================
+   V67 — final targeted fixes: Offer colours, Contact FAQ and footer mark
+   ======================================================================= */
+
+/* Oferta: ciemny hero pozostaje biały, jasne sekcje mają ponownie ciemny tekst. */
+.page-v67.page-oferta .v33-subhero,
+.page-v67.page-oferta .v33-subhero h1,
+.page-v67.page-oferta .v33-subhero .page-kicker,
+.page-v67.page-oferta .v33-subhero__content > p:not(.page-kicker){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+.page-v67.page-oferta .v33-split,
+.page-v67.page-oferta .v33-scope,
+.page-v67.page-oferta .v33-process,
+.page-v67.page-oferta .v33-split__copy h2,
+.page-v67.page-oferta .v33-scope__head h2,
+.page-v67.page-oferta .v33-process__head h2,
+.page-v67.page-oferta .v33-process__line h3{
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+}
+
+.page-v67.page-oferta .v33-split__copy > p:not(.page-kicker),
+.page-v67.page-oferta .v33-scope__head > p:not(.page-kicker),
+.page-v67.page-oferta .v33-process__line p{
+  color:#58544e!important;
+  -webkit-text-fill-color:#58544e!important;
+}
+
+.page-v67.page-oferta .v33-split .page-kicker,
+.page-v67.page-oferta .v33-scope .page-kicker,
+.page-v67.page-oferta .v33-process .page-kicker,
+.page-v67.page-oferta .v33-link{
+  color:#080808!important;
+  -webkit-text-fill-color:#080808!important;
+}
+
+/* Kontakt: jeden stan animacji i czytelne zamknięcie przed otwarciem kolejnej odpowiedzi. */
+.page-v67.page-kontakt .faq-list--page details p,
+.page-v67.page-kontakt .faq-list--page details[open] p,
+.page-v67.page-kontakt .faq-list--page details.is-open-v62 p{
+  transition:max-height .34s cubic-bezier(.22,.75,.18,1),opacity .2s ease,transform .28s cubic-bezier(.22,.75,.18,1),padding .28s ease!important;
+}
+
+/* Nowy lockup ma większy, czytelniejszy dopisek „Projektowanie wnętrz”. */
+.page-v67 .site-footer__logo{
+  width:clamp(270px,22vw,340px)!important;
+  max-width:340px!important;
+  opacity:.96!important;
+  filter:none!important;
+}
+
+@media(max-width:760px){
+  .page-v67 .site-footer__logo{
+    width:260px!important;
+    max-width:100%!important;
   }
 }
