@@ -1,10 +1,15 @@
 (() => {
   'use strict';
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const compactViewport = window.matchMedia('(max-width: 820px), (pointer: coarse)').matches;
   const header = document.querySelector('[data-header]');
   const menuToggle = document.querySelector('.menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 18);
+  let headerRaf = 0;
+  const updateHeader = () => {
+    cancelAnimationFrame(headerRaf);
+    headerRaf = requestAnimationFrame(() => header?.classList.toggle('is-scrolled', window.scrollY > 18));
+  };
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
   const setMenu = (open) => {
@@ -19,7 +24,7 @@
   window.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
 
   const revealItems = document.querySelectorAll('.reveal');
-  if (reducedMotion || !('IntersectionObserver' in window)) {
+  if (reducedMotion || compactViewport || !('IntersectionObserver' in window)) {
     revealItems.forEach((item) => item.classList.add('is-visible'));
   } else {
     const observer = new IntersectionObserver((entries, currentObserver) => {
@@ -111,6 +116,7 @@
   // V31: no entry animation on subpages.
   document.body.classList.add('entry-v25-finished');
 const initBriefPopup = () => {
+    if (compactViewport) return;
     if (window.localStorage?.getItem('monnaBriefPopupClosed') === '1') return;
     const popup = document.createElement('aside');
     popup.className = 'premium-brief-popup';
@@ -145,15 +151,21 @@ const initBriefPopup = () => {
   const initMajorInteractionsV25 = () => {
     document.body.classList.add('lux-v25-ready');
 
-    const progress = document.createElement('div');
-    progress.className = 'scroll-progress-v25';
-    document.body.appendChild(progress);
-    const updateProgress = () => {
-      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      progress.style.transform = `scaleX(${Math.min(1, Math.max(0, window.scrollY / max))})`;
-    };
-    updateProgress();
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    if (!compactViewport) {
+      const progress = document.createElement('div');
+      progress.className = 'scroll-progress-v25';
+      document.body.appendChild(progress);
+      let progressRaf = 0;
+      const updateProgress = () => {
+        cancelAnimationFrame(progressRaf);
+        progressRaf = requestAnimationFrame(() => {
+          const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+          progress.style.transform = `scaleX(${Math.min(1, Math.max(0, window.scrollY / max))})`;
+        });
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+    }
 
     if (!reducedMotion && window.matchMedia('(pointer:fine)').matches) {
       // V26: cursor glow removed. Magnetic interactions stay active.
@@ -205,20 +217,22 @@ const magnetSelectors = [
 
     document.documentElement.classList.add('motion-v34-ready');
 
-    const cards = document.querySelectorAll('.v33-scope details, .v33-news-card, .project-card, .portfolio-card, .contact-card, .service-card');
-    cards.forEach((card) => {
-      card.addEventListener('pointermove', (event) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width - .5) * 10;
-        const y = ((event.clientY - rect.top) / rect.height - .5) * 10;
-        card.style.setProperty('--mx', `${x}px`);
-        card.style.setProperty('--my', `${y}px`);
-      }, { passive:true });
-      card.addEventListener('pointerleave', () => {
-        card.style.removeProperty('--mx');
-        card.style.removeProperty('--my');
+    if (!compactViewport && window.matchMedia('(pointer:fine)').matches) {
+      const cards = document.querySelectorAll('.v33-scope details, .v33-news-card, .project-card, .portfolio-card, .contact-card, .service-card');
+      cards.forEach((card) => {
+        card.addEventListener('pointermove', (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width - .5) * 10;
+          const y = ((event.clientY - rect.top) / rect.height - .5) * 10;
+          card.style.setProperty('--mx', `${x}px`);
+          card.style.setProperty('--my', `${y}px`);
+        }, { passive:true });
+        card.addEventListener('pointerleave', () => {
+          card.style.removeProperty('--mx');
+          card.style.removeProperty('--my');
+        });
       });
-    });
+    }
 
     document.querySelectorAll('.v33-scope details').forEach((item) => {
       const summary = item.querySelector('summary');
@@ -285,7 +299,7 @@ const magnetSelectors = [
 // V62 — contact FAQ smooth measured animation like homepage accordions
 (() => {
   const body = document.body;
-  if (!body.classList.contains('page-v62') || !body.classList.contains('page-kontakt')) return;
+  if (!body.classList.contains('page-v62') || !body.classList.contains('page-kontakt') || body.classList.contains('page-v66')) return;
 
   const faqs = [...document.querySelectorAll('.faq-list--page details')];
 
@@ -358,5 +372,56 @@ const magnetSelectors = [
         paragraph.style.maxHeight = `${paragraph.scrollHeight + 34}px`;
       }
     });
+  }, { passive: true });
+})();
+
+
+// V66 — one conflict-free FAQ controller for the Contact page
+(() => {
+  const body = document.body;
+  if (!body.classList.contains('page-v66') || !body.classList.contains('page-kontakt')) return;
+
+  const items = [...document.querySelectorAll('.faq-list--page details')];
+  const duration = 440;
+
+  const measure = (item) => {
+    const answer = item.querySelector('p');
+    item.style.setProperty('--faq-panel-height', `${(answer?.scrollHeight || 0) + 30}px`);
+  };
+  const close = (item) => {
+    item.classList.remove('is-open-v66');
+    item.querySelector('summary')?.setAttribute('aria-expanded', 'false');
+    window.setTimeout(() => {
+      if (!item.classList.contains('is-open-v66')) item.open = false;
+    }, duration);
+  };
+  const open = (item) => {
+    item.open = true;
+    measure(item);
+    item.querySelector('summary')?.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => requestAnimationFrame(() => item.classList.add('is-open-v66')));
+  };
+
+  items.forEach((item) => {
+    const summary = item.querySelector('summary');
+    if (!summary) return;
+    item.open = false;
+    item.classList.remove('is-open-v62');
+    summary.setAttribute('aria-expanded', 'false');
+    summary.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (item.classList.contains('is-open-v66')) {
+        close(item);
+        return;
+      }
+      items.forEach((other) => { if (other !== item && other.classList.contains('is-open-v66')) close(other); });
+      open(item);
+    });
+  });
+
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => items.filter((item) => item.classList.contains('is-open-v66')).forEach(measure));
   }, { passive: true });
 })();

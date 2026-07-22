@@ -17,8 +17,12 @@
     });
   }
 
+  // Podstrony mają własny, lżejszy skrypt. Nie uruchamiamy drugi raz
+  // obsługi menu, revealów i galerii ze strony głównej.
+  if (!isLanding) return;
+
   const core = document.createElement('script');
-  core.src = 'script-core.js?v=64.0.0';
+  core.src = 'script-core.js?v=66.0.0';
   core.async = false;
   document.head.appendChild(core);
 })();

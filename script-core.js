@@ -111,18 +111,33 @@
   });
 
   const serviceItems = [...document.querySelectorAll('.service-item')];
+  const measureService = (item) => {
+    const panel = item.querySelector('.service-item__panel');
+    if (!panel) return;
+    panel.hidden = false;
+    item.style.setProperty('--service-panel-height', `${panel.scrollHeight + 28}px`);
+  };
+  const closeService = (item) => {
+    item.classList.remove('is-open');
+    item.querySelector('button')?.setAttribute('aria-expanded', 'false');
+  };
+  const openService = (item) => {
+    measureService(item);
+    item.classList.add('is-open');
+    item.querySelector('button')?.setAttribute('aria-expanded', 'true');
+  };
+
   serviceItems.forEach((item) => {
     const button = item.querySelector('button');
-    button?.addEventListener('click', () => {
-      const opening = button.getAttribute('aria-expanded') !== 'true';
-      serviceItems.forEach((other) => {
-        other.classList.remove('is-open');
-        other.querySelector('button')?.setAttribute('aria-expanded', 'false');
-      });
-      if (opening) {
-        item.classList.add('is-open');
-        button.setAttribute('aria-expanded', 'true');
-      }
+    const panel = item.querySelector('.service-item__panel');
+    if (!button || !panel) return;
+    panel.hidden = false;
+    measureService(item);
+    button.addEventListener('click', () => {
+      const opening = !item.classList.contains('is-open');
+      serviceItems.forEach((other) => { if (other !== item) closeService(other); });
+      if (opening) openService(item);
+      else closeService(item);
     });
   });
 
@@ -179,12 +194,35 @@
     window.addEventListener('resize', () => window.requestAnimationFrame(measureMarquee), { passive: true });
   }
 
-  document.querySelectorAll('.faq-list details').forEach((details) => {
-    details.addEventListener('toggle', () => {
-      if (!details.open) return;
-      document.querySelectorAll('.faq-list details').forEach((other) => {
-        if (other !== details) other.open = false;
-      });
+  const faqItems = [...document.querySelectorAll('.faq-list details')];
+  const closeFaq = (details) => {
+    details.classList.remove('is-open-v66');
+    details.querySelector('summary')?.setAttribute('aria-expanded', 'false');
+    window.setTimeout(() => {
+      if (!details.classList.contains('is-open-v66')) details.open = false;
+    }, 440);
+  };
+  const openFaq = (details) => {
+    const answer = details.querySelector('p');
+    details.open = true;
+    details.style.setProperty('--faq-panel-height', `${(answer?.scrollHeight || 0) + 28}px`);
+    details.querySelector('summary')?.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => requestAnimationFrame(() => details.classList.add('is-open-v66')));
+  };
+
+  faqItems.forEach((details) => {
+    const summary = details.querySelector('summary');
+    if (!summary) return;
+    details.open = false;
+    summary.setAttribute('aria-expanded', 'false');
+    summary.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (details.classList.contains('is-open-v66')) {
+        closeFaq(details);
+        return;
+      }
+      faqItems.forEach((other) => { if (other !== details && other.classList.contains('is-open-v66')) closeFaq(other); });
+      openFaq(details);
     });
   });
 
@@ -373,7 +411,8 @@
       !document.body.classList.contains('subpage') &&
       (location.pathname.endsWith('/') || location.pathname.endsWith('/index.html') || document.querySelector('.hero'));
 
-    if (reducedMotion || !isStudioPage) {
+    const compactViewport = window.matchMedia('(max-width: 820px), (pointer: coarse)').matches;
+    if (reducedMotion || compactViewport || !isStudioPage) {
       document.body.classList.add('entry-v25-finished');
       return;
     }
@@ -414,7 +453,7 @@
 
   // V36 start notification — bottom right, subtle premium toast
   const initStartToastV36 = () => {
-    if (reducedMotion) return;
+    if (reducedMotion || window.matchMedia('(max-width: 820px), (pointer: coarse)').matches) return;
     const isStudioPage =
       !document.body.classList.contains('subpage') &&
       (location.pathname.endsWith('/') || location.pathname.endsWith('/index.html') || document.querySelector('.hero'));
@@ -636,7 +675,7 @@
 })();
 
 
-// V58 — homepage interactions: stable accordion heights and social phone gap fix
+// V58 — social phone gap fix (accordion logic is owned by the V66 handler above)
 (() => {
   const body = document.body;
   if (!body.classList.contains('page-v58')) return;
@@ -648,36 +687,18 @@
     phone.style.transform = 'none';
   }
 
-  // HP services smooth measured panels.
-  const serviceItems = [...document.querySelectorAll('.service-item')];
-
-  const refreshServicePanelsV58 = () => {
-    serviceItems.forEach((item) => {
-      const panel = item.querySelector('.service-item__panel');
-      if (!panel) return;
-      panel.hidden = false;
-      panel.style.display = 'grid';
-      panel.style.maxHeight = item.classList.contains('is-open')
-        ? `${panel.scrollHeight + 28}px`
-        : '0px';
-    });
-  };
-
-  if (serviceItems.length) {
-    serviceItems.forEach((item) => {
-      const panel = item.querySelector('.service-item__panel');
-      const button = item.querySelector('button');
-      if (!panel || !button) return;
-      panel.hidden = false;
-      button.addEventListener('click', () => {
-        window.requestAnimationFrame(refreshServicePanelsV58);
-        window.setTimeout(refreshServicePanelsV58, 90);
-        window.setTimeout(refreshServicePanelsV58, 260);
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => {
+      document.querySelectorAll('.service-item').forEach((item) => {
+        const panel = item.querySelector('.service-item__panel');
+        if (panel) item.style.setProperty('--service-panel-height', `${panel.scrollHeight + 28}px`);
+      });
+      [...document.querySelectorAll('.faq-list details')].filter((item) => item.classList.contains('is-open-v66')).forEach((item) => {
+        const answer = item.querySelector('p');
+        item.style.setProperty('--faq-panel-height', `${(answer?.scrollHeight || 0) + 28}px`);
       });
     });
-
-    window.addEventListener('resize', refreshServicePanelsV58, { passive: true });
-    window.addEventListener('load', refreshServicePanelsV58);
-    refreshServicePanelsV58();
-  }
+  }, { passive: true });
 })();
