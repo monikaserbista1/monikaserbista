@@ -22,7 +22,7 @@
   if (!isLanding) return;
 
   const core = document.createElement('script');
-  core.src = 'script-core.js?v=70.0.0';
+  core.src = 'script-core.js?v=80.0.0';
   core.async = false;
   document.head.appendChild(core);
 })();

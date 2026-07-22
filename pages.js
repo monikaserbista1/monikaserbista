@@ -61,20 +61,20 @@
   const render = () => {
     const item = items[index];
     if (!item || !lightboxImage || !lightboxTitle || !lightboxCount) return;
-    lightboxImage.classList.add('is-changing');
-    window.setTimeout(() => {
-      lightboxImage.src = item.dataset.lightbox;
-      lightboxImage.alt = item.dataset.title || '';
-      lightboxTitle.textContent = item.dataset.title || '';
-      lightboxCount.textContent = `${String(index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
-      lightboxImage.onload = () => lightboxImage.classList.remove('is-changing');
-      lightboxImage.onerror = () => lightboxImage.classList.remove('is-changing');
-    }, 80);
+    lightboxImage.classList.remove('is-changing');
+    lightboxImage.src = item.dataset.lightbox;
+    lightboxImage.alt = item.dataset.title || '';
+    lightboxTitle.textContent = item.dataset.title || '';
+    lightboxCount.textContent = `${String(index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
   };
   const open = (tile) => {
     if (!lightbox) return;
     items = visibleTiles();
     index = Math.max(0, items.indexOf(tile));
+    items.forEach((item) => {
+      const image = new Image();
+      image.src = item.dataset.lightbox;
+    });
     render();
     if (typeof lightbox.showModal === 'function') lightbox.showModal();
     else lightbox.setAttribute('open', '');

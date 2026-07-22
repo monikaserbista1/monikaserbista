@@ -296,21 +296,21 @@
   const renderGallery = () => {
     if (!activeGallery || !galleryImage || !galleryTitle || !galleryCount) return;
     const [source, alt] = activeGallery.images[activeImage];
-    galleryImage.classList.add('is-changing');
-    window.setTimeout(() => {
-      galleryImage.src = source;
-      galleryImage.alt = alt;
-      galleryTitle.textContent = `${activeGallery.title} — ${alt}`;
-      galleryCount.textContent = `${String(activeImage + 1).padStart(2, '0')} / ${String(activeGallery.images.length).padStart(2, '0')}`;
-      galleryImage.onload = () => galleryImage.classList.remove('is-changing');
-      galleryImage.onerror = () => galleryImage.classList.remove('is-changing');
-    }, 90);
+    galleryImage.classList.remove('is-changing');
+    galleryImage.src = source;
+    galleryImage.alt = alt;
+    galleryTitle.textContent = `${activeGallery.title} — ${alt}`;
+    galleryCount.textContent = `${String(activeImage + 1).padStart(2, '0')} / ${String(activeGallery.images.length).padStart(2, '0')}`;
   };
 
   const openGallery = (key) => {
     if (!dialog || !galleries[key]) return;
     activeGallery = galleries[key];
     activeImage = 0;
+    activeGallery.images.forEach(([source]) => {
+      const image = new Image();
+      image.src = source;
+    });
     renderGallery();
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');

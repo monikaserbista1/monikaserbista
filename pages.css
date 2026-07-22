@@ -2737,3 +2737,30 @@ html,body{overflow-x:hidden!important;}
     width:440px;
   }
 }
+
+
+/* V80 — portfolio lightbox uses a stable image stage; arrows never move it on hover. */
+.page-v80.page-realizacje .page-lightbox figure{
+  grid-template-rows:minmax(0,1fr) auto!important;
+}
+
+.page-v80.page-realizacje .page-lightbox figure > img{
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  opacity:1!important;
+  transform:none!important;
+  transition:none!important;
+}
+
+.page-v80.page-realizacje .page-lightbox__nav,
+.page-v80.page-realizacje .page-lightbox__nav:hover,
+.page-v80.page-realizacje .page-lightbox__nav:focus-visible{
+  width:52px!important;
+  height:52px!important;
+  transform:none!important;
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease!important;
+}
